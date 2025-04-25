@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('imagem/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    background: rgba(13, 27, 61, 0.5); /* Mais translúcido */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 50px 30px;
+    text-align: center;
+    width: 550px;
+    height: 500px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.title {
+    font-family: 'Times New Roman', serif;
+    font-size: 28px;
+    color: #ffffff;
+    background: transparent;
+    padding: 5px 30px;
+    border-radius: 12px;
+    letter-spacing: 4px;
+    display: inline-block;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.menu-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.menu-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+.icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.invert {
+    filter: invert(1);
+}
+
