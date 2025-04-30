@@ -1,0 +1,251 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url('/Controle_de_Acesso2/accets/IMAGEM/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  background: rgba(13, 27, 61, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.25rem;
+  padding: 3.125rem 1.875rem;
+  text-align: center;
+  width: 34rem;
+  height: 31rem;
+  box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+}
+
+.title {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.75rem;
+  color: #ffffff;
+  background: transparent;
+  padding: 0.5rem 2rem;
+  border-radius: 0.75rem;
+  letter-spacing: 0.25rem;
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.menu-button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 2rem;
+  padding: 0.625rem 1.25rem;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+ 
+}
+
+.menu-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: brightness(0) invert(1);
+}
+
+.invert {
+  filter: invert(1);
+}
+.info-cadastrada {
+  background-color: #fff;
+  color: #333;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.info-cadastrada h2,
+.info-cadastrada p {
+  font-size: 18px;
+}
+.button-container {
+  margin-bottom: 20px;
+}
+
+.create-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.create-button:hover {
+  background-color: #0056b3;
+}
+
+.info-cadastrada {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.info-cadastrada h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.info-cadastrada p {
+  margin-bottom: 5px;
+  color: #555;
+}
+/* Se você quiser que os botões fiquem lado a lado na parte inferior */
+.bottom-buttons {
+  display: flex;
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  gap: 15px; /* Espaço entre os botões */
+  margin-top: 20px; /* Espaço acima dos botões */
+}
+.bottom-buttons button {
+  /* Estilos para os botões dentro do container inferior - você pode remover duplicatas */
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  color: rgb(255, 255, 255);
+}
+.bottom-buttons .voltar {
+  background-color: #607d8b;
+}
+.bottom-buttons .voltar:hover {
+  background-color: #455a64;
+}
+.bottom-buttons .create-button {
+  background-color: #2196f3;
+}
+
+.bottom-buttons .create-button:hover {
+  background-color: #1976d2;
+}
+
+.voltar {
+  padding: 10px 20px;
+  background-color: #607d8b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 15px;
+  display: inline-block;
+  /* Se os botões estiverem um ao lado do outro, você pode precisar ajustar o display e margin */
+  /* Por exemplo: display: block; margin-bottom: 10px; */
+}
+
+.voltar:hover {
+  background-color: #455a64;
+}
+.button-container {
+  margin-bottom: 20px;
+  text-align: center; /* Mantenha o alinhamento central se desejar */
+}
+
+.create-button {
+  padding: 1px 2px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+  background-color: #1976d2;
+}
+
+.info-cadastrada {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.info-cadastrada h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.info-cadastrada p {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.voltar {
+  padding: 10px 15px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.voltar:hover {
+  background-color: #545b62;
+}
+/* cadastro.css */
+
+/* cadastro.css */
+
+#cadastros-container {
+  max-height: 400px; /* Aumentei a altura máxima para 400px - ajuste conforme necessário */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f944;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px; /* Adicionei margem inferior para separar dos botões */
+}
+#cadastros-container h2 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+/* Se você precisar de estilos específicos para os itens dentro da barra de rolagem */
+#cadastros-container .info-cadastrada {
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+#cadastros-container .info-cadastrada:last-child {
+  border-bottom: none;
+}

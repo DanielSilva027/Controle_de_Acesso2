@@ -1,0 +1,68 @@
+/* editar_cadastro.css */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px; /* Adiciona um pouco de espaço ao redor do conteúdo */
+    /* As propriedades de background e font-family serão herdadas do style.css */
+}
+
+.container {
+    background: rgba(13, 27, 61, 0.7); /* Fundo levemente transparente para o container */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    text-align: left; /* Alinha o texto dentro do container à esquerda */
+    box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(0.5rem);
+    -webkit-backdrop-filter: blur(0.5rem);
+    width: 80%;
+    max-width: 400px; /* Defina uma largura máxima para o container */
+}
+
+h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center; /* Centraliza o título dentro do container */
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+input[type="text"] {
+    width: calc(100% - 1rem);
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 2rem;
+    padding: 0.7rem 1.5rem;
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1.5rem;
+    width: 100%; /* Faz o botão ocupar a largura do container */
+}
+
+button[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.15);
+}

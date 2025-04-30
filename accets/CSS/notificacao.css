@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0d1b3f;
+    color: white;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.historico-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.historico-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.registro {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.registro img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.registro-info {
+    flex: 1;
+}
+
+.registro-info p {
+    margin: 2px 0;
+    font-size: 14px;
+}
+
+.voltar {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    background: #444;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.voltar:hover {
+    background: #666;
+}
