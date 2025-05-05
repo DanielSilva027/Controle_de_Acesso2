@@ -1,0 +1,160 @@
+
+.body{
+  scroll-behavior: smooth;
+}.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #133167;
+    width: 100%; /* Deixar 100% da tela */
+    height: 8rem;
+    box-sizing: border-box;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Inter";
+  }
+  
+  .logo img {
+    height: 10rem; 
+    width: 10rem;
+  }
+  
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    color:aliceblue;
+    font-family: "Inter";
+    
+  }
+  
+  .menu ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter";
+  }
+  
+  .menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-family: "Inter";
+  }
+  
+  .botoes {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .login {
+    background-color: #fef08a; 
+    color: #133167;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  
+  .registro {
+    background-color: #3b82f6; /* azul claro */
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .fundo {
+    background-image: url('imagem/Captura\ de\ tela\ 2025-04-25\ 195001.png');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .section{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+  }
+  .minitexto, .rosto {
+    flex: 1;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .subtitulo {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  .texto {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .acesse {
+    background-color: #3b82f6;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .foto {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .minitexto {
+    color: white;
+  }
+.fundo2{
+  background: linear-gradient(white,gray)
+}
+.detalhamento{
+  display: flex;
+  align-items: center;
+}
+.frase{
+  max-width: 50%;
+  font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+
+}
+.img4{
+  width: 50rem;
+  height: 30rem;
+  display: flex;
+  padding: 10rem;
+}
+h2{
+  color: black;
+}
+.texto2{
+color: black;
+}
+.destaque {
+  background: linear-gradient(to top, #fbe562 50%, transparent 50%);
+}
