@@ -2,13 +2,13 @@ body {
     margin: 0;
     padding: 0;
     background: url('../IMAGEM/background.jpg') no-repeat center center fixed;
-
     background-size: cover;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Arial', sans-serif;
+    color: white; /* Garante que o texto padrão seja branco */
 }
 
 .container {
@@ -20,6 +20,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(0.5rem);
+    -webkit-backdrop-filter: blur(0.5rem);
 }
 
 .main-content {
@@ -28,17 +31,20 @@ body {
     gap: 2rem;
 }
 
-.user-list {
+#user-list-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     width: 100%;
+    overflow-y: auto; /* Adiciona a barra de rolagem vertical */
+    max-height: 500px; /* Define uma altura máxima para a lista */
+    padding-right: 0.5rem; /* Espaço para a barra de rolagem */
 }
 
 .user-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     padding: 0.75rem 1rem;
     display: flex;
     align-items: center;
@@ -55,65 +61,66 @@ body {
     height: 3rem;
     border-radius: 50%;
     border: 2px solid white;
+    object-fit: cover;
 }
 
 .user-info {
     text-align: left;
+    flex-grow: 1; /* Permite que as informações ocupem o espaço restante */
 }
 
 .user-name {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
 }
 
 .user-cpf {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     opacity: 0.7;
+    margin-bottom: 0;
 }
 
-.action-panel {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 1rem;
-    padding: 1rem;
+.options-box {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    width: 10rem;
-    align-items: center;
+    gap: 0.75rem;
+    width: auto; /* Ajusta a largura para o conteúdo */
 }
 
-.painel-button {
-    background: linear-gradient(to right, #111, #333);
-    color: white;
-    border: none;
+.option-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 1rem;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
+    padding: 0.6rem 1rem;
+    color: white;
+    font-size: 0.9rem;
     cursor: pointer;
-    width: 80%;
     transition: background 0.3s ease;
+    text-align: center; /* Centraliza o texto nos botões */
 }
 
-.painel-button:hover {
-    background: linear-gradient(to right, #333, #111);
+.option-button:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .buttons {
     display: flex;
     justify-content: flex-end;
+    margin-top: 1rem; /* Adiciona um pouco de espaço acima do botão "Voltar" */
 }
 
 .menu-button {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1rem;
     color: white;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .menu-button:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
 }

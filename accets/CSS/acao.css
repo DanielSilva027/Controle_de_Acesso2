@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('/Controle_de_Acesso2/accets/IMAGEM/background.jpg') no-repeat center center fixed;
+    background: url('../IMAGEM/background.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     display: flex;
@@ -14,32 +14,40 @@ body {
     background: rgba(13, 27, 61, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 1.25rem;
-    padding: 3.125rem 1.875rem;
-    text-align: center;
-    width: 34rem;
-    height: 31rem;
-    box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(0.5rem);
-    -webkit-backdrop-filter: blur(0.5rem);
+    padding: 2rem;
+    width: 50rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center; /* Centralizar os itens horizontalmente dentro do container */
 }
 
-.title {
-    font-family: 'Times New Roman', serif;
-    font-size: 1.75rem;
-    color: #ffffff;
-    letter-spacing: 0.25rem;
-    margin-bottom: 2.5rem;
-    font-weight: bold;
+.ordenar-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    align-self: flex-start; /* Alinhar o botão à esquerda */
 }
 
-.user-list {
+.ordenar-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#lista-cadastros {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    margin-bottom: 2rem;
+    width: 100%;
+    overflow-y: auto; /* Adiciona barra de rolagem se a lista for longa */
+    max-height: 400px; /* Defina uma altura máxima para a rolagem */
 }
 
-.user-card {
+.cadastro-item {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 1.5rem;
@@ -48,100 +56,13 @@ body {
     align-items: center;
     gap: 1rem;
     color: white;
+    width: 100%;
+    box-sizing: border-box; /* Inclui padding e border na largura */
 }
 
-.user-photo {
+.foto-placeholder {
     width: 3rem;
     height: 3rem;
-    border-radius: 50%;
-    border: 2px solid white;
-}
-
-.user-info {
-    text-align: left;
-}
-
-.user-name {
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.user-cpf {
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1.25rem;
-}
-
-.menu-button {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 2rem;
-    padding: 0.625rem 1.25rem;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.menu-button:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-.main-content {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-.ordenar-box {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 1.5rem;
-    padding: 1rem;
-    width: 40%;
-    color: white;
-}
-
-.ordenar-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.ordenar-placeholder {
-    height: 8rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.cadastro-item {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 1rem;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    color: white;
-    text-align: left;
-    width: 80%;
-    max-width: 400px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.cadastro-item .foto-placeholder {
-    width: 2.5rem;
-    height: 2.5rem;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.1);
     display: flex;
@@ -150,24 +71,9 @@ body {
     font-size: 0.8rem;
 }
 
-.cadastro-item .info {
+.info {
+    text-align: left;
     flex-grow: 1;
-}
-
-.ordenar-button {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 2rem;
-    padding: 0.625rem 1.25rem;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 1rem;
-}
-
-.ordenar-button:hover {
-    background: rgba(255, 255, 255, 0.15);
 }
 
 .bottom-actions {
@@ -176,16 +82,22 @@ body {
 }
 
 .bottom-actions button {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 2rem;
-    padding: 0.625rem 1.25rem;
+    border-radius: 1rem;
+    padding: 0.75rem 1.5rem;
     color: white;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .bottom-actions button:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    color: white;
+    align-self: flex-start; /* Alinhar o título à esquerda */
+    margin-bottom: 1rem;
 }
