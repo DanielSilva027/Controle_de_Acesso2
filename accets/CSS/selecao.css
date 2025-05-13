@@ -14,41 +14,41 @@ body {
 .container {
     background: rgba(13, 27, 61, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1.25rem;
-    padding: 2rem;
-    width: 50rem;
+    border-radius: 1.25rem; /* 20px */
+    padding: 2rem; /* 32px */
+    width: 50rem; /* 800px */
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(0.5rem);
+    gap: 2rem; /* 32px */
+    box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37); /* 8px 32px */
+    backdrop-filter: blur(0.5rem); /* 8px */
     -webkit-backdrop-filter: blur(0.5rem);
 }
 
 .main-content {
     display: flex;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 2rem; /* 32px */
 }
 
 #user-list-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1rem; /* 16px */
     width: 100%;
-    overflow-y: auto; /* Adiciona a barra de rolagem vertical */
-    max-height: 500px; /* Define uma altura máxima para a lista */
-    padding-right: 0.5rem; /* Espaço para a barra de rolagem */
+    overflow-y: auto;
+    max-height: 31.25rem; /* 500px */
+    padding-right: 0.5rem; /* 8px */
 }
 
 .user-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 1rem;
-    padding: 0.75rem 1rem;
+    border-radius: 1rem; /* 16px */
+    padding: 0.75rem 1rem; /* 12px 16px */
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1rem; /* 16px */
     color: white;
 }
 
@@ -57,26 +57,26 @@ body {
 }
 
 .user-photo {
-    width: 3rem;
-    height: 3rem;
+    width: 3rem; /* 48px */
+    height: 3rem; /* 48px */
     border-radius: 50%;
-    border: 2px solid white;
+    border: 0.125rem solid white; /* 2px */
     object-fit: cover;
 }
 
 .user-info {
     text-align: left;
-    flex-grow: 1; /* Permite que as informações ocupem o espaço restante */
+    flex-grow: 1;
 }
 
 .user-name {
     font-weight: bold;
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
+    font-size: 1rem; /* 16px */
+    margin-bottom: 0.25rem; /* 4px */
 }
 
 .user-cpf {
-    font-size: 0.85rem;
+    font-size: 0.85rem; /* 13.6px */
     opacity: 0.7;
     margin-bottom: 0;
 }
@@ -84,20 +84,20 @@ body {
 .options-box {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    width: auto; /* Ajusta a largura para o conteúdo */
+    gap: 0.75rem; /* 12px */
+    width: auto;
 }
 
 .option-button {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 1rem;
-    padding: 0.6rem 1rem;
+    border-radius: 1rem; /* 16px */
+    padding: 0.6rem 1rem; /* 9.6px 16px */
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* 14.4px */
     cursor: pointer;
     transition: background 0.3s ease;
-    text-align: center; /* Centraliza o texto nos botões */
+    text-align: center;
 }
 
 .option-button:hover {
@@ -107,16 +107,16 @@ body {
 .buttons {
     display: flex;
     justify-content: flex-end;
-    margin-top: 1rem; /* Adiciona um pouco de espaço acima do botão "Voltar" */
+    margin-top: 1rem; /* 16px */
 }
 
 .menu-button {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 1rem;
-    padding: 0.6rem 1rem;
+    border-radius: 1rem; /* 16px */
+    padding: 0.6rem 1rem; /* 9.6px 16px */
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* 14.4px */
     cursor: pointer;
     transition: background 0.3s ease;
 }

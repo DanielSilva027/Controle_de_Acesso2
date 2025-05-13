@@ -10,59 +10,62 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
+
 .container {
     background: rgba(13, 27, 61, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1.25rem;
-    padding: 3.125rem 1.875rem;
+    border: 0.0625rem solid rgba(255, 255, 255, 0.15); /* 1px */
+    border-radius: 1.25rem; /* 20px */
+    padding: 3.125rem 1.875rem; 
     text-align: center;
-    width: 34rem;
-    height: 31rem;
-    box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
+    width: 34rem; 
+    height: 31rem; 
+    box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37); /* 8px 32px */
     backdrop-filter: blur(0.5rem);
     -webkit-backdrop-filter: blur(0.5rem);
 }
 
+/* Título */
 .title {
     font-family: 'Times New Roman', serif;
-    font-size: 1.75rem;
+    font-size: 1.75rem; /* 28px */
     color: #ffffff;
-    background: transparent;
-    padding: 0.5rem 2rem;
-    border-radius: 0.75rem;
-    letter-spacing: 0.25rem;
+    padding: 0.5rem 2rem; /* 8px 32px */
+    border-radius: 0.75rem; /* 12px */
+    letter-spacing: 0.25rem; /* 4px */
     display: inline-block;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.5rem; /* 40px */
     font-weight: bold;
 }
 
+/* Botões principais */
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 1.25rem;
+    gap: 1.25rem; /* 20px */
     flex-wrap: wrap;
 }
 
 .menu-button {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 2rem;
-    padding: 0.625rem 1.25rem;
+    border: 0.0625rem solid rgba(255, 255, 255, 0.3); /* 1px */
+    border-radius: 2rem; /* 32px */
+    padding: 0.625rem 1.25rem; /* 10px 20px */
     color: white;
-    font-size: 1rem;
+    font-size: 1rem; /* 16px */
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.5rem; /* 8px */
     cursor: pointer;
-   
+    transition: background 0.3s ease;
 }
 
 .menu-button:hover {
     background: rgba(255, 255, 255, 0.15);
 }
 
+/* Ícones */
 .icon {
-    width: 1.5rem;
+    width: 1.5rem; /* 24px */
     height: 1.5rem;
     filter: brightness(0) invert(1);
 }
@@ -70,114 +73,60 @@ body {
 .invert {
     filter: invert(1);
 }
+
+/* Informações cadastradas */
 .info-cadastrada {
-    background-color: #fff;
-    color: #333;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  
-  .info-cadastrada h2,
-  .info-cadastrada p {
-    font-size: 18px;
-  }
-  .button-container {
-    margin-bottom: 20px;
-}
-
-.create-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.create-button:hover {
-    background-color: #0056b3;
-}
-
-.info-cadastrada {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
     background-color: #f9f9f9;
+    color: #333;
+    border: 0.0625rem solid #ccc; /* 1px */
+    padding: 0.9375rem; /* 15px */
+    margin-top: 1.25rem; /* 20px */
+    margin-bottom: 0.625rem; /* 10px */
+    border-radius: 0.5rem; /* 8px */
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1); /* 10px */
 }
 
 .info-cadastrada h2 {
+    font-size: 1.125rem; /* 18px */
     margin-top: 0;
     color: #333;
 }
 
 .info-cadastrada p {
-    margin-bottom: 5px;
+    font-size: 1.125rem;
+    margin-bottom: 0.3125rem; /* 5px */
     color: #555;
 }
 
-.voltar {
-    padding: 8px 15px;
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.voltar:hover {
-    background-color: #545b62;
-}
+/* Botão de criação */
 .button-container {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
 }
 
 .create-button {
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
 }
 
 .create-button:hover {
     background-color: #0056b3;
 }
 
-.info-cadastrada {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-.info-cadastrada h2 {
-    margin-top: 0;
-    color: #333;
-}
-
-.info-cadastrada p {
-    margin-bottom: 5px;
-    color: #555;
-}
-
+/* Botão voltar */
 .voltar {
-    padding: 8px 15px;
+    padding: 0.5rem 0.9375rem; /* 8px 15px */
     background-color: #6c757d;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     cursor: pointer;
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-size: 0.875rem; /* 14px */
+    margin-bottom: 0.625rem; /* 10px */
 }
 
 .voltar:hover {

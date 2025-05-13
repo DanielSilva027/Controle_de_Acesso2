@@ -12,26 +12,26 @@ body {
 
 .container {
     background: rgba(13, 27, 61, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 0.0625rem solid rgba(255, 255, 255, 0.15);
     border-radius: 1.25rem;
     padding: 2rem;
     width: 50rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    align-items: center; /* Centralizar os itens horizontalmente dentro do container */
+    align-items: center;
 }
 
 .ordenar-button {
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 0.0625rem solid rgba(255, 255, 255, 0.3);
     border-radius: 1rem;
     padding: 0.75rem 1.5rem;
     color: white;
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease;
-    align-self: flex-start; /* Alinhar o botão à esquerda */
+    align-self: flex-start;
 }
 
 .ordenar-button:hover {
@@ -43,13 +43,13 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     width: 100%;
-    overflow-y: auto; /* Adiciona barra de rolagem se a lista for longa */
-    max-height: 400px; /* Defina uma altura máxima para a rolagem */
+    overflow-y: auto;
+    max-height: 25rem; /* 400px */
 }
 
 .cadastro-item {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 0.0625rem solid rgba(255, 255, 255, 0.2);
     border-radius: 1.5rem;
     padding: 0.75rem 1rem;
     display: flex;
@@ -57,7 +57,7 @@ body {
     gap: 1rem;
     color: white;
     width: 100%;
-    box-sizing: border-box; /* Inclui padding e border na largura */
+    box-sizing: border-box;
 }
 
 .foto-placeholder {
@@ -83,7 +83,7 @@ body {
 
 .bottom-actions button {
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 0.0625rem solid rgba(255, 255, 255, 0.3);
     border-radius: 1rem;
     padding: 0.75rem 1.5rem;
     color: white;
@@ -98,6 +98,6 @@ body {
 
 h1 {
     color: white;
-    align-self: flex-start; /* Alinhar o título à esquerda */
+    align-self: flex-start;
     margin-bottom: 1rem;
 }

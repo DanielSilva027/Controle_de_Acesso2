@@ -1,26 +1,24 @@
-/* editar_cadastro.css */
-
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 20px; /* Adiciona um pouco de espaço ao redor do conteúdo */
+    padding: 1.25rem; /* 20px */
     /* As propriedades de background e font-family serão herdadas do style.css */
 }
 
 .container {
-    background: rgba(13, 27, 61, 0.7); /* Fundo levemente transparente para o container */
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(13, 27, 61, 0.7);
+    border: 0.0625rem solid rgba(255, 255, 255, 0.15);
     border-radius: 1.25rem;
     padding: 2rem;
-    text-align: left; /* Alinha o texto dentro do container à esquerda */
+    text-align: left;
     box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(0.5rem);
     -webkit-backdrop-filter: blur(0.5rem);
     width: 80%;
-    max-width: 400px; /* Defina uma largura máxima para o container */
+    max-width: 25rem; /* 400px */
 }
 
 h1 {
@@ -28,7 +26,7 @@ h1 {
     font-size: 2rem;
     color: #ffffff;
     margin-bottom: 2rem;
-    text-align: center; /* Centraliza o título dentro do container */
+    text-align: center;
 }
 
 label {
@@ -42,7 +40,7 @@ input[type="text"] {
     width: calc(100% - 1rem);
     padding: 0.7rem;
     margin-bottom: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 0.0625rem solid rgba(255, 255, 255, 0.3);
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
@@ -52,7 +50,7 @@ input[type="text"] {
 
 button[type="submit"] {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 0.0625rem solid rgba(255, 255, 255, 0.3);
     border-radius: 2rem;
     padding: 0.7rem 1.5rem;
     color: #ffffff;
@@ -60,7 +58,7 @@ button[type="submit"] {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 1.5rem;
-    width: 100%; /* Faz o botão ocupar a largura do container */
+    width: 100%;
 }
 
 button[type="submit"]:hover {
