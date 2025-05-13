@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         
-        <h1>Editar informações</h1>
+        <h1>Editar informações </h1>
 
         <button id="ordenar" class="ordenar-button">Ordenar Alfabeticamente</button>
 
@@ -28,7 +28,7 @@
         function exibirCadastros() {
             const listaCadastrosDiv = document.getElementById('lista-cadastros');
             listaCadastrosDiv.innerHTML = '';
-
+            
             const cadastrosSalvos = localStorage.getItem('usuariosCadastrados');
             const listaDeCadastros = cadastrosSalvos ? JSON.parse(cadastrosSalvos) : [];
 
@@ -47,7 +47,7 @@
                 });
             } else {
                 const mensagem = document.createElement('p');
-                mensagem.textContent = 'Nenhum cadastro encontrado.';
+                mensagem.textContent = 'Nenhum cadastro encontrado';
                 mensagem.style.color = 'white';
                 listaCadastrosDiv.appendChild(mensagem);
             }
@@ -65,10 +65,10 @@
             }
         }
 
-        // Carrega e exibe os cadastros ao carregar a página
+        //  Carrega e exibe os cadastros ao carregar a página
         exibirCadastros();
 
-        // Adiciona o evento de clique ao botão de ordenar
+        //  Adiciona o evento de clique ao botão de ordenar
         document.getElementById('ordenar').addEventListener('click', ordenarAlfabeticamente);
     </script>
 </body>
