@@ -4,8 +4,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 1.25rem; /* 20px */
-    /* As propriedades de background e font-family serão herdadas do style.css */
+    padding: 1.25rem;
 }
 
 .container {
@@ -18,7 +17,7 @@ body {
     backdrop-filter: blur(0.5rem);
     -webkit-backdrop-filter: blur(0.5rem);
     width: 80%;
-    max-width: 25rem; /* 400px */
+    max-width: 25rem;
 }
 
 h1 {

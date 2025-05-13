@@ -12,24 +12,24 @@ body {
 
 .container {
     width: 100%;
-    max-width: 45rem; /* 720px */
-    padding: 2rem; /* 32px */
+    max-width: 45rem;
+    padding: 2rem;
 }
 
 .historico-box {
     background: rgba(13, 27, 61, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1.25rem; /* 20px */
-    padding: 2rem; /* 32px */
-    box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37); /* 8px 32px */
-    backdrop-filter: blur(0.5rem); /* 8px */
+    border-radius: 1.25rem;
+    padding: 2rem;
+    box-shadow: 0 0.5rem 2rem 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(0.5rem);
     -webkit-backdrop-filter: blur(0.5rem);
 }
 
 .historico-box h2 {
     text-align: center;
-    margin-bottom: 1.5rem; /* 24px */
-    font-size: 1.75rem; /* 28px */
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
     font-weight: bold;
 }
 
@@ -38,15 +38,15 @@ body {
     align-items: center;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem; /* 16px */
-    padding: 1rem; /* 16px */
-    margin-bottom: 1rem; /* 16px */
-    gap: 1rem; /* 16px */
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    gap: 1rem;
 }
 
 .registro img {
-    width: 4rem; /* 64px */
-    height: 4rem; /* 64px */
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -56,8 +56,8 @@ body {
 }
 
 .registro-info p {
-    margin: 0.25rem 0; /* 4px 0 */
-    font-size: 0.9rem; /* ~14.4px */
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
 }
 
 .registro-info p strong {
@@ -68,13 +68,13 @@ body {
     display: block;
     width: 100%;
     text-align: center;
-    margin-top: 1.5rem; /* 24px */
+    margin-top: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 2rem; /* 32px */
-    padding: 0.75rem 1.5rem; /* 12px 24px */
+    border-radius: 2rem;
+    padding: 0.75rem 1.5rem;
     color: white;
-    font-size: 1rem; /* 16px */
+    font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease;
 }
