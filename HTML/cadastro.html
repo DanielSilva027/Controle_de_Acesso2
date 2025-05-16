@@ -27,14 +27,17 @@
     </div>
 
     <script>
+        //Exibir formaulario de Cadastro
         function mostrarFormularioCadastro() {
             document.getElementById('cadastro-form').style.display = 'block';
         }
 
-        function esconderFormularioCadastro() {
+        //Ocultar formaulario de Cadastro
+        function ocultarFormularioCadastro() {
             document.getElementById('cadastro-form').style.display = 'none';
         }
 
+        //Add novo user 
         function salvarNovoCadastro() {
             const nome = document.getElementById('nome').value;
             const cpf = document.getElementById('cpf').value;
@@ -51,6 +54,7 @@
                 document.getElementById('cpf').value = '';
                 esconderFormularioCadastro();
                 exibirCadastros();
+        
             } else {
                 alert('Por favor, preencha nome e CPF.');
             }
@@ -82,7 +86,7 @@
             }
         }
 
-        // Carrega os cadastros existentes ao carregar a página
+        // Carrega os user existentes ao carregar a página
         exibirCadastros();
     </script>
 </body>

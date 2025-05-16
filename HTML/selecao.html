@@ -88,6 +88,7 @@
                 if (confirmar) {
                     const cadastrosSalvos = localStorage.getItem('usuariosCadastrados');
                     const listaDeCadastros = cadastrosSalvos ? JSON.parse(cadastrosSalvos) : [];
+                    // Mapeia os checkboxes selecionados para obter os CPFs
                     const cpfsParaExcluir = Array.from(selecionados).map(checkbox => {
                         const card = checkbox.closest('.user-card');
                         const cpfText = card.querySelector('.user-cpf').textContent;
@@ -104,7 +105,7 @@
             }
         }
 
-        // Carrega os usuários quando a página é carregada
+        // Carrega os user quando a página é carregada
         carregarUsuarios();
     </script>
 </body>
