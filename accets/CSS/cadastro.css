@@ -1,3 +1,4 @@
+/* Estilo geral do body: fundo, centralização do conteúdo e fonte */
 body {
   margin: 0;
   padding: 0;
@@ -10,6 +11,7 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
+/* Container principal: fundo semi-transparente, bordas arredondadas, sombra e alinhamento dos elementos */
 .container {
   color: #ffffff;
   background: rgba(13, 27, 61, 0.5);
@@ -27,6 +29,7 @@ body {
   gap: 1rem;
 }
 
+/* Título principal: tamanho, margem e alinhamento */
 h1 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -34,6 +37,7 @@ h1 {
   align-self: flex-start;
 }
 
+/* Container da lista de cadastros: área com rolagem, fundo leve e bordas arredondadas */
 #cadastros-container {
   width: 100%;
   overflow-y: auto;
@@ -45,6 +49,7 @@ h1 {
   text-align: left;
 }
 
+/* Itens individuais de cadastro: espaçamento, separação e alinhamento */
 .info-cadastrada {
   padding: 0.5rem 0;
   margin-bottom: 0.5rem;
@@ -55,23 +60,27 @@ h1 {
   border-bottom: none;
 }
 
+/* Nome do cadastro: tamanho e espaçamento */
 .info-cadastrada h2 {
   font-size: 1.1rem;
   margin-bottom: 0.25rem;
 }
 
+/* Informações secundárias do cadastro: tamanho, opacidade e margem */
 .info-cadastrada p {
   font-size: 0.9rem;
   opacity: 0.8;
   margin-bottom: 0;
 }
 
+/* Área dos botões inferiores: disposição e espaçamento */
 .bottom-buttons {
   display: flex;
   gap: 1rem;
   align-self: flex-end;
 }
 
+/* Botões: aparência transparente, bordas arredondadas, cursor e efeitos de hover */
 .bottom-buttons button {
   background: rgba(255, 255, 255, 0.05);
   border: 0.0625rem solid rgba(255, 255, 255, 0.3);
