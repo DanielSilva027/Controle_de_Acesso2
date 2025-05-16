@@ -32,9 +32,7 @@
             listaCadastrosDiv.innerHTML = "";
 
             const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
-            const listaDeCadastros = cadastrosSalvos
-                ? JSON.parse(cadastrosSalvos)
-                : [];
+            const listaDeCadastros = cadastrosSalvos ? JSON.parse(cadastrosSalvos) : [];
 
             if (listaDeCadastros.length > 0) {
                 listaDeCadastros.forEach((cadastro) => {
