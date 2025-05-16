@@ -18,7 +18,8 @@ body {
     border-radius: 1.25rem;
     padding: 2rem;
     width: 90%;
-    max-width: 50rem; /* largura máxima */
+    max-width: 50rem;
+    /* largura máxima */
     display: flex;
     flex-direction: column;
     gap: 2rem;

@@ -1,112 +1,133 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seleção</title>
-    <link rel="stylesheet" href="/Controle_de_Acesso2/accets/CSS/selecao.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/Controle_de_Acesso2/accets/CSS/selecao.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="main-content">
-            <div class="user-list" id="user-list-container">
-                </div>
+      <div class="main-content">
+        <div class="user-list" id="user-list-container"></div>
 
-            <div class="options-box">
-                <button class="option-button" onclick="editarUsuario()">Editar</button>
-                <button class="option-button" onclick="excluirUsuario()">Excluir</button>
-            </div>
+        <div class="options-box">
+          <button class="option-button" onclick="editarUsuario()">
+            Editar
+          </button>
+          <button class="option-button" onclick="excluirUsuario()">
+            Excluir
+          </button>
         </div>
+      </div>
 
-        <div class="buttons">
-            <button class="menu-button" onclick="location.href='editar.html'">Voltar</button>
-        </div>
+      <div class="buttons">
+        <button class="menu-button" onclick="location.href='editar.html'">
+          Voltar
+        </button>
+      </div>
     </div>
 
     <script>
-        function carregarUsuarios() {
-            const userListContainer = document.getElementById('user-list-container');
-            userListContainer.innerHTML = ''; // Limpa a lista anterior
+      function carregarUsuarios() {
+        const userListContainer = document.getElementById(
+          "user-list-container"
+        );
+        userListContainer.innerHTML = ""; // Limpa a lista anterior
 
-            const cadastrosSalvos = localStorage.getItem('usuariosCadastrados');
-            const listaDeCadastros = cadastrosSalvos ? JSON.parse(cadastrosSalvos) : [];
+        const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
+        const listaDeCadastros = cadastrosSalvos
+          ? JSON.parse(cadastrosSalvos)
+          : [];
 
-            listaDeCadastros.forEach(usuario => {
-                const userCard = document.createElement('div');
-                userCard.className = 'user-card';
+        listaDeCadastros.forEach((usuario) => {
+          const userCard = document.createElement("div");
+          userCard.className = "user-card";
 
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.className = 'user-check';
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.className = "user-check";
 
-                const photo = document.createElement('img');
-                photo.className = 'user-photo';
-                photo.src = 'https://i.imgur.com/nX1K1Xj.png'; // Você pode querer armazenar a foto do usuário também
-                photo.alt = `Foto ${usuario.nome}`;
+          const photo = document.createElement("img");
+          photo.className = "user-photo";
+          photo.src = "https://i.imgur.com/nX1K1Xj.png"; // Você pode querer armazenar a foto do usuário também
+          photo.alt = `Foto ${usuario.nome}`;
 
-                const userInfo = document.createElement('div');
-                userInfo.className = 'user-info';
+          const userInfo = document.createElement("div");
+          userInfo.className = "user-info";
 
-                const nameParagraph = document.createElement('p');
-                nameParagraph.className = 'user-name';
-                nameParagraph.textContent = usuario.nome;
+          const nameParagraph = document.createElement("p");
+          nameParagraph.className = "user-name";
+          nameParagraph.textContent = usuario.nome;
 
-                const cpfParagraph = document.createElement('p');
-                cpfParagraph.className = 'user-cpf';
-                cpfParagraph.textContent = `CPF: ${usuario.cpf}`;
+          const cpfParagraph = document.createElement("p");
+          cpfParagraph.className = "user-cpf";
+          cpfParagraph.textContent = `CPF: ${usuario.cpf}`;
 
-                userInfo.appendChild(nameParagraph);
-                userInfo.appendChild(cpfParagraph);
+          userInfo.appendChild(nameParagraph);
+          userInfo.appendChild(cpfParagraph);
 
-                userCard.appendChild(checkbox);
-                userCard.appendChild(photo);
-                userCard.appendChild(userInfo);
+          userCard.appendChild(checkbox);
+          userCard.appendChild(photo);
+          userCard.appendChild(userInfo);
 
-                userListContainer.appendChild(userCard);
+          userListContainer.appendChild(userCard);
+        });
+      }
+
+      function editarUsuario() {
+        const selecionados = document.querySelectorAll(".user-check:checked");
+        if (selecionados.length > 0) {
+          const card = selecionados[0].closest(".user-card");
+          const nome = card.querySelector(".user-name").textContent;
+          const cpfText = card.querySelector(".user-cpf").textContent;
+          const cpf = cpfText.substring(cpfText.indexOf(":") + 2); // Extrai o CPF corretamente
+
+          localStorage.setItem(
+            "usuarioEditando",
+            JSON.stringify({ nome, cpf })
+          );
+          window.location.href = "cdtrosto.html";
+        } else {
+          alert("Selecione um usuário para editar.");
+        }
+      }
+
+      function excluirUsuario() {
+        const selecionados = document.querySelectorAll(".user-check:checked");
+        if (selecionados.length > 0) {
+          const confirmar = confirm(
+            "Deseja realmente excluir o(s) usuário(s) selecionado(s)?"
+          );
+          if (confirmar) {
+            const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
+            const listaDeCadastros = cadastrosSalvos
+              ? JSON.parse(cadastrosSalvos)
+              : [];
+            // Mapeia os checkboxes selecionados para obter os CPFs
+            const cpfsParaExcluir = Array.from(selecionados).map((checkbox) => {
+              const card = checkbox.closest(".user-card");
+              const cpfText = card.querySelector(".user-cpf").textContent;
+              return cpfText.substring(cpfText.indexOf(":") + 2);
             });
+
+            const novaListaDeCadastros = listaDeCadastros.filter(
+              (usuario) => !cpfsParaExcluir.includes(usuario.cpf)
+            );
+            localStorage.setItem(
+              "usuariosCadastrados",
+              JSON.stringify(novaListaDeCadastros)
+            );
+            carregarUsuarios(); // Recarrega a lista após a exclusão
+            alert("Usuário(s) excluído(s)");
+          }
+        } else {
+          alert("Selecione um usuário para excluir.");
         }
+      }
 
-        function editarUsuario() {
-            const selecionados = document.querySelectorAll('.user-check:checked');
-            if (selecionados.length > 0) {
-                const card = selecionados[0].closest('.user-card');
-                const nome = card.querySelector('.user-name').textContent;
-                const cpfText = card.querySelector('.user-cpf').textContent;
-                const cpf = cpfText.substring(cpfText.indexOf(':') + 2); // Extrai o CPF corretamente
-
-                localStorage.setItem('usuarioEditando', JSON.stringify({ nome, cpf }));
-                window.location.href = 'cdtrosto.html';
-            } else {
-                alert('Selecione um usuário para editar.');
-            }
-        }
-
-        function excluirUsuario() {
-            const selecionados = document.querySelectorAll('.user-check:checked');
-            if (selecionados.length > 0) {
-                const confirmar = confirm('Deseja realmente excluir o(s) usuário(s) selecionado(s)?');
-                if (confirmar) {
-                    const cadastrosSalvos = localStorage.getItem('usuariosCadastrados');
-                    const listaDeCadastros = cadastrosSalvos ? JSON.parse(cadastrosSalvos) : [];
-                    // Mapeia os checkboxes selecionados para obter os CPFs
-                    const cpfsParaExcluir = Array.from(selecionados).map(checkbox => {
-                        const card = checkbox.closest('.user-card');
-                        const cpfText = card.querySelector('.user-cpf').textContent;
-                        return cpfText.substring(cpfText.indexOf(':') + 2);
-                    });
-
-                    const novaListaDeCadastros = listaDeCadastros.filter(usuario => !cpfsParaExcluir.includes(usuario.cpf));
-                    localStorage.setItem('usuariosCadastrados', JSON.stringify(novaListaDeCadastros));
-                    carregarUsuarios(); // Recarrega a lista após a exclusão
-                    alert('Usuário(s) excluído(s)');
-                }
-            } else {
-                alert('Selecione um usuário para excluir.');
-            }
-        }
-
-        // Carrega os user quando a página é carregada
-        carregarUsuarios();
+      // Carrega os user quando a página é carregada
+      carregarUsuarios();
     </script>
-</body>
+  </body>
 </html>

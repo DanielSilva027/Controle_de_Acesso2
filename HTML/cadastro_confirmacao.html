@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Cadastro Confirmado</title>
-  <link rel="stylesheet" href="/Controle_de_Acesso2/accets/CSS/style.css">
-</head>
-<body>
-  <h1>Cadastro Confirmado</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cadastro Confirmado</title>
+    <link rel="stylesheet" href="/Controle_de_Acesso2/accets/CSS/style.css" />
+  </head>
+  <body>
+    <h1>Cadastro Confirmado</h1>
 
-  <div class="info">
-    <p><strong>Nome:</strong> <span id="nome"></span></p>
-    <p><strong>Telefone:</strong> <span id="telefone"></span></p>
-    <p><strong>Email:</strong> <span id="email"></span></p>
-    <p><strong>CPF:</strong> <span id="cpf"></span></p>
-  </div>
+    <div class="info">
+      <p><strong>Nome:</strong> <span id="nome"></span></p>
+      <p><strong>Telefone:</strong> <span id="telefone"></span></p>
+      <p><strong>Email:</strong> <span id="email"></span></p>
+      <p><strong>CPF:</strong> <span id="cpf"></span></p>
+    </div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
+    <script>
+      const params = new URLSearchParams(window.location.search);
 
-    // Exibir os dados nas tags correspondentes
-    document.getElementById('nome').textContent = params.get('nome');
-    document.getElementById('telefone').textContent = params.get('telefone');
-    document.getElementById('email').textContent = params.get('email');
-    document.getElementById('cpf').textContent = params.get('cpf');
-  </script>
-</body>
+      // Exibir os dados nas tags correspondentes
+      document.getElementById("nome").textContent = params.get("nome");
+      document.getElementById("telefone").textContent = params.get("telefone");
+      document.getElementById("email").textContent = params.get("email");
+      document.getElementById("cpf").textContent = params.get("cpf");
+    </script>
+  </body>
 </html>
