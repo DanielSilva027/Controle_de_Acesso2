@@ -1,3 +1,4 @@
+/* Estilo base do body com background fixo e centralizado */
 body {
     margin: 0;
     padding: 0;
@@ -10,18 +11,21 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
+/* Container principal com fundo semitransparente e responsivo */
 .container {
     background: rgba(13, 27, 61, 0.5);
     border: 0.0625rem solid rgba(255, 255, 255, 0.15);
     border-radius: 1.25rem;
     padding: 2rem;
-    width: 50rem;
+    width: 90%;
+    max-width: 50rem; /* largura máxima */
     display: flex;
     flex-direction: column;
     gap: 2rem;
     align-items: center;
 }
 
+/* Botão para ordenar, com transição e foco acessível */
 .ordenar-button {
     background: rgba(255, 255, 255, 0.1);
     border: 0.0625rem solid rgba(255, 255, 255, 0.3);
@@ -38,6 +42,12 @@ body {
     background: rgba(255, 255, 255, 0.2);
 }
 
+.ordenar-button:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Lista de cadastros com scrollbar e limite de altura */
 #lista-cadastros {
     display: flex;
     flex-direction: column;
@@ -47,6 +57,23 @@ body {
     max-height: 25rem;
 }
 
+/* Scrollbar personalizada para WebKit */
+#lista-cadastros::-webkit-scrollbar {
+    width: 8px;
+}
+
+#lista-cadastros::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* Scrollbar para Firefox */
+#lista-cadastros {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+/* Item individual da lista de cadastros */
 .cadastro-item {
     background: rgba(255, 255, 255, 0.05);
     border: 0.0625rem solid rgba(255, 255, 255, 0.2);
@@ -60,6 +87,7 @@ body {
     box-sizing: border-box;
 }
 
+/* Espaço reservado para foto */
 .foto-placeholder {
     width: 3rem;
     height: 3rem;
@@ -71,16 +99,19 @@ body {
     font-size: 0.8rem;
 }
 
+/* Informações do usuário dentro do cadastro */
 .info {
     text-align: left;
     flex-grow: 1;
 }
 
+/* Container para botões inferiores */
 .bottom-actions {
     display: flex;
     gap: 1rem;
 }
 
+/* Estilo dos botões inferiores com foco acessível */
 .bottom-actions button {
     background: rgba(255, 255, 255, 0.1);
     border: 0.0625rem solid rgba(255, 255, 255, 0.3);
@@ -96,6 +127,12 @@ body {
     background: rgba(255, 255, 255, 0.2);
 }
 
+.bottom-actions button:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Título principal */
 h1 {
     color: white;
     align-self: flex-start;

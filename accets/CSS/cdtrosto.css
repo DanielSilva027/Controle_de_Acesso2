@@ -1,3 +1,4 @@
+/* Corpo da página: centraliza conteúdo com flexbox, altura mínima da tela, remove margens */
 body {
     display: flex;
     justify-content: center;
@@ -7,6 +8,7 @@ body {
     padding: 1.25rem;
 }
 
+/* Container principal: fundo azul escuro translúcido, bordas arredondadas e sombra */
 .container {
     background: rgba(13, 27, 61, 0.7);
     border: 0.0625rem solid rgba(255, 255, 255, 0.15);
@@ -20,6 +22,7 @@ body {
     max-width: 25rem;
 }
 
+/* Título principal: fonte serifada, maior tamanho, branco, centralizado */
 h1 {
     font-family: 'Times New Roman', serif;
     font-size: 2rem;
@@ -28,6 +31,7 @@ h1 {
     text-align: center;
 }
 
+/* Rótulos dos inputs: blocos, margem inferior e branco */
 label {
     display: block;
     margin-bottom: 0.5rem;
@@ -35,6 +39,7 @@ label {
     font-size: 1.1rem;
 }
 
+/* Inputs de texto: largura total com padding, fundo translúcido, bordas e cor do texto */
 input[type="text"] {
     width: calc(100% - 1rem);
     padding: 0.7rem;
@@ -47,6 +52,7 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
+/* Botão de submit: estilo transparente com borda, arredondado, espaçamento e cursor */
 button[type="submit"] {
     background: rgba(255, 255, 255, 0.05);
     border: 0.0625rem solid rgba(255, 255, 255, 0.3);
@@ -60,6 +66,7 @@ button[type="submit"] {
     width: 100%;
 }
 
+/* Hover no botão para feedback visual */
 button[type="submit"]:hover {
     background: rgba(255, 255, 255, 0.15);
 }

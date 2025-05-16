@@ -1,3 +1,4 @@
+/* Corpo da página: fundo fixo com imagem, texto branco, centralização flex */
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
@@ -10,12 +11,14 @@ body {
     align-items: center;
 }
 
+/* Container principal com largura máxima e padding */
 .container {
     width: 100%;
     max-width: 45rem;
     padding: 2rem;
 }
 
+/* Caixa de histórico: fundo escuro transparente, borda, arredondado, sombra e blur */
 .historico-box {
     background: rgba(13, 27, 61, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -26,6 +29,7 @@ body {
     -webkit-backdrop-filter: blur(0.5rem);
 }
 
+/* Título centralizado com fonte maior e negrito */
 .historico-box h2 {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -33,6 +37,7 @@ body {
     font-weight: bold;
 }
 
+/* Cada registro: flex para alinhar foto e texto, fundo translúcido, borda e espaçamento */
 .registro {
     display: flex;
     align-items: center;
@@ -44,6 +49,7 @@ body {
     gap: 1rem;
 }
 
+/* Foto do registro: círculo, tamanho fixo, com objeto ajustado */
 .registro img {
     width: 4rem;
     height: 4rem;
@@ -51,19 +57,23 @@ body {
     object-fit: cover;
 }
 
+/* Área de texto que cresce para ocupar espaço disponível */
 .registro-info {
     flex-grow: 1;
 }
 
+/* Parágrafos com pequena margem e tamanho de fonte menor */
 .registro-info p {
     margin: 0.25rem 0;
     font-size: 0.9rem;
 }
 
+/* Texto em negrito dentro dos parágrafos */
 .registro-info p strong {
     font-weight: bold;
 }
 
+/* Botão de voltar: ocupa largura total, centralizado, fundo translúcido, borda e arredondado */
 .voltar {
     display: block;
     width: 100%;
@@ -79,6 +89,7 @@ body {
     transition: background 0.3s ease;
 }
 
+/* Hover do botão para indicar interatividade */
 .voltar:hover {
     background: rgba(255, 255, 255, 0.15);
 }
