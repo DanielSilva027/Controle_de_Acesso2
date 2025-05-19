@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Informações</title>
+
+    <link rel="stylesheet" href="/Controle_de_Acesso2/accets/CSS/acao.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Editar informações</h1>
+
+        <button id="ordenar" class="ordenar-button">
+            Ordenar Alfabeticamente
+        </button>
+
+        <div id="lista-cadastros"></div>
+
+        <div class="bottom-actions">
+            <button onclick="location.href='selecao.html'">Seleção</button>
+            <button onclick="location.href='index.html'">Voltar</button>
+        </div>
+    </div>
+
+    <script>
+        // Função responsável por exibir os cadastros armazenados no localStorage
+        function exibirCadastros() {
+            const listaCadastrosDiv = document.getElementById("lista-cadastros");
+            listaCadastrosDiv.innerHTML = "";
+
+            const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
+            const listaDeCadastros = cadastrosSalvos ? JSON.parse(cadastrosSalvos) : [];
+
+            if (listaDeCadastros.length > 0) {
+                listaDeCadastros.forEach((cadastro) => {
+                    const cadastroItem = document.createElement("div");
+                    cadastroItem.className = "cadastro-item";
+
+                    // Define o conteúdo HTML do item de cadastro, incluindo nome e CPF
+                    cadastroItem.innerHTML = `
+                        <div class="foto-placeholder">Foto</div>
+                        <div class="info">
+                            <div>${cadastro.nome}</div>
+                            <div style="font-size: 0.8rem;">CPF: ${cadastro.cpf}</div>
+                        </div>
+                    `;
+                    listaCadastrosDiv.appendChild(cadastroItem);
+                });
+            } else {
+                const mensagem = document.createElement("p");
+                mensagem.textContent = "Nenhum cadastro encontrado";
+                mensagem.style.color = "white";
+                listaCadastrosDiv.appendChild(mensagem);
+            }
+        }
+
+        // Função responsável por ordenar os cadastros alfabeticamente pelo nome
+        function ordenarAlfabeticamente() {
+            const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
+            if (cadastrosSalvos) {
+                const listaDeCadastros = JSON.parse(cadastrosSalvos);
+                listaDeCadastros.sort((a, b) => {
+                    a.nome = a.nome.toLowerCase();
+                    b.nome = b.nome.toLowerCase();
+                    return a.nome.localeCompare(b.nome);
+                });
+                localStorage.setItem(
+                    "usuariosCadastrados",
+                    JSON.stringify(listaDeCadastros)
+                );
+                exibirCadastros();
+            }
+        }
+
+        exibirCadastros();
+
+        document
+            .getElementById("ordenar")
+            .addEventListener("click", ordenarAlfabeticamente);
+    </script>
+</body>
+
+</html>
