@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Dispositivo</title>
+  <link rel="stylesheet" href="/Controle_de_Acesso2/accets/CSS/cadastro.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Cadastrar Dispositivo</h1>
+
+    <div id="cadastro-dispositivo-form">
+      <label for="nomeDispositivo">Nome do Dispositivo:</label><br />
+      <input type="text" id="nomeDispositivo" name="nomeDispositivo" /><br /><br />
+
+      <label for="numeroSerie">Número de Série:</label><br />
+      <input type="text" id="numeroSerie" name="numeroSerie" /><br /><br />
+
+      <label for="localizacao">Localização:</label><br />
+      <input type="text" id="localizacao" name="localizacao" /><br /><br />
+
+      <button onclick="salvarNovoDispositivo()">Salvar Dispositivo</button>
+      <button onclick="limparFormulario()">Cancelar</button>
+      <hr />
+    </div>
+
+    <div id="dispositivos-container"></div>
+
+    <div class="bottom-buttons">
+      <button onclick="location.href='index.html'">Voltar</button>
+    </div>
+  </div>
+
+  <script>
+    function salvarNovoDispositivo() {
+      const nome = document.getElementById("nomeDispositivo").value;
+      const numeroSerie = document.getElementById("numeroSerie").value;
+      const localizacao = document.getElementById("localizacao").value;
+
+      if (nome && numeroSerie && localizacao) {
+        const novoDispositivo = { nome, numeroSerie, localizacao };
+        const dispositivosSalvos = localStorage.getItem("dispositivosCadastrados");
+        const listaDispositivos = dispositivosSalvos ? JSON.parse(dispositivosSalvos) : [];
+
+        listaDispositivos.push(novoDispositivo);
+        localStorage.setItem("dispositivosCadastrados", JSON.stringify(listaDispositivos));
+
+        limparFormulario();
+        exibirDispositivos();
+      } else {
+        alert("Por favor, preencha todos os campos.");
+      }
+    }
+
+    function limparFormulario() {
+      document.getElementById("nomeDispositivo").value = "";
+      document.getElementById("numeroSerie").value = "";
+      document.getElementById("localizacao").value = "";
+    }
+
+    function exibirDispositivos() {
+      const container = document.getElementById("dispositivos-container");
+      container.innerHTML = "";
+
+      const dispositivosSalvos = localStorage.getItem("dispositivosCadastrados");
+      const listaDispositivos = dispositivosSalvos ? JSON.parse(dispositivosSalvos) : [];
+
+      if (listaDispositivos.length > 0) {
+        listaDispositivos.forEach((dispositivo) => {
+          const info = document.createElement("div");
+          info.className = "info-cadastrada";
+          info.innerHTML = `
+            <h2>Dispositivo</h2>
+            <p><strong>Nome:</strong> ${dispositivo.nome}</p>
+            <p><strong>Número de Série:</strong> ${dispositivo.numeroSerie}</p>
+            <p><strong>Localização:</strong> ${dispositivo.localizacao}</p>
+            <hr>
+          `;
+          container.appendChild(info);
+        });
+      } else {
+        const mensagem = document.createElement("p");
+        mensagem.textContent = "Nenhum dispositivo cadastrado.";
+        container.appendChild(mensagem);
+      }
+    }
+
+    // Carrega dispositivos ao iniciar
+    exibirDispositivos();
+  </script>
+</body>
+
+</html>
