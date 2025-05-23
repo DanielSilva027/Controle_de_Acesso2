@@ -1,217 +1,160 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="Styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <link rel="stylesheet" href="/Land/Styles.css">
+  <title>Smartcam</title>
 </head>
+
 <body>
   <header class="header">
     <div class="logo">
       <img src="assets/imagem/teste.png" alt="Logo">
       <span>Smartcam</span>
     </div>
-    <nav class="menu">
-      <ul>
-        <li>Serviços ▼</li>
-        <li>Planos ▼</li>
-        <li>Sobre nós ▼</li>
-        <li>Localização ▼</li>
-      </ul>
-      <div class="botoes">
-        <button class="login">Login</button>
-        <button class="registro">Registre-se →</button>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">SmartCam</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon bg-light"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link text-white" href="#servicos">Serviços</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#produto">Produto</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#sobre">Sobre nós</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#localizacao">Localização</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
   </header>
 
-  <div class="fundo">
-    <section class="section">
-      <div class="minitexto">
-        <h1 class="subtitulo">Monitoramento em tempo real</h1>
-        <p class="texto">
-          Receba notificações imediatas caso um rosto não identificado seja detectado...
-        </p>
-        <button class="acesse">Acesse já →</button>
-      </div>
-      <div class="rosto">
-        <img class="foto" src="assets/imagem/face-recognition-system-picture-id1148006029.jpg" alt="rosto">
-      </div>
-    </section>
-  </div>
-  <div class="container">
-  <div class="fundo2">
-    <section class="detalhamento">
-      <div class="minitexto">
-        <h2 class="subtitulo">Segurança<br><span class="destaque">Aprimorada</span></h2>
-        <p class="texto2">Sua câmera inteligente identifica rostos e sinaliza desconhecidos, ajudando<br>a evitar acessos não autorizados e aumentando a segurança do ambiente</p>
-        <button class="registro">Começar agora →</button>
-      </div><br>
-      <div class="img3">
-        <img class="img4" src="assets/imagem/camera-de-seguranca.webp" alt="Câmera de segurança">
-      </div>
-    </section>
-    <div class="container">
-      <section class="detalhamento">
-        <div class="img3">
-          <img class="img5" src="assets/imagem/image-removebg-preview.png" alt="Câmera de segurança">
-        </div>
-        <div class="minitexto">
-          <h2 class="subtitulo">Tecnologia com<br><span class="destaque"> IA Aprimorada</span></h2>
-          <p class="texto2">Nosso Sistema evolui continuamente para garantir a máxima precisão na <br>identificação</p>
-          <button class="registro">Começar agora →</button>
+  <section class="iniciopag">
+    <div class="fundo">
+      <h1 class="subtitulo">Monitoramento em <br> tempo real</h1>
+      <p class="texto">Receba notificações imediatas caso um rosto não identificado seja detectado, permitindo ação rápida para prevenir incidentes.</p>
+      <button class="registro"><a href="../HTML/cadastro.html">Acesse já →</a></button>
+    </div>
+    <img src="assets/imagem/ChatGPT Image 20 de mai. de 2025, 16_31_53.jpg" class="imgseguranca" alt="Reconhecimento facial">
+  </section>
+
+  <section class="resumo">
+    <div class="fundo2">
+      <h2 class="subtitulo">Segurança<br><span class="destaque">Aprimorada</span></h2>
+      <p class="texto">Sua câmera inteligente identifica rostos e sinaliza desconhecidos, ajudando<br>a evitar acessos não autorizados e aumentando a segurança do ambiente</p>
+      <button class="registro">Começar agora →</button>
+    </div>
+    <img src="assets/imagem/camera-de-seguranca.webp" class="imgseguranca" alt="Reconhecimento facial">
+  </section>
+
+  <section id="produto" class="infproduto">
+    <div class="fundo2">
+      <h2 class="subtitulo">Tecnologia com<br><span class="destaque">IA Aprimorada</span></h2>
+      <p class="texto">Sistema evolui continuamente para garantir a máxima precisão na <br>identificação</p>
+      <button class="registro">Começar agora →</button>
+    </div>
+    <img src="assets/imagem/image-removebg-preview.png" class="img5" alt="Reconhecimento facial">
+  </section>
+
+  <section class="casa">
+    <div class="fundo3">
+      <h2 class="subtitulo2">Tecnologia com<br><span class="destaque">IA Aprimorada</span></h2>
+      <p class="caracteristica">Proteja sua casa, escritório, condomínio ou qualquer outro espaço<br>com tecnologia de ponta</p>
+      <button class="registro">Vamos lá →</button>
+    </div>
+    <img src="assets/imagem/Domótica.jpg" class="img5" alt="casa">
+  </section>
+
+  <section class="iniciopag">
+    <div class="fundo2">
+      <section id="sobre">
+        <div class="minitexto2">
+          <h2 class="subtitulo">Sobre <span class="destaque">Nós</span></h2>
+          <p class="texto">Somos um grupo de três estudantes do curso técnico em Informática do IFES – Campus Serra, formado por Thyago, Daniel e Guilherme.<br> Nosso projeto, chamado SmartCam, é uma solução inteligente de segurança que utiliza inteligência artificial para identificar rostos por meio de câmeras.<br> Desenvolvido como parte de nossa formação técnica, o SmartCam busca aliar tecnologia e inovação para tornar sistemas de monitoramento mais eficientes e precisos.</p>
+          <h2 class="subtitulo">Parcerias</h2>
+          <img src="assets/imagem/305188163_486985403436985_6813042172280648107_n.jpg" class="img6" alt="ifes">
         </div>
       </section>
     </div>
-    <div class="container">
-      <div class="fundo3">
-        <section class="detalhamento">
-        <div class="img3">
-          <img class="img5" src="assets/imagem/Domótica.jpg" alt="camera-de-seguranca">
-        </div>
-        <div class="minitexto">
-        <h2 class="subtitulo2">Ideal para<br>Residências e <span class="destaque">Empresas</span></h2>
-        <p class="texto">Proteja sua casa, escritório, condomínio ou qualquer outro espaço<br>com tecnologia de ponta</p>
-        <button class="registro">Vamos lá →</button>
-        </div>
-      </div>
-    </section>
-    </div>
-  <div class="container1">
-    <div class="fundo4">
-      <section class="detalhamento2">
-        <div class="minitexto2">
-          <h2 class="subtitulo2">So<span class="destaque">bre nós</span></h2>
-          <p class="texto3">Somos um grupo de três estudantes do curso técnico em Informática do IFES – Campus Serra, formado por Thyago, Daniel e Guilherme. Nosso projeto, chamado SmartCam, é uma solução inteligente de segurança que utiliza inteligência artificial para identificar rostos por meio de câmeras. Desenvolvido como parte de nossa formação técnica, o SmartCam busca aliar tecnologia e inovação para tornar sistemas de monitoramento mais eficientes e precisos.</p><br><br>
-          <h2 class="subtitulo3">Parceiros</h2>
-          <div class="img3">
-            <img class="img6" src="assets/imagem/305188163_486985403436985_6813042172280648107_n.jpg" alt="ifes">
-          </div>
-        </div>
-      </div>
-      </div><br>
-      <div class="container">
-        <div class="fundo3">
-          <section class="detalhamento2">
-          <div class="minitexto2">
-          <span class="destaque1">Serviços</span></h2>
-          <p class="texto4">O SmartCam é um sistema de monitoramento inteligente desenvolvido especialmente para profissionais da área de segurança.Utilizando tecnologia de reconhecimento facial por inteligência artificial, o serviço permite identificar e registrar rostos em tempo real,oferecendo mais agilidade e precisão na tomada de decisões. Nossa solução foi pensada para reforçar a segurança de ambientes monitorados, trazendo inovação, confiabilidade e praticidade ao dia a dia de vigilantes e agentes de segurança</p>
-          </div>
-        </div>
-    </section>
-        </div>
-        <div class="fundo">
-          <section class="section">
-            <div class="minitexto">
-              <h1 class="subtitulo">Atendemos em toda grande Vitória</h1>
-            </div>
-            <div class="rosto">
-              <img class="foto" src="assets/imagem/ac_0039_17_site_mapa.gif" alt="mapa">
-            </div>
-          </section>
-        </div>
-</div>
-</div>
-<h2 class="titulo">O que os nossos <span class="destaque"> clientes</span> acham</h2>
-<div class="cartões">
-  <div class="cartão1">
-    <div class="Aspas">“</div>
-    <div class="texto">
-      Depois que eu coloquei este produto, eu me senti mais seguro, diminui gastos e gostei bastante.
-    </div>
-    <div class="usuario1">
-      <img src="assets/imagem/gabriel.jpeg" alt="Gabriel Buffon">
-      <div class="info">
-        <strong>Gabriel Buffon</strong>
-        Primeiro cliente
-      </div>
-    </div>
-  </div>
-    <div class="cartão2">
-      <div class="Aspas">“</div>
-      <div class="texto">
-        Muito interessante! amei!
-      </div>
-      <div class="usuario2">
-        <img src="assets/imagem/Luzdark.jpeg" alt="LuzDark">
-        <div class="info1">
-          <strong>LuzDark</strong>
-          cliente
-        </div>
-      </div>
-    </div>
-    <div class="cartão3">
-      <div class="Aspas">“</div>
-      <div class="texto">
-        Muito funcional, me ajudou bastante
-      </div>
-      <div class="usuario3">
-        <img src="assets/imagem/David.jpeg" alt="David">
-        <div class="info2">
-          <strong>David</strong>
-          cliente
-        </div>
-      </div>
-    </div>
+  </section>
 
-</div>
-<div class="fundo">
-  <section class="social-section">
-    <div class="social-content">
-      <div class="minitexto">
-        <h1 class="subtitulo">Nossas redes <br> sociais</h1>
-      </div>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-      </div>
+  <section class="iniciopag">
+    <div class="fundo2">
+      <section id="servicos">
+        <div class="minitexto2">
+          <h2 class="subtitulo">Serviços</h2>
+          <p class="texto">O SmartCam é um sistema de monitoramento inteligente desenvolvido especialmente para profissionais da área de segurança. Utilizando tecnologia de reconhecimento facial por inteligência artificial, o serviço permite identificar e registrar rostos em tempo real, oferecendo mais agilidade e precisão na tomada de decisões. Nossa solução foi pensada para reforçar a segurança de ambientes monitorados, trazendo inovação, confiabilidade e praticidade ao dia a dia de vigilantes e agentes de segurança.</p>
+        </div>
+      </section>
     </div>
   </section>
-</div>
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-brand">
-      <img src="assets/imagem/teste.png" alt="Smartcam logo" class="logo" />
-      <span>Smartcam</span>
+  <section id="localizacao" class="mapasecao">
+    <img src="assets/imagem/ac_0039_17_site_mapa.gif" alt="Mapa">
+    <h2>Atendemos em <br> toda grande Vitória</h2>
+  </section>
+  
+  <section class="testimonials">
+    <h2 class="subtitulo">O que os nossos <span class="destaque">clientes</span> </h2>
+  
+    <div class="cards" id="cards">
+      <!-- Depoimentos aparecem aqui -->
+      <div class="card">
+        <p>“Depois que eu coloquei este produto, eu me senti mais seguro, diminui gastos e gostei bastante.”</p>
+        <hr>
+        <div class="user">
+          <img src="assets/imagem/gabriel.jpeg" alt="Gabriel">
+          <div>
+            <strong>Gabriel Buffon</strong><br>
+            <small>Primeiro cliente</small>
+          </div>
+        </div>
+      </div>
+  
+      <div class="card blue">
+        <p>“Muito interessante! Amei.”</p>
+        <hr>
+        <div class="user">
+          <img src="assets/imagem/Luzdark.jpeg" alt="LuzDark">
+          <div>
+            <strong>LuzDark</strong><br>
+            <small>Cliente</small>
+          </div>
+        </div>
+      </div>
+  
+      <div class="card blue">
+        <p>“Muito funcional, me ajudou bastante.”</p>
+        <hr>
+        <div class="user">
+          <img src="assets/imagem/David.jpeg" alt="David">
+          <div>
+            <strong>David</strong><br>
+            <small>Cliente</small>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="footer-services">
-      <h4>Serviços</h4>
-      <ul>
-        <li>Para sua casa</li>
-        <li>Para sua empresa</li>
-        <li>Para seu condomínio</li>
-      </ul>
+  
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div>
+        <span>Smartcam © 2025</span>
+      </div>
+      <div class="mt-3 mt-md-0">
+        <a href="#" class="text-white text-decoration-none me-3">Termos & Privacidade</a>
+        <a href="#" class="text-white text-decoration-none me-3">Segurança</a>
+        <a href="#" class="text-white text-decoration-none">Status</a>
+      </div>
     </div>
-
-    <div class="footer-cta">
-      <a href="#" class="start-button">Começar agora →</a>
-    </div>
-  </div>
-
-  <hr />
-
-  <div class="footer-bottom">
-    <div class="language">
-      🌐 Português
-    </div>
-    <div class="footer-links">
-      <a href="#">Termos & privacidade </a>
-      <a href="#">Segurança</a>
-      <a href="#">Status</a>
-    </div>
-    <div class="copyright">
-      ©2025 Smartcam
-    </div>
-  </div>
-</footer>
-
-    
+  </footer>
 </body>
 </html>

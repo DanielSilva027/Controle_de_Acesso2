@@ -1,73 +1,71 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Usuários</title>
-  <link rel="stylesheet" href="/Controle_de_Acesso2/accets/CSS/user.css" />
-</head>
-<body>
-  <div class="container">
-    <h1 class="title">Usuários</h1>
-    <table class="client-table">
-      <thead>
-        <tr>
-          <th>CPF</th>
-          <th>Nome</th>
-          <th>E-mail</th>
-          <th>Telefone</th>
-          <th>Tipo de Conta</th>
-          <th>Face ID / Foto</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody id="user-body">
-        <!-- Usuários serão inseridos via JavaScript -->
+<div class="user-module-container">
+  <h1 class="user-module-title">Usuários</h1>
+  <table class="user-module-table">
+    <thead>
+      <tr>
+        <th>CPF</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+        <th>Tipo de Conta</th>
+        <th>Face ID / Foto</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="user-body">
       </tbody>
-    </table>
-    <button class="add-button" onclick="window.location.href='cadastro.html'">ADICIONAR USUÁRIO</button>
-  </div>
+  </table>
+  <button class="user-module-add-button" onclick="window.location.href='cadastro.html'">ADICIONAR USUÁRIO</button>
+</div>
 
-  <script>
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCadastrados")) || [];
+<script>
+  // Ensure these functions are globally accessible or re-attached
+  // The script will execute when loaded into the right-content-area
 
-    function carregarUsuarios() {
-      const tbody = document.getElementById("user-body");
-      tbody.innerHTML = "";
-      usuarios.forEach((user, index) => {
-        const tr = document.createElement("tr");
+  let usuarios = JSON.parse(localStorage.getItem("usuariosCadastrados")) || [];
 
-        tr.innerHTML = `
-          <td>${user.cpf}</td>
-          <td>${user.nome}</td>
-          <td>${user.email}</td>
-          <td>${user.telefone}</td>
-          <td>${user.tpc}</td>
-          <td>${user.face}</td>
-          <td>
-            <button class="edit-btn" onclick="editarUsuario(${index})">✏️</button>
-            <button class="delete-btn" onclick="excluirUsuario(${index})">🗑️</button>
-          </td>
-        `;
-
-        tbody.appendChild(tr);
-      });
+  function carregarUsuarios() {
+    const tbody = document.getElementById("user-body");
+    if (!tbody) { // Added check in case element isn't ready
+        console.warn("tbody element not found in user.html content.");
+        return;
     }
+    tbody.innerHTML = "";
+    usuarios.forEach((user, index) => {
+      const tr = document.createElement("tr");
 
-    function editarUsuario(index) {
-      alert(`Editar usuário: ${usuarios[index].nome} (função ainda não implementada)`);
-      // Pode implementar edição abrindo um formulário preenchido com os dados
+      tr.innerHTML = `
+        <td>${user.cpf}</td>
+        <td>${user.nome}</td>
+        <td>${user.email}</td>
+        <td>${user.telefone}</td>
+        <td>${user.tpc}</td>
+        <td>${user.face}</td>
+        <td>
+          <button class="user-module-edit-btn" onclick="editarUsuario(${index})">✏️</button>
+          <button class="user-module-delete-btn" onclick="excluirUsuario(${index})">🗑️</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function editarUsuario(index) {
+    alert(`Editar usuário: ${usuarios[index].nome} (função ainda não implementada)`);
+    // Ideally, you'd navigate to a dedicated edit form or open a modal here
+  }
+
+  function excluirUsuario(index) {
+    if (confirm(`Deseja excluir o usuário ${usuarios[index].nome}?`)) {
+      usuarios.splice(index, 1);
+      localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
+      carregarUsuarios();
     }
+  }
 
-    function excluirUsuario(index) {
-      if (confirm(`Deseja excluir o usuário ${usuarios[index].nome}?`)) {
-        usuarios.splice(index, 1);
-        localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
-        carregarUsuarios();
-      }
-    }
-
-    carregarUsuarios();
-  </script>
-</body>
-</html>
+  // Initial load when this script is executed
+  // It's good practice to call this after the content is loaded
+  // The loadContent function in menu.html will call this explicitly if needed.
+  // carregarUsuarios(); // This might run too early if tbody is not yet fully rendered,
+                       // so the explicit call in menu.html's loadContent callback is better.
+</script>

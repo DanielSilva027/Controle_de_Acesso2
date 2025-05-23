@@ -1,65 +1,100 @@
+/* Removido body styling, pois é tratado por menu.css */
+/*
 body {
-  margin: 0;
-  padding: 0;
-  background: url('/Controle_de_Acesso2/accets/IMAGEM/background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/Controle_de_Acesso2/accets/IMAGEM/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
 }
+*/
 
-.container {
+.cadastro-dispositivo-container { /* Renomeado para evitar conflito com .container do menu */
   color: #ffffff;
-  background: rgba(13, 27, 61, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  padding: 2rem;
-  width: 24rem;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05); /* Fundo mais transparente */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borda mais sutil */
+  border-radius: 1rem; /* Raio menor */
+  padding: 1.5rem; /* Padding ajustado */
+  width: calc(100% - 3rem); /* Ocupa largura total do pai menos padding */
+  max-width: 28rem; /* Largura máxima ajustada */
+  box-shadow: 0 0.3rem 1rem rgba(31, 38, 135, 0.37); /* Sombra mais sutil */
+  backdrop-filter: blur(0.3rem); /* Blur mais sutil */
+  -webkit-backdrop-filter: blur(0.3rem);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  margin: auto; /* Centraliza vertical e horizontalmente */
+  max-height: 100%; /* Permite que ocupe a altura disponível */
+  overflow-y: auto; /* Adiciona scroll se o conteúdo for muito grande */
+  box-sizing: border-box; /* Inclui padding e border */
 }
 
-h1, h2 {
+.cadastro-dispositivo-container h2 { /* Estilo para o H2 */
   margin-bottom: 1rem;
-}
-
-input {
+  color: white;
+  font-size: 1.8rem;
+  text-align: center;
   width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
+}
+
+.cadastro-dispositivo-container input[type="text"] { /* Estilo para os inputs */
+  width: calc(100% - 1.6rem); /* 100% da largura do pai menos padding */
+  padding: 0.6rem 0.8rem; /* Padding ajustado */
+  border-radius: 0.25rem; /* Raio menor */
   border: none;
   outline: none;
+  margin-bottom: 0.8rem; /* Margem inferior ajustada */
   background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  color: White;
+  font-size: 0.9rem;
+  box-sizing: border-box; /* Inclui padding na largura */
 }
 
-button {
+.cadastro-dispositivo-container input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cadastro-dispositivo-container input[type="text"]:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.cadastro-dispositivo-container button { /* Estilo para os botões */
   width: 100%;
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  color: white;
-  font-size: 0.9rem;
+  padding: 0.75rem; /* Padding ajustado */
+  background: #008c6e; /* Cor verde para os botões */
+  border: none;
+  border-radius: 0.5rem; /* Raio menor */
+  color: White;
+  font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
+  font-weight: bold; /* Negrito */
+  margin-top: 0.5rem; /* Margem superior para separar os botões */
 }
 
-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+.cadastro-dispositivo-container button:hover {
+  background: #006a50; /* Cor verde mais escura no hover */
 }
 
+.cadastro-dispositivo-container button:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Os estilos .client-table e .add-button provavelmente pertencem a outro arquivo (dispositivo.css ou user.css)
+ e não devem estar aqui se este CSS é exclusivo para o formulário de cadastro de dispositivo.
+ Se eles forem usados em 'dispositivo.html', serão incluídos lá. */
+/*
 .client-table {
-  width: 100%;
+  Width: 100%;
   border-collapse: collapse;
-  color: white;
+  Color: White;
 }
 
 .client-table th, .client-table td {
@@ -69,7 +104,24 @@ button:hover {
 }
 
 .add-button {
-  width: auto;
+  Width: Auto;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
+}
+*/
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+  .cadastro-dispositivo-container {
+      padding: 1rem;
+      width: calc(100% - 2rem);
+  }
+  .cadastro-dispositivo-container h2 {
+      font-size: 1.5rem;
+  }
+  .cadastro-dispositivo-container input,
+  .cadastro-dispositivo-container button {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+  }
 }

@@ -1,40 +1,409 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu</title>
-    <link rel="stylesheet" href="/Controle_de_Acesso2/accets/CSS/menu.css" />
+    <link rel="stylesheet" href="/accets/CSS/menu.css" />
+    <link rel="stylesheet" href="/accets/CSS/acao.css" />
+    <link rel="stylesheet" href="/accets/CSS/user.css" />
+    <link rel="stylesheet" href="/accets/CSS/style_cadastro_confirmado.css" />
+    <link rel="stylesheet" href="/accets/CSS/cadastro_dispositivo.css" />
   </head>
 
   <body>
-    <div class="container">
-      <h1 class="title">Menu</h1>
-      <div class="buttons">
-        <button class="menu-button" onclick="location.href='user.html'">
-          <img
-            src="/Controle_de_Acesso2/accets/IMAGEM/user.png"
-            alt="Usuários"
-            class="icon"
-          />
-          Usuários
-        </button>
-        <button class="menu-button" onclick="location.href='notificacao.html'">
-          <img
-            src="/Controle_de_Acesso2/accets/IMAGEM/notifica.png"
-            alt="Notificações"
-            class="icon"
-          />
-          Notificações
-        </button>
-        <button class="menu-button" onclick="location.href='dispositivo.html'">
-          <img
-            src="/Controle_de_Acesso2/accets/IMAGEM/device.png"
-            alt="Dispositivos"
-            class="icon"
-          />
-          Dispositivos
-        </button>
+    <div class="main-container">
+      <div class="top-bar">
+        <span class="menu-text">Menu</span>
+        <span class="logged-user">Usuário Logado</span>
+      </div>
+
+      <div class="content-area">
+        <div class="left-pane">
+          <button class="nav-button active" id="manage-users-button">
+            <img src="/accets/IMAGEM/users-icon.png" alt="Gerenciar Usuários" class="nav-icon" />
+            Gerenciar Usuários
+          </button>
+
+          <button class="nav-button" id="new-cadastro-button">
+            <img src="/accets/IMAGEM/cadastro-icon.png" alt="Cadastro" class="nav-icon" />
+            Novo Cadastro
+          </button>
+
+          <button class="nav-button" id="cadastro-dispositivo-button">
+            <img src="/accets/IMAGEM/dispositivo-icon.png" alt="Cadastro de Dispositivo" class="nav-icon" />
+            Cadastro de Dispositivo
+          </button>
+
+          <button class="nav-button" id="records-button">
+            <img src="/accets/IMAGEM/records-icon.png" alt="Registros" class="nav-icon" />
+            Registros
+          </button>
+        </div>
+
+        <div class="right-content" id="right-content-area">
+        </div>
       </div>
     </div>
+
+    <script>
+      // Variáveis globais para serem acessíveis por todas as funções e onclicks
+      let usuarios = JSON.parse(localStorage.getItem("usuariosCadastrados")) || [];
+      const rightContentArea = document.getElementById('right-content-area'); // Já pode ser global, pois não muda
+
+      function setActiveButton(buttonToActivate) {
+        document.querySelectorAll('.nav-button').forEach(button => {
+          button.classList.remove('active');
+        });
+        buttonToActivate.classList.add('active');
+      }
+
+      // --- Funções de Usuários ---
+      function carregarUsuarios() {
+        const tbody = document.getElementById("user-body");
+        if (!tbody) {
+          console.warn("Elemento 'user-body' não encontrado. Conteúdo ainda não carregado?");
+          return;
+        }
+
+        tbody.innerHTML = "";
+        usuarios.forEach((user, index) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${user.cpf || ''}</td>
+            <td>${user.nome || ''}</td>
+            <td>${user.email || ''}</td>
+            <td>${user.telefone || ''}</td>
+            <td>${user.tpc || ''}</td>
+            <td>${user.face ? `<img src="/accets/IMAGEM/${user.face}" alt="Foto do Usuário" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">` : 'N/A'}</td>
+            <td>
+              <button class="user-module-edit-btn" onclick="editarUsuario(${index})">✏️</button>
+              <button class="user-module-delete-btn" onclick="excluirUsuario(${index})">🗑️</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function editarUsuario(index) {
+        // Certifica-se de que o rightContentArea está disponível
+        if (!rightContentArea) {
+            console.error("rightContentArea não disponível.");
+            return;
+        }
+        const userToEdit = usuarios[index];
+        showEditForm(userToEdit, index);
+      }
+
+      function excluirUsuario(index) {
+        if (confirm(`Deseja excluir o usuário ${usuarios[index].nome || 'selecionado'}?`)) {
+          usuarios.splice(index, 1);
+          localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
+          carregarUsuarios();
+        }
+      }
+
+      function sortAlphabeticallyUsuarios() {
+          const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
+          if (cadastrosSalvos) {
+              const listaDeCadastros = JSON.parse(cadastrosSalvos);
+              listaDeCadastros.sort((a, b) => {
+                  const nameA = (a.nome || '').toLowerCase();
+                  const nameB = (b.nome || '').toLowerCase();
+                  return nameA.localeCompare(nameB);
+              });
+              localStorage.setItem("usuariosCadastrados", JSON.stringify(listaDeCadastros));
+              usuarios = listaDeCadastros; // Atualiza a variável global
+              carregarUsuarios();
+          }
+      }
+      // --- Fim das Funções de Usuários ---
+
+      // --- Funções para Edição de Usuário ---
+      function showEditForm(user, index) {
+          rightContentArea.innerHTML = `
+              <div class="cadastro-form-container container"> <h1>Editar Usuário</h1>
+                  <form id="edit-form">
+                      <label for="edit-nome">Nome:</label>
+                      <input type="text" id="edit-nome" value="${user.nome || ''}" required>
+
+                      <label for="edit-telefone">Telefone:</label>
+                      <input type="tel" id="edit-telefone" value="${user.telefone || ''}" required>
+
+                      <label for="edit-email">Email:</label>
+                      <input type="email" id="edit-email" value="${user.email || ''}" required>
+
+                      <label for="edit-cpf">CPF:</label>
+                      <input type="text" id="edit-cpf" value="${user.cpf || ''}" required>
+
+                      <label for="edit-tpc">Tipo de Conta:</label>
+                      <input type="text" id="edit-tpc" value="${user.tpc || ''}">
+
+                      <label for="edit-face">Face ID / Foto (URL/Nome do arquivo):</label>
+                      <input type="text" id="edit-face" value="${user.face || ''}">
+
+                      <button type="submit" class="cadastro-submit-button">Salvar Edição</button>
+                      <button type="button" class="cadastro-confirmado-back-button" onclick="showUsersTable()">Cancelar</button>
+                  </form>
+              </div>
+          `;
+
+          const editForm = document.getElementById('edit-form');
+          if (editForm) {
+              editForm.addEventListener('submit', (event) => {
+                  event.preventDefault();
+
+                  usuarios[index] = {
+                      nome: document.getElementById('edit-nome').value,
+                      telefone: document.getElementById('edit-telefone').value,
+                      email: document.getElementById('edit-email').value,
+                      cpf: document.getElementById('edit-cpf').value,
+                      tpc: document.getElementById('edit-tpc').value,
+                      face: document.getElementById('edit-face').value
+                  };
+
+                  localStorage.setItem('usuariosCadastrados', JSON.stringify(usuarios));
+                  alert("Usuário atualizado com sucesso!");
+                  showUsersTable();
+              });
+          }
+      }
+      // --- Fim das Funções para Edição de Usuário ---
+
+
+      // --- Funções para Cadastro de Usuário e Confirmação ---
+      function showCadastroConfirmado(data) {
+          rightContentArea.innerHTML = `
+              <div class="cadastro-confirmado-container container"> <h1>Cadastro Confirmado</h1>
+                  <div class="cadastro-confirmado-info">
+                      <p><strong>Nome:</strong> <span id="cc-nome">${data.nome || ''}</span></p>
+                      <p><strong>Telefone:</strong> <span id="cc-telefone">${data.telefone || ''}</span></p>
+                      <p><strong>Email:</strong> <span id="cc-email">${data.email || ''}</span></p>
+                      <p><strong>CPF:</strong> <span id="cc-cpf">${data.cpf || ''}</span></p>
+                      <p><strong>Tipo de Conta:</strong> <span id="cc-tpc">${data.tpc || ''}</span></p>
+                      <p><strong>Face ID / Foto:</strong> <span id="cc-face">${data.face ? `<img src="/accets/IMAGEM/${data.face}" alt="Foto do Usuário" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">` : 'N/A'}</span></p>
+                  </div>
+                  <button class="cadastro-confirmado-back-button" onclick="showCadastroForm();">Novo Cadastro</button>
+                  <button class="cadastro-confirmado-back-button" onclick="showUsersTable();">Ver Usuários</button>
+              </div>
+          `;
+      }
+
+      function showCadastroForm() {
+          rightContentArea.innerHTML = `
+              <div class="cadastro-form-container container"> <h1>Novo Cadastro de Usuário</h1>
+                  <form id="cadastro-form">
+                      <label for="cadastro-nome">Nome:</label>
+                      <input type="text" id="cadastro-nome" required>
+
+                      <label for="cadastro-telefone">Telefone:</label>
+                      <input type="tel" id="cadastro-telefone" required>
+
+                      <label for="cadastro-email">Email:</label>
+                      <input type="email" id="cadastro-email" required>
+
+                      <label for="cadastro-cpf">CPF:</label>
+                      <input type="text" id="cadastro-cpf" required>
+
+                      <label for="cadastro-tpc">Tipo de Conta:</label>
+                      <input type="text" id="cadastro-tpc">
+
+                      <label for="cadastro-face">Face ID / Foto (URL/Nome do arquivo):</label>
+                      <input type="text" id="cadastro-face">
+
+                      <button type="submit" class="cadastro-submit-button">Cadastrar Usuário</button>
+                  </form>
+              </div>
+          `;
+
+          const cadastroForm = document.getElementById('cadastro-form');
+          if (cadastroForm) {
+              cadastroForm.addEventListener('submit', (event) => {
+                  event.preventDefault();
+
+                  const novoUsuario = {
+                      nome: document.getElementById('cadastro-nome').value,
+                      telefone: document.getElementById('cadastro-telefone').value,
+                      email: document.getElementById('cadastro-email').value,
+                      cpf: document.getElementById('cadastro-cpf').value,
+                      tpc: document.getElementById('cadastro-tpc').value,
+                      face: document.getElementById('cadastro-face').value
+                  };
+
+                  usuarios.push(novoUsuario);
+                  localStorage.setItem('usuariosCadastrados', JSON.stringify(usuarios));
+
+                  alert("Usuário cadastrado com sucesso!");
+                  showCadastroConfirmado(novoUsuario);
+              });
+          }
+      }
+      // --- Fim das Funções para Cadastro de Usuário e Confirmação ---
+
+      // --- Funções para Cadastro de Dispositivo ---
+      function cadastrarDispositivoInterno() {
+          const nome = document.getElementById("dispositivo-nome").value.trim();
+          const numeroSerie = document.getElementById("dispositivo-numeroSerie").value.trim();
+          const localizacao = document.getElementById("dispositivo-localizacao").value.trim();
+
+          if (!nome || !numeroSerie || !localizacao) {
+              alert("Por favor, preencha todos os campos.");
+              return;
+          }
+
+          let dispositivos = JSON.parse(localStorage.getItem("dispositivos")) || [];
+
+          if (dispositivos.some(d => d.numeroSerie === numeroSerie)) {
+              alert("Já existe um dispositivo cadastrado com este número de série.");
+              return;
+          }
+
+          dispositivos.push({ nome, numeroSerie, localizacao });
+          localStorage.setItem("dispositivos", JSON.stringify(dispositivos));
+
+          alert("Dispositivo cadastrado com sucesso!");
+          document.getElementById("dispositivo-nome").value = '';
+          document.getElementById("dispositivo-numeroSerie").value = '';
+          document.getElementById("dispositivo-localizacao").value = '';
+      }
+
+      function showCadastroDispositivoForm() {
+          rightContentArea.innerHTML = `
+              <div class="cadastro-dispositivo-container container">
+                  <h2>Cadastro de Dispositivo</h2>
+
+                  <label for="dispositivo-nome">Nome do Dispositivo:</label>
+                  <input type="text" id="dispositivo-nome" placeholder="Nome do dispositivo" />
+
+                  <label for="dispositivo-numeroSerie">Número de Série:</label>
+                  <input type="text" id="dispositivo-numeroSerie" placeholder="Número de Série" />
+
+                  <label for="dispositivo-localizacao">Localização:</label>
+                  <input type="text" id="dispositivo-localizacao" placeholder="Localização" />
+
+                  <button id="cadastrar-dispositivo-button">Cadastrar</button>
+                  <button id="voltar-dispositivos-button" class="cadastro-confirmado-back-button">Voltar</button>
+              </div>
+          `;
+          const cadastrarBtn = document.getElementById("cadastrar-dispositivo-button");
+          if (cadastrarBtn) {
+              cadastrarBtn.addEventListener("click", cadastrarDispositivoInterno);
+          }
+          const voltarBtn = document.getElementById("voltar-dispositivos-button");
+          if (voltarBtn) {
+              voltarBtn.addEventListener("click", () => showUsersTable());
+          }
+      }
+      // --- Fim das Funções para Cadastro de Dispositivo ---
+
+
+      // Função para exibir o conteúdo da tabela de usuários
+      function showUsersTable() {
+          rightContentArea.innerHTML = `
+              <div class="user-module-container">
+                  <h1 class="user-module-title">Usuários</h1>
+                  <button id="ordenar-usuarios-button" class="user-module-sort-button">
+                      Ordenar Alfabeticamente
+                  </button>
+                  <table class="user-module-table">
+                      <thead>
+                          <tr>
+                              <th>CPF</th>
+                              <th>Nome</th>
+                              <th>E-mail</th>
+                              <th>Telefone</th>
+                              <th>Tipo de Conta</th>
+                              <th>Face ID / Foto</th>
+                              <th>Ações</th>
+                          </tr>
+                      </thead>
+                      <tbody id="user-body">
+                      </tbody>
+                  </table>
+                  <button class="user-module-add-button" onclick="showCadastroForm();">ADICIONAR USUÁRIO</button>
+              </div>
+          `;
+          const ordenarButton = document.getElementById("ordenar-usuarios-button");
+          if (ordenarButton) {
+              ordenarButton.addEventListener("click", sortAlphabeticallyUsuarios);
+          }
+          carregarUsuarios();
+      }
+
+      // Função para exibir o conteúdo da tabela de notificações (Registros)
+      function showNotificationsTable() {
+        rightContentArea.innerHTML = `
+            <div class="container" style="width: 60rem; padding: 2rem;">
+                <h1 class="title">Histórico de Notificações</h1>
+                <table class="notification-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Dispositivo</th>
+                            <th>Face ID / Foto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="notification-body">
+                        </tbody>
+                </table>
+            </div>
+        `;
+        const notificacoes = [
+          { id: "001", data: "2025-05-20", hora: "14:35", dispositivo: "Entrada Principal", face: "face_001.jpg" },
+          { id: "002", data: "2025-05-21", hora: "09:12", dispositivo: "Portão Lateral", face: "face_002.jpg" }
+        ];
+
+        const tbodyNotif = document.getElementById("notification-body");
+        if(tbodyNotif) {
+            tbodyNotif.innerHTML = "";
+            notificacoes.forEach(n => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${n.id || ''}</td>
+                    <td>${n.data || ''}</td>
+                    <td>${n.hora || ''}</td>
+                    <td>${n.dispositivo || ''}</td>
+                    <td>${n.face ? `<img src="/accets/IMAGEM/${n.face}" alt="Face Notificação" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">` : 'N/A'}</td>
+                `;
+                tbodyNotif.appendChild(tr);
+            });
+        }
+      }
+
+      // Event Listeners para os botões de navegação - DENTRO do DOMContentLoaded
+      document.addEventListener('DOMContentLoaded', () => {
+        // Obtenha as referências aos botões APENAS AQUI dentro do DOMContentLoaded
+        const manageUsersButton = document.getElementById('manage-users-button');
+        const newCadastroButton = document.getElementById('new-cadastro-button');
+        const cadastroDispositivoButton = document.getElementById('cadastro-dispositivo-button');
+        const recordsButton = document.getElementById('records-button');
+
+        manageUsersButton.addEventListener('click', () => {
+          setActiveButton(manageUsersButton);
+          showUsersTable();
+        });
+
+        newCadastroButton.addEventListener('click', () => {
+            setActiveButton(newCadastroButton);
+            showCadastroForm();
+        });
+
+        cadastroDispositivoButton.addEventListener('click', () => {
+            setActiveButton(cadastroDispositivoButton);
+            showCadastroDispositivoForm();
+        });
+
+        recordsButton.addEventListener('click', () => {
+          setActiveButton(recordsButton);
+          showNotificationsTable(); // Chama a função para mostrar notificações
+        });
+
+        // Estado inicial ao carregar a página: Mostra a tabela de usuários
+        setActiveButton(manageUsersButton);
+        showUsersTable();
+      });
+    </script>
   </body>
 </html>

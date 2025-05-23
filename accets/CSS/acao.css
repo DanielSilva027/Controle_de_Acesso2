@@ -1,8 +1,9 @@
-/* Estilo base do body com background fixo e centralizado */
+/* Removido body styling, pois é tratado por menu.css */
+/*
 body {
     margin: 0;
     padding: 0;
-    background: url('../IMAGEM/background.jpg') no-repeat center center fixed;
+    background: url('.. /IMAGEM/background.jpg') center no-repeat fixed;
     background-size: cover;
     min-height: 100vh;
     display: flex;
@@ -10,40 +11,48 @@ body {
     align-items: center;
     font-family: 'Arial', sans-serif;
 }
+*/
 
 /* Container principal com fundo semitransparente e responsivo */
-.container {
-    background: rgba(13, 27, 61, 0.5);
-    border: 0.0625rem solid rgba(255, 255, 255, 0.15);
-    border-radius: 1.25rem;
-    padding: 2rem;
-    width: 90%;
-    max-width: 50rem;
-    /* largura máxima */
+.acao-container { /* Renomeado para evitar conflitos com .container do menu */
+    background: rgba(255, 255, 255, 0.05); /* Fundo mais transparente para a "janela" interna */
+    border: 0.0625rem solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem; /* Bordas um pouco menos arredondadas */
+    padding: 1.5rem; /* Padding ajustado */
+    width: calc(100% - 3rem); /* Ocupa 100% da largura do pai menos padding */
+    max-width: 50rem; /* Mantém a largura máxima */
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem; /* Espaçamento ajustado */
     align-items: center;
+    box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.2); /* Sombra mais sutil */
+    backdrop-filter: blur(0.3rem); /* Blur mais sutil */
+    -webkit-backdrop-filter: blur(0.3rem);
+    color: white; /* Garante que o texto seja branco */
+    margin: 0 auto; /* Centraliza horizontalmente dentro do right-content */
+    max-height: calc(100% - 1rem); /* Ajusta a altura máxima para caber no right-content */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito grande */
+    box-sizing: border-box; /* Inclui padding e border na largura e altura */
 }
 
 /* Botão para ordenar, com transição e foco acessível */
-.ordenar-button {
+.acao-ordenar-button { /* Renomeado */
     background: rgba(255, 255, 255, 0.1);
     border: 0.0625rem solid rgba(255, 255, 255, 0.3);
-    border-radius: 1rem;
-    padding: 0.75rem 1.5rem;
-    color: white;
-    font-size: 1rem;
+    border-radius: 0.5rem; /* Raio menor */
+    padding: 0.6rem 1.2rem; /* Padding ajustado */
+    color: White;
+    font-size: 0.9rem; /* Tamanho da fonte ajustado */
     cursor: pointer;
     transition: background 0.3s ease;
-    align-self: flex-start;
+    align-self: flex-start; /* Alinhado à esquerda dentro do container */
 }
 
-.ordenar-button:hover {
+.acao-ordenar-button:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
-.ordenar-button:focus {
+.acao-ordenar-button:focus {
     outline: 2px solid #fff;
     outline-offset: 2px;
 }
@@ -52,10 +61,11 @@ body {
 #lista-cadastros {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
+    gap: 1rem; /* Espaçamento menor entre os itens */
+    Width: 100%;
     overflow-y: auto;
-    max-height: 25rem;
+    /* max-height: 25rem; */ /* O max-height será controlado pelo .acao-container */
+    flex-grow: 1; /* Permite que a lista cresça */
 }
 
 /* Scrollbar personalizada para WebKit */
@@ -75,60 +85,69 @@ body {
 }
 
 /* Item individual da lista de cadastros */
-.cadastro-item {
+.acao-cadastro-item { /* Renomeado */
     background: rgba(255, 255, 255, 0.05);
     border: 0.0625rem solid rgba(255, 255, 255, 0.2);
-    border-radius: 1.5rem;
-    padding: 0.75rem 1rem;
+    border-radius: 1rem; /* Raio menor */
+    padding: 0.6rem 1rem; /* Padding ajustado */
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem; /* Espaçamento ajustado */
     color: white;
     width: 100%;
     box-sizing: border-box;
 }
 
 /* Espaço reservado para foto */
-.foto-placeholder {
-    width: 3rem;
-    height: 3rem;
+.acao-foto-placeholder { /* Renomeado */
+    width: 2.5rem; /* Tamanho menor */
+    height: 2.5rem; /* Tamanho menor */
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* Tamanho da fonte ajustado */
 }
 
 /* Informações do usuário dentro do cadastro */
-.info {
+.acao-info { /* Renomeado */
     text-align: left;
     flex-grow: 1;
+    font-size: 0.9rem; /* Tamanho da fonte ajustado */
+}
+.acao-info div {
+    white-space: nowrap; /* Evita que o texto quebre linha */
+    overflow: hidden; /* Esconde o excesso de texto */
+    text-overflow: ellipsis; /* Adiciona "..." se o texto for muito longo */
 }
 
+
 /* Container para botões inferiores */
-.bottom-actions {
+.acao-bottom-actions { /* Renomeado */
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem; /* Espaçamento ajustado */
+    margin-top: 1rem; /* Margem superior para separar da lista */
 }
 
 /* Estilo dos botões inferiores com foco acessível */
-.bottom-actions button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 0.0625rem solid rgba(255, 255, 255, 0.3);
-    border-radius: 1rem;
-    padding: 0.75rem 1.5rem;
+.acao-bottom-actions button { /* Renomeado */
+    background: #008c6e; /* Cor verde para os botões de ação */
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.2rem;
     color: white;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-weight: bold; /* Negrito */
 }
 
-.bottom-actions button:hover {
-    background: rgba(255, 255, 255, 0.2);
+.acao-bottom-actions button:hover {
+    background: #006a50; /* Cor verde mais escura no hover */
 }
 
-.bottom-actions button:focus {
+.acao-bottom-actions button:focus {
     outline: 2px solid #fff;
     outline-offset: 2px;
 }
@@ -138,5 +157,55 @@ h1 {
     color: white;
     align-self: flex-start;
     margin-bottom: 1rem;
+    font-size: 1.8rem; /* Tamanho da fonte ajustado */
+    text-align: center; /* Centraliza o título */
+    width: 100%; /* Ocupa a largura total */
+}
 
+/* Media Queries para responsividade da tela de Ações */
+@media (max-width: 768px) {
+    .acao-container {
+        padding: 1rem;
+        width: calc(100% - 2rem);
+    }
+    .acao-ordenar-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    .acao-cadastro-item {
+        padding: 0.5rem 0.8rem;
+    }
+    .acao-foto-placeholder {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.6rem;
+    }
+    .acao-info {
+        font-size: 0.85rem;
+    }
+    .acao-bottom-actions button {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .acao-bottom-actions {
+        flex-direction: column; /* Empilha os botões de ação */
+        width: 100%;
+    }
+    .acao-bottom-actions button {
+        width: 100%; /* Botões de ação ocupam 100% da largura */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .acao-ordenar-button {
+        width: 100%;
+        text-align: center;
+        align-self: center; /* Centraliza o botão ordenar */
+    }
 }
