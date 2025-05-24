@@ -1,71 +1,88 @@
-<div class="user-module-container">
-  <h1 class="user-module-title">Usuários</h1>
-  <table class="user-module-table">
-    <thead>
-      <tr>
-        <th>CPF</th>
-        <th>Nome</th>
-        <th>E-mail</th>
-        <th>Telefone</th>
-        <th>Tipo de Conta</th>
-        <th>Face ID / Foto</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody id="user-body">
-      </tbody>
-  </table>
-  <button class="user-module-add-button" onclick="window.location.href='cadastro.html'">ADICIONAR USUÁRIO</button>
-</div>
-
-<script>
-  // Ensure these functions are globally accessible or re-attached
-  // The script will execute when loaded into the right-content-area
-
-  let usuarios = JSON.parse(localStorage.getItem("usuariosCadastrados")) || [];
-
-  function carregarUsuarios() {
-    const tbody = document.getElementById("user-body");
-    if (!tbody) { // Added check in case element isn't ready
-        console.warn("tbody element not found in user.html content.");
-        return;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Usuários</title>
+  <link rel="stylesheet" href="/accets/CSS/user.css" />
+  <style>
+    /* Para deixar o botão parecido com o do menu */
+    .user-module-add-button {
+      margin-top: 1.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 1.25rem;
+      padding: 0.5rem 1.2rem;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
-    tbody.innerHTML = "";
-    usuarios.forEach((user, index) => {
-      const tr = document.createElement("tr");
-
-      tr.innerHTML = `
-        <td>${user.cpf}</td>
-        <td>${user.nome}</td>
-        <td>${user.email}</td>
-        <td>${user.telefone}</td>
-        <td>${user.tpc}</td>
-        <td>${user.face}</td>
-        <td>
-          <button class="user-module-edit-btn" onclick="editarUsuario(${index})">✏️</button>
-          <button class="user-module-delete-btn" onclick="excluirUsuario(${index})">🗑️</button>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
-
-  function editarUsuario(index) {
-    alert(`Editar usuário: ${usuarios[index].nome} (função ainda não implementada)`);
-    // Ideally, you'd navigate to a dedicated edit form or open a modal here
-  }
-
-  function excluirUsuario(index) {
-    if (confirm(`Deseja excluir o usuário ${usuarios[index].nome}?`)) {
-      usuarios.splice(index, 1);
-      localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
-      carregarUsuarios();
+    .user-module-add-button:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
-  }
+  </style>
+</head>
+<body style="background-color: #0d1b3d; color: white; font-family: Arial, sans-serif; padding: 2rem;">
+  <div class="user-module-container">
+    <h1 class="user-module-title">Usuários</h1>
+    <table class="user-module-table">
+      <thead>
+        <tr>
+          <th>CPF</th>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th>Tipo de Conta</th>
+          <th>Face ID / Foto</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="user-body"></tbody>
+    </table>
+    <button class="user-module-add-button" onclick="window.location.href='cadastro.html'">ADICIONAR USUÁRIO</button>
+  </div>
 
-  // Initial load when this script is executed
-  // It's good practice to call this after the content is loaded
-  // The loadContent function in menu.html will call this explicitly if needed.
-  // carregarUsuarios(); // This might run too early if tbody is not yet fully rendered,
-                       // so the explicit call in menu.html's loadContent callback is better.
-</script>
+  <script>
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCadastrados")) || [];
+
+    function carregarUsuarios() {
+      const tbody = document.getElementById("user-body");
+      tbody.innerHTML = "";
+      usuarios.forEach((user, index) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>${user.cpf || ''}</td>
+          <td>${user.nome || ''}</td>
+          <td>${user.email || ''}</td>
+          <td>${user.telefone || ''}</td>
+          <td>${user.tpc || ''}</td>
+          <td>${user.face ? `<img src="/accets/IMAGEM/${user.face}" alt="Foto do Usuário" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">` : 'N/A'}</td>
+          <td>
+            <button class="user-module-edit-btn" onclick="editarUsuario(${index})">✏️</button>
+            <button class="user-module-delete-btn" onclick="excluirUsuario(${index})">🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function editarUsuario(index) {
+      alert(`Editar usuário: ${usuarios[index].nome} (implemente o formulário de edição aqui)`);
+      // Aqui você pode abrir um formulário de edição ou redirecionar para a página de edição
+    }
+
+    function excluirUsuario(index) {
+      if (confirm(`Deseja excluir o usuário ${usuarios[index].nome}?`)) {
+        usuarios.splice(index, 1);
+        localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
+        carregarUsuarios();
+      }
+    }
+
+    // Carrega os usuários assim que a página estiver pronta
+    document.addEventListener('DOMContentLoaded', carregarUsuarios);
+  </script>
+</body>
+</html>

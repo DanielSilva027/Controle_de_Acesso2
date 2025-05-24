@@ -1,85 +1,145 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editar Informações</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Informações</title>
+  <link rel="stylesheet" href="/accets/CSS/acao.css" />
+  <style>
+    body {
+      background-color: #0d1b3d;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+    }
 
-    <link rel="stylesheet" href="/accets/CSS/acao.css" />
-  </head>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-  <body>
-    <div class="container">
-      <h1>Editar informações</h1>
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
 
-      <button id="ordenar" class="ordenar-button">
-        Ordenar Alfabeticamente
-      </button>
+    .ordenar-button,
+    .bottom-actions button {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-      <div id="lista-cadastros"></div>
+    .ordenar-button:hover,
+    .bottom-actions button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
 
-      <div class="bottom-actions">
-        <button onclick="location.href='selecao.html'">Seleção</button>
-        <button onclick="location.href='index.html'">Voltar</button>
-      </div>
+    .cadastro-item {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .foto-placeholder,
+    .cadastro-item img {
+      width: 60px;
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bottom-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Editar Informações</h1>
+
+    <button id="ordenar" class="ordenar-button">Ordenar Alfabeticamente</button>
+
+    <div id="lista-cadastros"></div>
+
+    <div class="bottom-actions">
+      <button onclick="location.href='selecao.html'">Seleção</button>
+      <button onclick="location.href='index.html'">Voltar</button>
     </div>
+  </div>
 
-    <script>
-      // Função responsável por exibir os cadastros armazenados no localStorage
-      function exibirCadastros() {
-        const listaCadastrosDiv = document.getElementById("lista-cadastros");
-        listaCadastrosDiv.innerHTML = "";
+  <script>
+    function exibirCadastros() {
+      const listaCadastrosDiv = document.getElementById("lista-cadastros");
+      listaCadastrosDiv.innerHTML = "";
 
-        const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
-        const listaDeCadastros = cadastrosSalvos
-          ? JSON.parse(cadastrosSalvos)
-          : [];
+      const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
+      const listaDeCadastros = cadastrosSalvos ? JSON.parse(cadastrosSalvos) : [];
 
-        if (listaDeCadastros.length > 0) {
-          listaDeCadastros.forEach((cadastro) => {
-            const cadastroItem = document.createElement("div");
-            cadastroItem.className = "cadastro-item";
+      if (listaDeCadastros.length > 0) {
+        listaDeCadastros.forEach(cadastro => {
+          const cadastroItem = document.createElement("div");
+          cadastroItem.className = "cadastro-item";
 
-            // Define o conteúdo HTML do item de cadastro, incluindo nome e CPF
-            cadastroItem.innerHTML = `
-                        <div class="foto-placeholder">Foto</div>
-                        <div class="info">
-                            <div>${cadastro.nome}</div>
-                            <div style="font-size: 0.8rem;">CPF: ${cadastro.cpf}</div>
-                        </div>
-                    `;
-            listaCadastrosDiv.appendChild(cadastroItem);
-          });
-        } else {
-          const mensagem = document.createElement("p");
-          mensagem.textContent = "Nenhum cadastro encontrado";
-          mensagem.style.color = "white";
-          listaCadastrosDiv.appendChild(mensagem);
-        }
+          const imagemHTML = cadastro.face
+            ? `<img src="/accets/IMAGEM/${cadastro.face}" alt="Foto de ${cadastro.nome}">`
+            : `<div class="foto-placeholder">Foto</div>`;
+
+          cadastroItem.innerHTML = `
+            ${imagemHTML}
+            <div class="info">
+              <div><strong>${cadastro.nome || 'Sem nome'}</strong></div>
+              <div style="font-size: 0.85rem;">CPF: ${cadastro.cpf || 'Não informado'}</div>
+            </div>
+          `;
+
+          listaCadastrosDiv.appendChild(cadastroItem);
+        });
+      } else {
+        const mensagem = document.createElement("p");
+        mensagem.textContent = "Nenhum cadastro encontrado.";
+        mensagem.style.color = "white";
+        listaCadastrosDiv.appendChild(mensagem);
       }
+    }
 
-      // Função responsável por ordenar os cadastros alfabeticamente pelo nome
-      function ordenarAlfabeticamente() {
-        const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
-        if (cadastrosSalvos) {
-          const listaDeCadastros = JSON.parse(cadastrosSalvos);
-          listaDeCadastros.sort((a, b) => {
-            a.nome = a.nome.toLowerCase();
-            b.nome = b.nome.toLowerCase();
-            return a.nome.localeCompare(b.nome);
-          });
-          localStorage.setItem(
-            "usuariosCadastrados",
-            JSON.stringify(listaDeCadastros)
-          );
-          exibirCadastros();
-        }
+    function ordenarAlfabeticamente() {
+      const cadastrosSalvos = localStorage.getItem("usuariosCadastrados");
+      if (cadastrosSalvos) {
+        const listaDeCadastros = JSON.parse(cadastrosSalvos);
+        listaDeCadastros.sort((a, b) => {
+          const nomeA = (a.nome || "").toLowerCase();
+          const nomeB = (b.nome || "").toLowerCase();
+          return nomeA.localeCompare(nomeB);
+        });
+        localStorage.setItem("usuariosCadastrados", JSON.stringify(listaDeCadastros));
+        exibirCadastros();
       }
+    }
 
-      exibirCadastros();
+    document.getElementById("ordenar").addEventListener("click", ordenarAlfabeticamente);
 
-      document
-        .getElementById("ordenar")
-        .addEventListener("click", ordenarAlfabeticamente);
-    </script>
-  </body>
+    document.addEventListener("DOMContentLoaded", exibirCadastros);
+  </script>
+</body>
 </html>

@@ -390,3 +390,64 @@ hr {
   border-radius: 8px;
   cursor: pointer;
 }
+.feedback-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 250px;
+  text-align: left;
+}
+.blue {
+  background: #6495f8;
+  color: white;
+}
+.author {
+  margin-top: 10px;
+  font-weight: bold;
+}
+button {
+  padding: 10px 20px;
+  background: #222;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+form {
+  margin-top: 20px;
+  display: none;
+}
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.sub{
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+.botao{
+    background-color: #111;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+.container-botao {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px; /* espaço acima do botão */
+}

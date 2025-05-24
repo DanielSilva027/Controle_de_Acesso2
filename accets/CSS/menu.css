@@ -1,3 +1,6 @@
+/* menu.css */
+
+/* Reset básico no body */
 body {
     margin: 0;
     padding: 0;
@@ -9,15 +12,16 @@ body {
     align-items: center;
     font-family: 'Arial', sans-serif;
     overflow: hidden;
+    color: white;
   }
   
+  /* Container principal do menu */
   .main-container {
-    width: 90%;
-    max-width: 60rem;
-    height: 90vh;
-    max-height: 35rem;
+    width: 98%;
+    max-width: 110rem; /* Largura maior para o menu */
+    height: 95vh;
     background: rgba(13, 27, 61, 0.5);
-    border: 0.0625rem solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 1.25rem;
     box-shadow: 0 0.5rem 2rem rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(0.5rem);
@@ -28,44 +32,53 @@ body {
     color: white;
   }
   
+  /* Barra superior do menu */
   .top-bar {
     background: rgba(255, 255, 255, 0.1);
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
-    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.2rem;
     font-weight: bold;
     font-family: 'Times New Roman', serif;
   }
   
+  /* Texto no topo com espaçamento */
   .menu-text {
     letter-spacing: 0.1rem;
   }
   
+  /* Usuário logado no topo */
   .logged-user {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
+    user-select: none;
   }
   
+  /* Área principal do conteúdo: esquerda + direita */
   .content-area {
     display: flex;
     flex-grow: 1;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
   }
   
+  /* Painel lateral esquerdo */
   .left-pane {
-    flex: 0 0 15rem;
-    max-width: 100%;
+    flex: 0 0 18rem; /* Largura fixa para menu */
     background: rgba(255, 255, 255, 0.05);
-    border-right: 0.0625rem solid rgba(255, 255, 255, 0.1);
-    padding: 1.5rem 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 1.2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
+    box-sizing: border-box;
+    user-select: none;
   }
   
+  /* Botões do menu lateral */
   .nav-button {
     background: rgba(255, 255, 255, 0.08);
     border: none;
@@ -73,75 +86,170 @@ body {
     padding: 0.6rem 1rem;
     color: white;
     font-size: 1rem;
-    text-align: left;
     display: flex;
     align-items: center;
     gap: 0.6rem;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
     box-sizing: border-box;
   }
   
-  .nav-button:hover {
+  .nav-button:hover,
+  .nav-button:focus {
     background: rgba(255, 255, 255, 0.2);
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
   }
   
   .nav-button.active {
     background: rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   }
   
+  /* Ícones nos botões do menu */
   .nav-icon {
     width: 1.2rem;
     height: 1.2rem;
     filter: brightness(0) invert(1);
+    flex-shrink: 0;
   }
   
+  /* Conteúdo principal à direita */
   .right-content {
     flex-grow: 1;
-    flex-basis: 0;
-    min-width: 20rem;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1.2rem;
+    padding: 2rem 3rem;
     overflow-y: auto;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
   }
   
-  /* Botões dentro do conteúdo */
-  .right-content button {
+  /* Scrollbar para Webkit */
+  .right-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .right-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .right-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+  
+  /* Container da tabela de usuários */
+  .user-module-container {
+    width: 100%;
+    overflow-x: auto; /* Scroll horizontal se necessário */
+  }
+  
+  /* Tabela de usuários */
+  .user-module-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse; /* Remove espaços entre células */
+    margin-top: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    color: white;
+  }
+  
+  /* Células da tabela */
+  .user-module-table th,
+  .user-module-table td {
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    word-break: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  /* Cabeçalho */
+  .user-module-table th {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.1);
+    text-align: left;
+  }
+  
+  /* Células do corpo */
+  .user-module-table td {
+    color: rgba(255, 255, 255, 0.95);
+    background-color: transparent;
+  }
+  
+  /* Colunas importantes com largura mínima */
+  .user-module-table th:nth-child(1),
+  .user-module-table td:nth-child(1) {
+    min-width: 160px;
+  }
+  
+  .user-module-table th:nth-child(2),
+  .user-module-table td:nth-child(2) {
+    min-width: 220px;
+  }
+  
+  .user-module-table th:nth-child(3),
+  .user-module-table td:nth-child(3) {
+    min-width: 200px;
+  }
+  
+  /* Altura das linhas */
+  .user-module-table tr {
+    height: 2.5rem;
+  }
+  
+  /* Botões dentro do conteúdo principal */
+  .right-content button {
+    background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 1.25rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.2rem;
     color: white;
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s ease;
+    margin-top: 1rem;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .right-content button:hover {
+  .right-content button:hover,
+  .right-content button:focus {
     background: rgba(255, 255, 255, 0.2);
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
   }
   
-  /* RESPONSIVO */
-  
-  @media (max-width: 768px) {
+  /* Responsividade */
+  @media (max-width: 1024px) {
     .main-container {
-      width: 95%;
-      height: 95vh;
-      max-height: 100vh;
+      width: 100%;
+      height: auto;
       border-radius: 1rem;
     }
   
-    .top-bar {
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
+    .right-content {
+      padding: 1rem 1.5rem;
+      min-width: auto;
     }
   
-    .logged-user
-s  
+    .user-module-table {
+      font-size: 0.9rem;
+    }
+  
+    .user-module-table th,
+    .user-module-table td {
+      padding: 0.6rem 0.8rem;
+    }
+  
+    .left-pane {
+      flex: 0 0 12rem; /* Menu menor no mobile */
+      padding: 1rem;
+    }
+  }
+  

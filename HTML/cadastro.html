@@ -17,7 +17,7 @@
     <input type="text" id="face" placeholder="Face ID / Link da Foto" />
     <input type="password" id="senha" placeholder="Senha de Acesso" />
     <button onclick="cadastrarUsuario()">Cadastrar</button>
-    <button onclick="window.location.href='user.html'">Voltar</button>
+    <button onclick="window.location.href='index.html'">Voltar</button>
   </div>
 
   <script>
@@ -48,7 +48,12 @@
       localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
 
       alert("Usuário cadastrado com sucesso!");
-      window.location.href = "user.html";
+
+      // Salva o usuário logado
+      localStorage.setItem('usuarioLogadoCPF', cpf);
+
+      // Redireciona para menu.html
+      window.location.href = "menu.html";
     }
   </script>
 </body>

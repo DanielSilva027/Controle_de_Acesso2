@@ -11,6 +11,33 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <link rel="stylesheet" href="/Land/Styles.css">
+  <script>
+    function mostrarFormulario() {
+      const form = document.getElementById('formFeedback');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+  
+    function adicionarFeedback() {
+      const nome = document.getElementById('nome').value;
+      const comentario = document.getElementById('comentario').value;
+  
+      if (nome && comentario) {
+        const container = document.getElementById('feedbackContainer');
+        const div = document.createElement('div');
+        div.className = 'card blue';
+        div.innerHTML = `
+          <p>“${comentario}”</p>
+          <p class="author">${nome}<br><small>Cliente</small></p>
+        `;
+        container.appendChild(div);
+  
+        document.getElementById('formFeedback').reset();
+        document.getElementById('formFeedback').style.display = 'none';
+      } else {
+        alert('Preencha todos os campos.');
+      }
+    }
+  </script>
   <title>Smartcam</title>
 </head>
 
@@ -22,7 +49,7 @@
     </div>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">SmartCam</a>
+        <a class="navbar-brand text-white" href="/HTML/index.html">SmartCam</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon bg-light"></span>
         </button>
@@ -42,7 +69,7 @@
     <div class="fundo">
       <h1 class="subtitulo">Monitoramento em <br> tempo real</h1>
       <p class="texto">Receba notificações imediatas caso um rosto não identificado seja detectado, permitindo ação rápida para prevenir incidentes.</p>
-      <button class="registro"><a href="../HTML/cadastro.html">Acesse já →</a></button>
+      <button class="registro"><a href="/HTML/index.html">Acesse já →</a></button>
     </div>
     <img src="assets/imagem/ChatGPT Image 20 de mai. de 2025, 16_31_53.jpg" class="imgseguranca" alt="Reconhecimento facial">
   </section>
@@ -51,7 +78,7 @@
     <div class="fundo2">
       <h2 class="subtitulo">Segurança<br><span class="destaque">Aprimorada</span></h2>
       <p class="texto">Sua câmera inteligente identifica rostos e sinaliza desconhecidos, ajudando<br>a evitar acessos não autorizados e aumentando a segurança do ambiente</p>
-      <button class="registro">Começar agora →</button>
+      <button class="registro"><a href="/HTML/index.html">Iniciar →</a></button>
     </div>
     <img src="assets/imagem/camera-de-seguranca.webp" class="imgseguranca" alt="Reconhecimento facial">
   </section>
@@ -60,7 +87,7 @@
     <div class="fundo2">
       <h2 class="subtitulo">Tecnologia com<br><span class="destaque">IA Aprimorada</span></h2>
       <p class="texto">Sistema evolui continuamente para garantir a máxima precisão na <br>identificação</p>
-      <button class="registro">Começar agora →</button>
+      <button class="registro"><a href="/HTML/index.html">Começar agora →</a></button>
     </div>
     <img src="assets/imagem/image-removebg-preview.png" class="img5" alt="Reconhecimento facial">
   </section>
@@ -69,7 +96,7 @@
     <div class="fundo3">
       <h2 class="subtitulo2">Tecnologia com<br><span class="destaque">IA Aprimorada</span></h2>
       <p class="caracteristica">Proteja sua casa, escritório, condomínio ou qualquer outro espaço<br>com tecnologia de ponta</p>
-      <button class="registro">Vamos lá →</button>
+      <button class="registro"><a href="/HTML/index.html">Vamos lá →</a></button>
     </div>
     <img src="assets/imagem/Domótica.jpg" class="img5" alt="casa">
   </section>
@@ -102,48 +129,31 @@
     <h2>Atendemos em <br> toda grande Vitória</h2>
   </section>
   
-  <section class="testimonials">
-    <h2 class="subtitulo">O que os nossos <span class="destaque">clientes</span> </h2>
-  
-    <div class="cards" id="cards">
-      <!-- Depoimentos aparecem aqui -->
-      <div class="card">
-        <p>“Depois que eu coloquei este produto, eu me senti mais seguro, diminui gastos e gostei bastante.”</p>
-        <hr>
-        <div class="user">
-          <img src="assets/imagem/gabriel.jpeg" alt="Gabriel">
-          <div>
-            <strong>Gabriel Buffon</strong><br>
-            <small>Primeiro cliente</small>
-          </div>
-        </div>
-      </div>
-  
-      <div class="card blue">
-        <p>“Muito interessante! Amei.”</p>
-        <hr>
-        <div class="user">
-          <img src="assets/imagem/Luzdark.jpeg" alt="LuzDark">
-          <div>
-            <strong>LuzDark</strong><br>
-            <small>Cliente</small>
-          </div>
-        </div>
-      </div>
-  
-      <div class="card blue">
-        <p>“Muito funcional, me ajudou bastante.”</p>
-        <hr>
-        <div class="user">
-          <img src="assets/imagem/David.jpeg" alt="David">
-          <div>
-            <strong>David</strong><br>
-            <small>Cliente</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  
+  <h2 class="sub">O que os nossos <span class="destaque">clientes</span> acham</h2>
+
+<div class="feedback-container" id="feedbackContainer">
+  <div class="card">
+    <p>“Depois que eu coloquei este produto, eu me senti mais seguro, diminui gastos e gostei bastante.”</p>
+    <p class="author">Gabriel Buffon<br><small>Primeiro cliente</small></p>
+  </div>
+  <div class="card blue">
+    <p>“Muito interessante! Amei.”</p>
+    <p class="author">LuzDark<br><small>Cliente</small></p>
+  </div>
+  <div class="card blue">
+    <p>“Muito funcional, me ajudou bastante.”</p>
+    <hr>
+    <p class="author">David<br><small>Cliente</small></p>
+  </div>
+</div>
+<div class="container-botao">
+<button class="botao-feedback " onclick="mostrarFormulario()">Deixar Feedback</button>
+</div>
+<form id="formFeedback">
+  <input type="text" id="nome" placeholder="Seu nome" required><br>
+  <textarea id="comentario" placeholder="Seu comentário" required></textarea><br>
+  <button type="button" onclick="adicionarFeedback()">Enviar</button>
+</form>  
   <footer class="bg-dark text-white py-4 mt-5">
     <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
       <div>
