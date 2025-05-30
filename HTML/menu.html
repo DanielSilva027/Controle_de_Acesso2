@@ -11,23 +11,23 @@
     <div class="main-container">
       <div class="top-bar">
         <span class="menu-text">Menu</span>
-        <span class="logged-user">Usuário Logado</span>
+        <span class="logged-user" id="logged-user">Usuário Logado</span>
       </div>
 
       <div class="content-area">
         <div class="left-pane">
           <button class="nav-button" id="manage-users-button">
-            <img src="/accets/IMAGEM/gusuarios.png" alt="Gerenciar Usuários" class="nav-icon" />
+            <img src="../accets/IMAGEM/gusuarios.png" alt="Gerenciar Usuários" class="nav-icon" />
             Gerenciar Usuários
           </button>
 
           <button class="nav-button" id="manage-devices-button">
-            <img src="/accets/IMAGEM/gdispositivos-removebg-preview.png "alt="Gerenciar Dispositivos" class="nav-icon" />
+            <img src="../accets/IMAGEM/gdispositivos-removebg-preview.png" alt="Gerenciar Dispositivos" class="nav-icon" />
             Gerenciar Dispositivos
           </button>
- 
+
           <button class="nav-button" id="records-button">
-            <img src="/accets/IMAGEM/registros.png" alt="Registros" class="nav-icon" />
+            <img src="../accets/IMAGEM/registros.png" alt="Registros" class="nav-icon" />
             Registros
           </button>
         </div>
@@ -66,10 +66,14 @@
 
       document.addEventListener("DOMContentLoaded", () => {
         const cpf = localStorage.getItem("usuarioLogadoCPF");
-        if (cpf) {
-          const loggedUserElem = document.querySelector(".logged-user");
-          if (loggedUserElem) {
-            loggedUserElem.textContent = `Usuário Logado: ${cpf}`;
+        const loggedUserElem = document.getElementById("logged-user");
+
+        if (cpf && loggedUserElem) {
+          const user = usuarios.find(u => u.cpf === cpf);
+          if (user && user.nome) {
+            loggedUserElem.textContent = `Usuário Logado: ${user.nome}`;
+          } else {
+            loggedUserElem.textContent = `Usuário não encontrado (CPF ${cpf})`;
           }
         }
 
