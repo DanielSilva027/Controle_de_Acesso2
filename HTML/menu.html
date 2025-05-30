@@ -21,14 +21,9 @@
             Gerenciar Usuários
           </button>
 
-          <button class="nav-button" id="new-cadastro-button">
-            <img src="/accets/IMAGEM/cadastro-icon.png" alt="Cadastro" class="nav-icon" />
-            Novo Cadastro
-          </button>
-
-          <button class="nav-button" id="cadastro-dispositivo-button">
-            <img src="/accets/IMAGEM/dispositivo-icon.png" alt="Cadastro de Dispositivo" class="nav-icon" />
-            Cadastro de Dispositivo
+          <button class="nav-button" id="manage-devices-button">
+            <img src="/accets/IMAGEM/dispositivo-icon.png" alt="Gerenciar Dispositivos" class="nav-icon" />
+            Gerenciar Dispositivos
           </button>
 
           <button class="nav-button" id="records-button">
@@ -46,73 +41,61 @@
     </div>
 
     <script>
-      // Variáveis globais
       let usuarios = JSON.parse(localStorage.getItem("usuariosCadastrados")) || [];
       let dispositivos = JSON.parse(localStorage.getItem("dispositivosCadastrados")) || [];
       let registros = JSON.parse(localStorage.getItem("registrosSalvos")) || [];
-      const rightContentArea = document.getElementById('right-content-area');
+      const rightContentArea = document.getElementById("right-content-area");
 
-      // Função para setar botão ativo no menu
       function setActiveButton(buttonToActivate) {
-        document.querySelectorAll('.nav-button').forEach(button => {
-          button.classList.remove('active');
+        document.querySelectorAll(".nav-button").forEach((button) => {
+          button.classList.remove("active");
         });
-        buttonToActivate.classList.add('active');
+        buttonToActivate.classList.add("active");
       }
 
-      // Função para limpar seleção e conteúdo
       function limparSelecao() {
-        document.querySelectorAll('.nav-button').forEach(button => {
-          button.classList.remove('active');
+        document.querySelectorAll(".nav-button").forEach((button) => {
+          button.classList.remove("active");
         });
         rightContentArea.innerHTML = `
           <p style="padding: 20px; color: #666; font-style: italic;">
             Selecione uma opção no menu para começar.
           </p>
-        `; // Mensagem padrão
+        `;
       }
 
-      // Atualiza usuário logado na top-bar
-      document.addEventListener('DOMContentLoaded', () => {
-        const cpf = localStorage.getItem('usuarioLogadoCPF');
+      document.addEventListener("DOMContentLoaded", () => {
+        const cpf = localStorage.getItem("usuarioLogadoCPF");
         if (cpf) {
-          const loggedUserElem = document.querySelector('.logged-user');
+          const loggedUserElem = document.querySelector(".logged-user");
           if (loggedUserElem) {
             loggedUserElem.textContent = `Usuário Logado: ${cpf}`;
           }
         }
 
-        // Botões do menu
-        const manageUsersButton = document.getElementById('manage-users-button');
-        const newCadastroButton = document.getElementById('new-cadastro-button');
-        const cadastroDispositivoButton = document.getElementById('cadastro-dispositivo-button');
-        const recordsButton = document.getElementById('records-button');
+        const manageUsersButton = document.getElementById("manage-users-button");
+        const manageDevicesButton = document.getElementById("manage-devices-button");
+        const recordsButton = document.getElementById("records-button");
 
-        manageUsersButton.addEventListener('click', () => {
+        manageUsersButton.addEventListener("click", () => {
           setActiveButton(manageUsersButton);
           showUsersTable();
         });
 
-        newCadastroButton.addEventListener('click', () => {
-          setActiveButton(newCadastroButton);
-          showCadastroForm();
+        manageDevicesButton.addEventListener("click", () => {
+          setActiveButton(manageDevicesButton);
+          showDevicesTable();
         });
 
-        cadastroDispositivoButton.addEventListener('click', () => {
-          setActiveButton(cadastroDispositivoButton);
-          showCadastroDispositivoForm();
-        });
-
-        recordsButton.addEventListener('click', () => {
+        recordsButton.addEventListener("click", () => {
           setActiveButton(recordsButton);
           showNotificationsTable();
         });
 
-        // Nenhuma opção selecionada inicialmente
         limparSelecao();
       });
 
-      // --- Usuários ---
+      // ---------------------- Usuários -----------------------
       function carregarUsuarios() {
         const tbody = document.getElementById("user-body");
         if (!tbody) return;
@@ -120,15 +103,15 @@
         usuarios.forEach((user, index) => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td>${user.cpf || ''}</td>
-            <td>${user.nome || ''}</td>
-            <td>${user.email || ''}</td>
-            <td>${user.telefone || ''}</td>
-            <td>${user.tpc || ''}</td>
-            <td>${user.face ? `<img src="/accets/IMAGEM/${user.face}" alt="Foto do Usuário" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">` : 'N/A'}</td>
+            <td>${user.cpf || ""}</td>
+            <td>${user.nome || ""}</td>
+            <td>${user.email || ""}</td>
+            <td>${user.telefone || ""}</td>
+            <td>${user.tpc || ""}</td>
+            <td>${user.face ? `<img src="/accets/IMAGEM/${user.face}" alt="Foto" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">` : "N/A"}</td>
             <td>
-              <button class="user-module-edit-btn" onclick="editarUsuario(${index})">✏️</button>
-              <button class="user-module-delete-btn" onclick="excluirUsuario(${index})">🗑️</button>
+              <button onclick="editarUsuario(${index})">✏️</button>
+              <button onclick="excluirUsuario(${index})">🗑️</button>
             </td>
           `;
           tbody.appendChild(tr);
@@ -142,14 +125,13 @@
       }
 
       function excluirUsuario(index) {
-        if (confirm(`Deseja excluir o usuário ${usuarios[index].nome || 'selecionado'}?`)) {
+        if (confirm(`Deseja excluir o usuário ${usuarios[index].nome}?`)) {
           usuarios.splice(index, 1);
           localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
           carregarUsuarios();
         }
       }
 
-      // Exibe tabela de usuários
       function showUsersTable() {
         rightContentArea.innerHTML = `
           <div class="user-module-container container">
@@ -169,109 +151,77 @@
               <tbody id="user-body"></tbody>
             </table>
             <button onclick="sortAlphabeticallyUsuarios()">Ordenar por Nome (A-Z)</button>
+            <button onclick="showCadastroForm()">➕ Adicionar Novo Usuário</button>
           </div>
         `;
         carregarUsuarios();
       }
 
-      // Ordenar usuários por nome
       function sortAlphabeticallyUsuarios() {
-        usuarios.sort((a, b) => (a.nome || '').toLowerCase().localeCompare((b.nome || '').toLowerCase()));
+        usuarios.sort((a, b) => (a.nome || "").toLowerCase().localeCompare((b.nome || "").toLowerCase()));
         localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
         carregarUsuarios();
       }
 
-      // Formulário de edição
       function showEditForm(user, index) {
         rightContentArea.innerHTML = `
           <div class="cadastro-form-container container">
             <h1>Editar Usuário</h1>
             <form id="edit-form">
-              <label for="edit-nome">Nome:</label>
-              <input type="text" id="edit-nome" value="${user.nome || ''}" required>
-
-              <label for="edit-telefone">Telefone:</label>
-              <input type="tel" id="edit-telefone" value="${user.telefone || ''}" required>
-
-              <label for="edit-email">Email:</label>
-              <input type="email" id="edit-email" value="${user.email || ''}" required>
-
-              <label for="edit-cpf">CPF:</label>
-              <input type="text" id="edit-cpf" value="${user.cpf || ''}" required>
-
-              <label for="edit-tpc">Tipo de Conta:</label>
-              <input type="text" id="edit-tpc" value="${user.tpc || ''}">
-
-              <label for="edit-face">Face ID / Foto (URL/Nome do arquivo):</label>
-              <input type="text" id="edit-face" value="${user.face || ''}">
-
-              <button type="submit" class="cadastro-submit-button">Salvar Edição</button>
-              <button type="button" class="cadastro-confirmado-back-button" onclick="showUsersTable()">Cancelar</button>
+              <label>Nome:</label><input type="text" id="edit-nome" value="${user.nome}" required>
+              <label>Telefone:</label><input type="tel" id="edit-telefone" value="${user.telefone}" required>
+              <label>Email:</label><input type="email" id="edit-email" value="${user.email}" required>
+              <label>CPF:</label><input type="text" id="edit-cpf" value="${user.cpf}" required>
+              <label>Tipo de Conta:</label><input type="text" id="edit-tpc" value="${user.tpc}">
+              <label>Face ID:</label><input type="text" id="edit-face" value="${user.face}">
+              <button type="submit">Salvar Edição</button>
+              <button type="button" onclick="showUsersTable()">Cancelar</button>
             </form>
           </div>
         `;
 
-        const editForm = document.getElementById('edit-form');
-        editForm.addEventListener('submit', (event) => {
-          event.preventDefault();
-
+        document.getElementById("edit-form").addEventListener("submit", function (e) {
+          e.preventDefault();
           usuarios[index] = {
-            nome: document.getElementById('edit-nome').value,
-            telefone: document.getElementById('edit-telefone').value,
-            email: document.getElementById('edit-email').value,
-            cpf: document.getElementById('edit-cpf').value,
-            tpc: document.getElementById('edit-tpc').value,
-            face: document.getElementById('edit-face').value
+            nome: document.getElementById("edit-nome").value,
+            telefone: document.getElementById("edit-telefone").value,
+            email: document.getElementById("edit-email").value,
+            cpf: document.getElementById("edit-cpf").value,
+            tpc: document.getElementById("edit-tpc").value,
+            face: document.getElementById("edit-face").value,
           };
-
-          localStorage.setItem('usuariosCadastrados', JSON.stringify(usuarios));
+          localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
           alert("Usuário atualizado com sucesso!");
           showUsersTable();
         });
       }
 
-      // Formulário novo cadastro
       function showCadastroForm() {
         rightContentArea.innerHTML = `
           <div class="cadastro-form-container container">
             <h1>Novo Cadastro de Usuário</h1>
             <form id="cadastro-form">
-              <label for="cadastro-nome">Nome:</label>
-              <input type="text" id="cadastro-nome" required>
-
-              <label for="cadastro-telefone">Telefone:</label>
-              <input type="tel" id="cadastro-telefone" required>
-
-              <label for="cadastro-email">Email:</label>
-              <input type="email" id="cadastro-email" required>
-
-              <label for="cadastro-cpf">CPF:</label>
-              <input type="text" id="cadastro-cpf" required>
-
-              <label for="cadastro-tpc">Tipo de Conta:</label>
-              <input type="text" id="cadastro-tpc">
-
-              <label for="cadastro-face">Face ID / Foto (URL/Nome do arquivo):</label>
-              <input type="text" id="cadastro-face">
-
-              <button type="submit" class="cadastro-submit-button">Cadastrar</button>
+              <label>Nome:</label><input type="text" id="cadastro-nome" required>
+              <label>Telefone:</label><input type="tel" id="cadastro-telefone" required>
+              <label>Email:</label><input type="email" id="cadastro-email" required>
+              <label>CPF:</label><input type="text" id="cadastro-cpf" required>
+              <label>Tipo de Conta:</label><input type="text" id="cadastro-tpc">
+              <label>Face ID:</label><input type="text" id="cadastro-face">
+              <button type="submit">Cadastrar</button>
             </form>
           </div>
         `;
 
-        const cadastroForm = document.getElementById('cadastro-form');
-        cadastroForm.addEventListener('submit', (event) => {
-          event.preventDefault();
-
+        document.getElementById("cadastro-form").addEventListener("submit", function (e) {
+          e.preventDefault();
           const novoUsuario = {
-            nome: document.getElementById('cadastro-nome').value,
-            telefone: document.getElementById('cadastro-telefone').value,
-            email: document.getElementById('cadastro-email').value,
-            cpf: document.getElementById('cadastro-cpf').value,
-            tpc: document.getElementById('cadastro-tpc').value,
-            face: document.getElementById('cadastro-face').value
+            nome: document.getElementById("cadastro-nome").value,
+            telefone: document.getElementById("cadastro-telefone").value,
+            email: document.getElementById("cadastro-email").value,
+            cpf: document.getElementById("cadastro-cpf").value,
+            tpc: document.getElementById("cadastro-tpc").value,
+            face: document.getElementById("cadastro-face").value,
           };
-
           usuarios.push(novoUsuario);
           localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
           alert("Usuário cadastrado com sucesso!");
@@ -279,44 +229,119 @@
         });
       }
 
-      // Formulário cadastro dispositivo
+      // ---------------------- Dispositivos -----------------------
+      function showDevicesTable() {
+        rightContentArea.innerHTML = `
+          <div class="user-module-container container">
+            <h1>Lista de Dispositivos</h1>
+            <table class="user-module-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Localização</th>
+                  <th>Modelo</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="device-body"></tbody>
+            </table>
+            <button onclick="sortDevicesAlphabetically()">Ordenar por Nome (A-Z)</button>
+            <button onclick="showCadastroDispositivoForm()">➕ Adicionar Novo Dispositivo</button>
+          </div>
+        `;
+        carregarDispositivos();
+      }
+
+      function carregarDispositivos() {
+        const tbody = document.getElementById("device-body");
+        if (!tbody) return;
+        tbody.innerHTML = "";
+        dispositivos.forEach((device, index) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${device.nome}</td>
+            <td>${device.localizacao}</td>
+            <td>${device.modelo}</td>
+            <td>
+              <button onclick="editarDispositivo(${index})">✏️</button>
+              <button onclick="excluirDispositivo(${index})">🗑️</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function sortDevicesAlphabetically() {
+        dispositivos.sort((a, b) => (a.nome || "").toLowerCase().localeCompare((b.nome || "").toLowerCase()));
+        localStorage.setItem("dispositivosCadastrados", JSON.stringify(dispositivos));
+        carregarDispositivos();
+      }
+
       function showCadastroDispositivoForm() {
         rightContentArea.innerHTML = `
           <div class="cadastro-form-container container">
             <h1>Cadastro de Dispositivo</h1>
             <form id="dispositivo-form">
-              <label for="dispositivo-nome">Nome do Dispositivo:</label>
-              <input type="text" id="dispositivo-nome" required>
-
-              <label for="dispositivo-localizacao">Localização:</label>
-              <input type="text" id="dispositivo-localizacao" required>
-
-              <label for="dispositivo-modelo">Modelo:</label>
-              <input type="text" id="dispositivo-modelo" required>
-
-              <button type="submit" class="cadastro-submit-button">Cadastrar Dispositivo</button>
+              <label>Nome:</label><input type="text" id="dispositivo-nome" required>
+              <label>Localização:</label><input type="text" id="dispositivo-localizacao" required>
+              <label>Modelo:</label><input type="text" id="dispositivo-modelo" required>
+              <button type="submit">Cadastrar Dispositivo</button>
             </form>
           </div>
         `;
 
-        const dispositivoForm = document.getElementById('dispositivo-form');
-        dispositivoForm.addEventListener('submit', (event) => {
-          event.preventDefault();
-
+        document.getElementById("dispositivo-form").addEventListener("submit", function (e) {
+          e.preventDefault();
           const novoDispositivo = {
-            nome: document.getElementById('dispositivo-nome').value,
-            localizacao: document.getElementById('dispositivo-localizacao').value,
-            modelo: document.getElementById('dispositivo-modelo').value
+            nome: document.getElementById("dispositivo-nome").value,
+            localizacao: document.getElementById("dispositivo-localizacao").value,
+            modelo: document.getElementById("dispositivo-modelo").value,
           };
-
           dispositivos.push(novoDispositivo);
           localStorage.setItem("dispositivosCadastrados", JSON.stringify(dispositivos));
           alert("Dispositivo cadastrado com sucesso!");
-          showCadastroDispositivoForm(); // limpa o formulário após cadastro
+          showDevicesTable();
         });
       }
 
-      // Tabela de notificações (registros)
+      function editarDispositivo(index) {
+        const d = dispositivos[index];
+        if (!d) return;
+        rightContentArea.innerHTML = `
+          <div class="cadastro-form-container container">
+            <h1>Editar Dispositivo</h1>
+            <form id="edit-device-form">
+              <label>Nome:</label><input type="text" id="edit-nome" value="${d.nome}" required>
+              <label>Localização:</label><input type="text" id="edit-localizacao" value="${d.localizacao}" required>
+              <label>Modelo:</label><input type="text" id="edit-modelo" value="${d.modelo}" required>
+              <button type="submit">Salvar Edição</button>
+              <button type="button" onclick="showDevicesTable()">Cancelar</button>
+            </form>
+          </div>
+        `;
+
+        document.getElementById("edit-device-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          dispositivos[index] = {
+            nome: document.getElementById("edit-nome").value,
+            localizacao: document.getElementById("edit-localizacao").value,
+            modelo: document.getElementById("edit-modelo").value,
+          };
+          localStorage.setItem("dispositivosCadastrados", JSON.stringify(dispositivos));
+          alert("Dispositivo atualizado com sucesso!");
+          showDevicesTable();
+        });
+      }
+
+      function excluirDispositivo(index) {
+        if (confirm(`Deseja excluir o dispositivo ${dispositivos[index].nome}?`)) {
+          dispositivos.splice(index, 1);
+          localStorage.setItem("dispositivosCadastrados", JSON.stringify(dispositivos));
+          carregarDispositivos();
+        }
+      }
+
+      // ---------------------- Registros -----------------------
       function showNotificationsTable() {
         rightContentArea.innerHTML = `
           <div class="user-module-container container">
@@ -344,10 +369,10 @@
         registros.forEach((registro) => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td>${registro.cpf || ''}</td>
-            <td>${registro.nome || ''}</td>
-            <td>${registro.tipo || ''}</td>
-            <td>${registro.dataHora || ''}</td>
+            <td>${registro.cpf}</td>
+            <td>${registro.nome}</td>
+            <td>${registro.tipo}</td>
+            <td>${registro.dataHora}</td>
           `;
           tbody.appendChild(tr);
         });

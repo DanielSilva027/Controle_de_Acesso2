@@ -13,28 +13,42 @@ body {
 }
 */
 
-.cadastro-dispositivo-container { /* Renomeado para evitar conflito com .container do menu */
+.cadastro-dispositivo-container {
+  /* Renomeado para evitar conflito com .container do menu */
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.05); /* Fundo mais transparente */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Borda mais sutil */
-  border-radius: 1rem; /* Raio menor */
-  padding: 1.5rem; /* Padding ajustado */
-  width: calc(100% - 3rem); /* Ocupa largura total do pai menos padding */
-  max-width: 28rem; /* Largura máxima ajustada */
-  box-shadow: 0 0.3rem 1rem rgba(31, 38, 135, 0.37); /* Sombra mais sutil */
-  backdrop-filter: blur(0.3rem); /* Blur mais sutil */
+  background: rgba(255, 255, 255, 0.05);
+  /* Fundo mais transparente */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Borda mais sutil */
+  border-radius: 1rem;
+  /* Raio menor */
+  padding: 1.5rem;
+  /* Padding ajustado */
+  width: calc(100% - 3rem);
+  /* Ocupa largura total do pai menos padding */
+  max-width: 28rem;
+  /* Largura máxima ajustada */
+  box-shadow: 0 0.3rem 1rem rgba(31, 38, 135, 0.37);
+  /* Sombra mais sutil */
+  backdrop-filter: blur(0.3rem);
+  /* Blur mais sutil */
   -webkit-backdrop-filter: blur(0.3rem);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin: auto; /* Centraliza vertical e horizontalmente */
-  max-height: 100%; /* Permite que ocupe a altura disponível */
-  overflow-y: auto; /* Adiciona scroll se o conteúdo for muito grande */
-  box-sizing: border-box; /* Inclui padding e border */
+  margin: auto;
+  /* Centraliza vertical e horizontalmente */
+  max-height: 100%;
+  /* Permite que ocupe a altura disponível */
+  overflow-y: auto;
+  /* Adiciona scroll se o conteúdo for muito grande */
+  box-sizing: border-box;
+  /* Inclui padding e border */
 }
 
-.cadastro-dispositivo-container h2 { /* Estilo para o H2 */
+.cadastro-dispositivo-container h2 {
+  /* Estilo para o H2 */
   margin-bottom: 1rem;
   color: white;
   font-size: 1.8rem;
@@ -42,17 +56,23 @@ body {
   width: 100%;
 }
 
-.cadastro-dispositivo-container input[type="text"] { /* Estilo para os inputs */
-  width: calc(100% - 1.6rem); /* 100% da largura do pai menos padding */
-  padding: 0.6rem 0.8rem; /* Padding ajustado */
-  border-radius: 0.25rem; /* Raio menor */
+.cadastro-dispositivo-container input[type="text"] {
+  /* Estilo para os inputs */
+  width: calc(100% - 1.6rem);
+  /* 100% da largura do pai menos padding */
+  padding: 0.6rem 0.8rem;
+  /* Padding ajustado */
+  border-radius: 0.25rem;
+  /* Raio menor */
   border: none;
   outline: none;
-  margin-bottom: 0.8rem; /* Margem inferior ajustada */
+  margin-bottom: 0.8rem;
+  /* Margem inferior ajustada */
   background-color: rgba(255, 255, 255, 0.1);
   color: White;
   font-size: 0.9rem;
-  box-sizing: border-box; /* Inclui padding na largura */
+  box-sizing: border-box;
+  /* Inclui padding na largura */
 }
 
 .cadastro-dispositivo-container input[type="text"]::placeholder {
@@ -64,22 +84,29 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.cadastro-dispositivo-container button { /* Estilo para os botões */
+.cadastro-dispositivo-container button {
+  /* Estilo para os botões */
   width: 100%;
-  padding: 0.75rem; /* Padding ajustado */
-  background: #008c6e; /* Cor verde para os botões */
+  padding: 0.75rem;
+  /* Padding ajustado */
+  background: #008c6e;
+  /* Cor verde para os botões */
   border: none;
-  border-radius: 0.5rem; /* Raio menor */
+  border-radius: 0.5rem;
+  /* Raio menor */
   color: White;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
-  font-weight: bold; /* Negrito */
-  margin-top: 0.5rem; /* Margem superior para separar os botões */
+  font-weight: bold;
+  /* Negrito */
+  margin-top: 0.5rem;
+  /* Margem superior para separar os botões */
 }
 
 .cadastro-dispositivo-container button:hover {
-  background: #006a50; /* Cor verde mais escura no hover */
+  background: #006a50;
+  /* Cor verde mais escura no hover */
 }
 
 .cadastro-dispositivo-container button:focus {
@@ -113,15 +140,17 @@ body {
 /* Media Queries para responsividade */
 @media (max-width: 768px) {
   .cadastro-dispositivo-container {
-      padding: 1rem;
-      width: calc(100% - 2rem);
+    padding: 1rem;
+    width: calc(100% - 2rem);
   }
+
   .cadastro-dispositivo-container h2 {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
+
   .cadastro-dispositivo-container input,
   .cadastro-dispositivo-container button {
-      font-size: 0.9rem;
-      padding: 0.6rem;
+    font-size: 0.9rem;
+    padding: 0.6rem;
   }
 }
