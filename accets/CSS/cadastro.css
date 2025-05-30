@@ -12,24 +12,33 @@ body {
 
 .container {
   color: #ffffff;
-  background: rgba(13, 27, 61, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(13, 27, 61, 0.85); /* Fundo menos transparente */
+  border: 2px solid rgba(255, 255, 255, 0.6); /* Borda mais forte */
   border-radius: 20px;
-  padding: 2rem;
-  width: 24rem;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(10px);
+  padding: 2.5rem 3rem; /* Um pouco mais de espaço interno */
+  width: 26rem; /* Leve aumento da largura */
+  box-shadow:
+    0 12px 24px rgba(31, 38, 135, 0.6),
+    0 0 15px rgba(0, 123, 255, 0.7); /* Sombra + brilho azul */
+  backdrop-filter: blur(12px); /* Blur mais intenso */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+/* Efeito de leve zoom ao passar o mouse para chamar atenção */
+.container:hover {
+  transform: scale(1.03);
 }
 
 h2 {
   margin-bottom: 1rem;
 }
 
-input {
+input,
+select {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
@@ -37,14 +46,32 @@ input {
   border: none;
   outline: none;
   background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  color: rgba(255, 255, 255, 0.356);
+  font-size: 1rem;
+  appearance: none;      /* Remove estilo padrão do select em navegadores */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+/* Placeholder para a opção padrão do select */
+select option[value=""] {
+  color: #aaa;
+}
+
+/* Seta personalizada no select */
+select {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
 }
 
 button {
   width: 100%;
   padding: 0.5rem;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(208, 208, 208, 0.3);
   border-radius: 20px;
   color: white;
   font-size: 0.9rem;
@@ -54,4 +81,8 @@ button {
 
 button:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+option{
+  color: black;
 }
