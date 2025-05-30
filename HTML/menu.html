@@ -12,6 +12,7 @@
       <div class="top-bar">
         <span class="menu-text">Menu</span>
         <span class="logged-user" id="logged-user">Usuário Logado</span>
+        <button id="logout-button" class="logout-button">Sair</button>
       </div>
 
       <div class="content-area">
@@ -381,6 +382,13 @@
           tbody.appendChild(tr);
         });
       }
+      const logoutButton = document.getElementById("logout-button");
+logoutButton.addEventListener("click", () => {
+  if (confirm("Tem certeza que deseja sair?")) {
+    localStorage.removeItem("usuarioLogadoCPF");
+    window.location.href = "../HTML/index.html"; 
+  }
+});
     </script>
   </body>
 </html>
