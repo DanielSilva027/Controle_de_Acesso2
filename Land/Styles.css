@@ -16,9 +16,9 @@ html {
 }
 
 img {
-  max-width: 100%; 
-  height: auto;    
-  display: block;  
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ----------------------------------------------------- */
@@ -30,7 +30,7 @@ img {
   padding: 1rem 2rem;
   background-color: #133167;
   width: 100%;
-  min-height: 8rem; 
+  min-height: 8rem;
   box-sizing: border-box;
 }
 
@@ -45,11 +45,12 @@ img {
 }
 
 .logo img {
-  height: 5rem; 
+  height: 5rem;
   width: auto;
 }
 
-.registro, a {
+.registro,
+a {
   background-color: #3b82f6;
   color: white;
   padding: 1rem 2rem;
@@ -57,7 +58,7 @@ img {
   border-radius: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
-  text-align: center; 
+  text-align: center;
 }
 
 /* -------------------------------------------------------------------- */
@@ -71,24 +72,42 @@ img {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: space-around; 
-  padding: 4rem 2rem; 
+  justify-content: space-around;
+  padding: 4rem 2rem;
   gap: 2rem;
   box-sizing: border-box;
 }
 
-.iniciopag { background-color: #f2f2f2; }
-.resumo { background-color: white; }
-.infproduto { background-color: white; }
-.casa { background-color: #000f4d; color: white;  }
-.servico { background-color: white; }
-
-
-.fundo, .fundo2, .fundo3 { 
-  flex: 1; 
-  max-width: 50%; 
-  padding: 1rem; 
+.iniciopag {
+  background-color: #f2f2f2;
 }
+
+.resumo {
+  background-color: white;
+}
+
+.infproduto {
+  background-color: white;
+}
+
+.casa {
+  background-color: #000f4d;
+  color: white;
+}
+
+.servico {
+  background-color: white;
+}
+
+
+.fundo,
+.fundo2,
+.fundo3 {
+  flex: 1;
+  max-width: 50%;
+  padding: 1rem;
+}
+
 .casa .fundo3 {
   color: white;
 }
@@ -100,12 +119,12 @@ img {
 }
 
 .texto {
-  font-size: 1.1rem; 
+  font-size: 1.1rem;
   margin-bottom: 2rem;
   line-height: 1.6;
 }
 
-.caracteristica { 
+.caracteristica {
   color: white;
   font-size: 1.1rem;
   margin-bottom: 2rem;
@@ -113,30 +132,30 @@ img {
 }
 
 .imgseguranca {
-  flex: 1; 
-  max-width: 45%; 
+  flex: 1;
+  max-width: 45%;
 }
 
-.img5 { 
+.img5 {
   flex: 1;
   max-width: 450px;
-  padding: 1rem; 
-  border-radius: 0.75rem; 
+  padding: 1rem;
+  border-radius: 0.75rem;
 }
 
-.img6 { 
-  width: 12rem; 
+.img6 {
+  width: 12rem;
   height: auto;
   border-radius: 0.5rem;
-  margin-top: 1rem; 
+  margin-top: 1rem;
 }
 
 .destaque {
   background: linear-gradient(to top, #fbe562 50%, transparent 50%);
-  padding: 0.1em 0.2em; 
+  padding: 0.1em 0.2em;
 }
 
-.subtitulo2 { 
+.subtitulo2 {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
@@ -153,10 +172,10 @@ img {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 2rem; 
+  padding: 2rem;
   width: 100%;
-  max-width: 800px; 
-  margin: 0 auto; 
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .detalhamento {
@@ -166,19 +185,20 @@ img {
   justify-content: space-around;
   width: 100%;
   gap: 2rem;
-  padding: 2rem; 
+  padding: 2rem;
 }
 
-.detalhamento .minitexto { 
+.detalhamento .minitexto {
   flex: 1;
   max-width: 45%;
-  text-align: left; 
+  text-align: left;
 }
 
-.detalhamento .img3 { 
+.detalhamento .img3 {
   flex: 1;
   max-width: 50%;
 }
+
 .detalhamento .img3 .img5 {
   max-width: 100%;
   padding: 0;
@@ -220,22 +240,29 @@ img {
     gap: 1.5rem;
   }
 
-  .subtitulo, .subtitulo2 {
+  .subtitulo,
+  .subtitulo2 {
     font-size: 2.5rem;
   }
 
-  .texto, .caracteristica {
+  .texto,
+  .caracteristica {
     font-size: 1rem;
   }
 
-  .fundo, .fundo2, .fundo3,
-  .imgseguranca, .img5,
-  .detalhamento .minitexto, .detalhamento .img3 {
+  .fundo,
+  .fundo2,
+  .fundo3,
+  .imgseguranca,
+  .img5,
+  .detalhamento .minitexto,
+  .detalhamento .img3 {
     max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
+
   .iniciopag,
   .resumo,
   .infproduto,
@@ -248,9 +275,13 @@ img {
     min-height: auto;
   }
 
-  .fundo, .fundo2, .fundo3,
-  .imgseguranca, .img5,
-  .detalhamento .minitexto, .detalhamento .img3 {
+  .fundo,
+  .fundo2,
+  .fundo3,
+  .imgseguranca,
+  .img5,
+  .detalhamento .minitexto,
+  .detalhamento .img3 {
     max-width: 100%;
     margin-bottom: 1.5rem;
   }
@@ -260,22 +291,24 @@ img {
   }
 
   .imgseguranca {
-     max-width: 300px;
-     margin-left: auto;
-     margin-right: auto;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .img5 {
-     max-width: 350px;
-     margin-left: auto;
-     margin-right: auto;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .subtitulo, .subtitulo2 {
+  .subtitulo,
+  .subtitulo2 {
     font-size: 2rem;
   }
 
-  .texto, .caracteristica {
+  .texto,
+  .caracteristica {
     font-size: 0.95rem;
   }
 
@@ -287,17 +320,20 @@ img {
     margin: 0 auto;
   }
 
-  .footer .container { 
+  .footer .container {
     flex-direction: column;
     text-align: center;
   }
-  .footer .container div { 
+
+  .footer .container div {
     margin-bottom: 1rem;
   }
+
   .footer .container div:last-child {
     margin-bottom: 0;
   }
 }
+
 .mapasecao {
   background-color: #02072b;
   color: white;
@@ -306,7 +342,8 @@ img {
   align-items: center;
   justify-content: center;
   gap: 50px;
-  flex-wrap: wrap; /* Responsivo */
+  flex-wrap: wrap;
+  /* Responsivo */
 }
 
 .mapasecao img {
@@ -324,15 +361,18 @@ img {
   background: white;
   text-align: center;
 }
+
 .testimonials h2 {
   font-size: 2.5rem;
   margin-bottom: 10px;
 }
+
 .highlight {
   background: #fdf2b4;
   border-radius: 4px;
   padding: 0 5px;
 }
+
 .cards {
   display: flex;
   gap: 20px;
@@ -340,48 +380,58 @@ img {
   flex-wrap: wrap;
   margin-top: 40px;
 }
+
 .card {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   width: 300px;
   text-align: left;
 }
+
 .card.blue {
   background: #4d90fe;
   color: white;
 }
+
 .card p {
   margin: 15px 0;
 }
+
 .user {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-top: 15px;
 }
+
 .user img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
+
 hr {
   border: none;
   border-top: 1px solid #ccc;
   margin: 10px 0;
 }
+
 /* Formulário */
 .form {
   margin-top: 40px;
 }
-.form input, .form textarea {
+
+.form input,
+.form textarea {
   width: 300px;
   padding: 10px;
   margin: 5px;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
+
 .form button {
   padding: 10px 20px;
   border: none;
@@ -390,6 +440,7 @@ hr {
   border-radius: 8px;
   cursor: pointer;
 }
+
 .feedback-container {
   display: flex;
   gap: 20px;
@@ -397,22 +448,26 @@ hr {
   flex-wrap: wrap;
   margin: 20px 0;
 }
+
 .card {
   background: white;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 250px;
   text-align: left;
 }
+
 .blue {
   background: #6495f8;
   color: white;
 }
+
 .author {
   margin-top: 10px;
   font-weight: bold;
 }
+
 button {
   padding: 10px 20px;
   background: #222;
@@ -421,33 +476,40 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
 form {
   margin-top: 20px;
   display: none;
 }
-input, textarea {
+
+input,
+textarea {
   width: 100%;
   padding: 8px;
   margin: 5px 0;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-.sub{
+
+.sub {
   text-align: center;
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
 }
-.botao{
-    background-color: #111;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
+
+.botao {
+  background-color: #111;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
 }
+
 .container-botao {
   display: flex;
   justify-content: center;
-  margin-top: 40px; /* espaço acima do botão */
+  margin-top: 40px;
+  /* espaço acima do botão */
 }
