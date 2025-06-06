@@ -1,0 +1,72 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.4.2
+-- http://www.phpmyadmin.net
+--
+-- Máquina: localhost
+-- Data de Criação: 06-Jun-2025 às 23:02
+-- Versão do servidor: 5.6.13
+-- versão do PHP: 5.4.17
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de Dados: `smartcam`
+--
+CREATE DATABASE IF NOT EXISTS `smartcam` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `smartcam`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `dispositivo`
+--
+
+CREATE TABLE IF NOT EXISTS `dispositivo` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `n_de_serie` int(11) NOT NULL,
+  `localizacao` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `notificacao`
+--
+
+CREATE TABLE IF NOT EXISTS `notificacao` (
+  `id` int(11) NOT NULL,
+  `dispositivo` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `face` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data_hora` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `face` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` tinyint(2) NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telefone` int(12) NOT NULL,
+  `senha` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
