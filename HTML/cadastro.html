@@ -18,7 +18,11 @@
         <option value="Admin">Admin</option>
         <option value="Usuario">Usuário</option>
       </select>
-      <input type="text" id="face" placeholder="Face ID / Link da Foto" />
+
+      <!-- Alterado: input de upload de imagem -->
+      <label for="face">Foto (Face ID):</label>
+      <input type="file" id="face" accept="image/*" />
+
       <input type="password" id="senha" placeholder="Senha de Acesso" />
       <button onclick="cadastrarUsuario()">Cadastrar</button>
       <button onclick="window.location.href='index.html'">Voltar</button>
@@ -31,13 +35,21 @@
         const email = document.getElementById("email").value.trim();
         const telefone = document.getElementById("telefone").value.trim();
         const tpc = document.getElementById("tpc").value.trim();
-        const face = document.getElementById("face").value.trim();
+        const faceInput = document.getElementById("face");
         const senha = document.getElementById("senha").value.trim();
 
         if (!cpf || !nome || !email || !telefone || !senha) {
           alert("Por favor, preencha todos os campos obrigatórios.");
           return;
         }
+
+        if (!faceInput.files.length) {
+          alert("Por favor, selecione uma imagem para Face ID.");
+          return;
+        }
+
+        const faceFile = faceInput.files[0];
+        const faceFileName = faceFile.name;
 
         let usuarios =
           JSON.parse(localStorage.getItem("usuariosCadastrados")) || [];
@@ -47,17 +59,22 @@
           return;
         }
 
-        const novoUsuario = { cpf, nome, email, telefone, tpc, face, senha };
+        const novoUsuario = {
+          cpf,
+          nome,
+          email,
+          telefone,
+          tpc,
+          face: faceFileName, // Apenas o nome da imagem
+          senha,
+        };
 
         usuarios.push(novoUsuario);
         localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
 
         alert("Usuário cadastrado com sucesso!");
 
-        // Salva o usuário logado
         localStorage.setItem("usuarioLogadoCPF", cpf);
-
-        // Redireciona para menu.html
         window.location.href = "menu.html";
       }
     </script>
