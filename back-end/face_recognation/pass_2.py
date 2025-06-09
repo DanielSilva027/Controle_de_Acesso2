@@ -27,3 +27,4 @@ cap = cv2.VideoCapture(0)
 
 scale = 0.25  # Downscale for performance  
 cap = cv2.VideoCapture(0)  
+a = 1 
