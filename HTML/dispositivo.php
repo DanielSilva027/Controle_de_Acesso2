@@ -24,7 +24,7 @@
       </table>
       <button
         class="add-button"
-        onclick="window.location.href='cadastro_dispositivo.html'"
+        onclick="window.location.href='cadastro_dispositivo.php'"
       >
         ADICIONAR DISPOSITIVO
       </button>

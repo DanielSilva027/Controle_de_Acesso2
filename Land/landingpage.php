@@ -60,7 +60,7 @@
       </div>
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-          <a class="navbar-brand text-white" href="/HTML/index.html"
+          <a class="navbar-brand text-white" href="/HTML/index.php"
             >SmartCam</a
           >
           <button
@@ -107,7 +107,7 @@
           detectado, permitindo ação rápida para prevenir incidentes.
         </p>
         <button class="registro">
-          <a href="../HTML/index.html">Acesse já →</a>
+          <a href="../HTML/index.php">Acesse já →</a>
         </button>
       </div>
       <img
@@ -128,7 +128,7 @@
           segurança do ambiente
         </p>
         <button class="registro">
-          <a href="/HTML/index.html">Iniciar →</a>
+          <a href="/HTML/index.php">Iniciar →</a>
         </button>
       </div>
       <img
@@ -168,7 +168,7 @@
           tecnologia de ponta
         </p>
         <button class="registro">
-          <a href="/HTML/index.html">Vamos lá →</a>
+          <a href="/HTML/index.php">Vamos lá →</a>
         </button>
       </div>
       <img src="assets/imagem/Domótica.jpg" class="img5" alt="casa" />

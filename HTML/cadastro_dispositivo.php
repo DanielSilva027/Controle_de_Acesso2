@@ -15,7 +15,7 @@
       <input type="text" id="localizacao" placeholder="Localização" />
 
       <button onclick="cadastrarDispositivo()">Cadastrar</button>
-      <button onclick="window.location.href='dispositivos.html'">Voltar</button>
+      <button onclick="window.location.href='dispositivos.php'">Voltar</button>
     </div>
 
     <script>
@@ -44,7 +44,7 @@
         localStorage.setItem("dispositivos", JSON.stringify(dispositivos));
 
         alert("Dispositivo cadastrado com sucesso!");
-        window.location.href = "dispositivo.html"; // volta para lista após cadastro
+        window.location.href = "dispositivo.php"; // volta para lista após cadastro
       }
     </script>
   </body>

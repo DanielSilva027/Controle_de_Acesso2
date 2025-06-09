@@ -25,7 +25,7 @@
 
       <input type="password" id="senha" placeholder="Senha de Acesso" />
       <button onclick="cadastrarUsuario()">Cadastrar</button>
-      <button onclick="window.location.href='index.html'">Voltar</button>
+      <button onclick="window.location.href='index.php'">Voltar</button>
     </div>
 
     <script>
@@ -75,7 +75,7 @@
         alert("Usuário cadastrado com sucesso!");
 
         localStorage.setItem("usuarioLogadoCPF", cpf);
-        window.location.href = "menu.html";
+        window.location.href = "menu.php";
       }
     </script>
   </body>

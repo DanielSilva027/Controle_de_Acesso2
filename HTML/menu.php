@@ -386,7 +386,7 @@
 logoutButton.addEventListener("click", () => {
   if (confirm("Tem certeza que deseja sair?")) {
     localStorage.removeItem("usuarioLogadoCPF");
-    window.location.href = "../HTML/index.html"; 
+    window.location.href = "../HTML/index.php"; 
   }
 });
     </script>

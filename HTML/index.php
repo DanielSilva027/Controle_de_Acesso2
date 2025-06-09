@@ -12,7 +12,7 @@
       <input type="text" id="cpf" placeholder="CPF" />
       <input type="password" id="senha" placeholder="Senha" />
       <button onclick="fazerLogin()">Entrar</button>
-      <button onclick="window.location.href='cadastro.html'">Cadastrar</button>
+      <button onclick="window.location.href='cadastro.php'">Cadastrar</button>
     </div>
 
     <script>
@@ -34,7 +34,7 @@
         if (usuario) {
           alert("Login realizado com sucessooo!");
           localStorage.setItem("usuarioLogadoCPF", cpf); // salvar CPF do usuário logado
-          window.location.href = "menu.html"; // redirecionaaa para menu
+          window.location.href = "menu.php"; // redirecionaaa para menu
         } else {
           alert("CPF ou senha incorretos.");
         }
