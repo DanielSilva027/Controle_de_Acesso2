@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cadastro de Dispositivo</title>
-    <link rel="stylesheet" href="../accets/CSS/cadastro_dispositivo.css" />
+    <link rel="stylesheet" href="../accets/CSS/cadastro.css" />
   </head>
   <body>
     <div class="container">
@@ -15,7 +15,7 @@
       <input type="text" id="localizacao" placeholder="Localização" />
 
       <button onclick="cadastrarDispositivo()">Cadastrar</button>
-      <button onclick="window.location.href='dispositivos.php'">Voltar</button>
+      <button onclick="window.location.href='menu.php'">Voltar</button>
     </div>
 
     <script>
@@ -44,7 +44,7 @@
         localStorage.setItem("dispositivos", JSON.stringify(dispositivos));
 
         alert("Dispositivo cadastrado com sucesso!");
-        window.location.href = "dispositivo.php"; // volta para lista após cadastro
+        window.location.href = "menu.php"; // volta para lista após cadastro
       }
     </script>
   </body>

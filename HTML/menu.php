@@ -123,10 +123,10 @@
         });
       }
 
+      // MODIFICADO: Redireciona para edita.php com o tipo de entidade e o índice
       function editarUsuario(index) {
-        const user = usuarios[index];
-        if (!user) return;
-        showEditForm(user, index);
+        // We don't need to get the user here, just pass the index
+        window.location.href = `edita.php?type=user&index=${index}`;
       }
 
       function excluirUsuario(index) {
@@ -155,8 +155,10 @@
               </thead>
               <tbody id="user-body"></tbody>
             </table>
-            <button onclick="sortAlphabeticallyUsuarios()">Ordenar por Nome (A-Z)</button>
-            <button onclick="showCadastroForm()">➕ Adicionar Novo Usuário</button>
+            <button class="action-button" onclick="sortAlphabeticallyUsuarios()">Ordenar por Nome (A-Z)</button>
+            <button class="action-button" onclick="window.location.href='adicionarusuario.php'">
+              ➕ Adicionar Novo Usuário
+            </button>
           </div>
         `;
         carregarUsuarios();
@@ -168,71 +170,13 @@
         carregarUsuarios();
       }
 
-      function showEditForm(user, index) {
-        rightContentArea.innerHTML = `
-          <div class="cadastro-form-container container">
-            <h1>Editar Usuário</h1>
-            <form id="edit-form">
-              <label>Nome:</label><input type="text" id="edit-nome" value="${user.nome}" required>
-              <label>Telefone:</label><input type="tel" id="edit-telefone" value="${user.telefone}" required>
-              <label>Email:</label><input type="email" id="edit-email" value="${user.email}" required>
-              <label>CPF:</label><input type="text" id="edit-cpf" value="${user.cpf}" required>
-              <label>Tipo de Conta:</label><input type="text" id="edit-tpc" value="${user.tpc}">
-              <label>Face ID:</label><input type="text" id="edit-face" value="${user.face}">
-              <button type="submit">Salvar Edição</button>
-              <button type="button" onclick="showUsersTable()">Cancelar</button>
-            </form>
-          </div>
-        `;
+      // REMOVIDO ou NÃO CHAMADO: A função showEditForm não é mais chamada pelo editarUsuario
+      // Sua lógica de edição agora estará em edita.php
+      // function showEditForm(user, index) { /* ... */ }
 
-        document.getElementById("edit-form").addEventListener("submit", function (e) {
-          e.preventDefault();
-          usuarios[index] = {
-            nome: document.getElementById("edit-nome").value,
-            telefone: document.getElementById("edit-telefone").value,
-            email: document.getElementById("edit-email").value,
-            cpf: document.getElementById("edit-cpf").value,
-            tpc: document.getElementById("edit-tpc").value,
-            face: document.getElementById("edit-face").value,
-          };
-          localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
-          alert("Usuário atualizado com sucesso!");
-          showUsersTable();
-        });
-      }
-
-      function showCadastroForm() {
-        rightContentArea.innerHTML = `
-          <div class="cadastro-form-container container">
-            <h1>Novo Cadastro de Usuário</h1>
-            <form id="cadastro-form">
-              <label>Nome:</label><input type="text" id="cadastro-nome" required>
-              <label>Telefone:</label><input type="tel" id="cadastro-telefone" required>
-              <label>Email:</label><input type="email" id="cadastro-email" required>
-              <label>CPF:</label><input type="text" id="cadastro-cpf" required>
-              <label>Tipo de Conta:</label><input type="text" id="cadastro-tpc">
-              <label>Face ID:</label><input type="text" id="cadastro-face">
-              <button type="submit">Cadastrar</button>
-            </form>
-          </div>
-        `;
-
-        document.getElementById("cadastro-form").addEventListener("submit", function (e) {
-          e.preventDefault();
-          const novoUsuario = {
-            nome: document.getElementById("cadastro-nome").value,
-            telefone: document.getElementById("cadastro-telefone").value,
-            email: document.getElementById("cadastro-email").value,
-            cpf: document.getElementById("cadastro-cpf").value,
-            tpc: document.getElementById("cadastro-tpc").value,
-            face: document.getElementById("cadastro-face").value,
-          };
-          usuarios.push(novoUsuario);
-          localStorage.setItem("usuariosCadastrados", JSON.stringify(usuarios));
-          alert("Usuário cadastrado com sucesso!");
-          showUsersTable();
-        });
-      }
+      // REMOVIDO ou NÃO CHAMADO: A função showCadastroForm não é mais chamada pelo botão de adicionar
+      // A lógica de cadastro agora estará em adicionarusuario.php
+      // function showCadastroForm() { /* ... */ }
 
       // ---------------------- Dispositivos -----------------------
       function showDevicesTable() {
@@ -250,8 +194,10 @@
               </thead>
               <tbody id="device-body"></tbody>
             </table>
-            <button onclick="sortDevicesAlphabetically()">Ordenar por Nome (A-Z)</button>
-            <button onclick="showCadastroDispositivoForm()">➕ Adicionar Novo Dispositivo</button>
+            <button class="action-button" onclick="sortDevicesAlphabetically()">Ordenar por Nome (A-Z)</button>
+            <button class="action-button" onclick="window.location.href='cadastro_dispositivo.php'">
+              ➕ Adicionar Novo Dispositivo
+            </button>
           </div>
         `;
         carregarDispositivos();
@@ -282,60 +228,10 @@
         carregarDispositivos();
       }
 
-      function showCadastroDispositivoForm() {
-        rightContentArea.innerHTML = `
-          <div class="cadastro-form-container container">
-            <h1>Cadastro de Dispositivo</h1>
-            <form id="dispositivo-form">
-              <label>Nome:</label><input type="text" id="dispositivo-nome" required>
-              <label>Localização:</label><input type="text" id="dispositivo-localizacao" required>
-              <label>Modelo:</label><input type="text" id="dispositivo-modelo" required>
-              <button type="submit">Cadastrar Dispositivo</button>
-            </form>
-          </div>
-        `;
-
-        document.getElementById("dispositivo-form").addEventListener("submit", function (e) {
-          e.preventDefault();
-          const novoDispositivo = {
-            nome: document.getElementById("dispositivo-nome").value,
-            localizacao: document.getElementById("dispositivo-localizacao").value,
-            modelo: document.getElementById("dispositivo-modelo").value,
-          };
-          dispositivos.push(novoDispositivo);
-          localStorage.setItem("dispositivosCadastrados", JSON.stringify(dispositivos));
-          alert("Dispositivo cadastrado com sucesso!");
-          showDevicesTable();
-        });
-      }
-
+      // MODIFICADO: Redireciona para edita.php com o tipo de entidade e o índice
       function editarDispositivo(index) {
-        const d = dispositivos[index];
-        if (!d) return;
-        rightContentArea.innerHTML = `
-          <div class="cadastro-form-container container">
-            <h1>Editar Dispositivo</h1>
-            <form id="edit-device-form">
-              <label>Nome:</label><input type="text" id="edit-nome" value="${d.nome}" required>
-              <label>Localização:</label><input type="text" id="edit-localizacao" value="${d.localizacao}" required>
-              <label>Modelo:</label><input type="text" id="edit-modelo" value="${d.modelo}" required>
-              <button type="submit">Salvar Edição</button>
-              <button type="button" onclick="showDevicesTable()">Cancelar</button>
-            </form>
-          </div>
-        `;
-
-        document.getElementById("edit-device-form").addEventListener("submit", function (e) {
-          e.preventDefault();
-          dispositivos[index] = {
-            nome: document.getElementById("edit-nome").value,
-            localizacao: document.getElementById("edit-localizacao").value,
-            modelo: document.getElementById("edit-modelo").value,
-          };
-          localStorage.setItem("dispositivosCadastrados", JSON.stringify(dispositivos));
-          alert("Dispositivo atualizado com sucesso!");
-          showDevicesTable();
-        });
+        // We don't need to get the device here, just pass the index
+        window.location.href = `edita.php?type=device&index=${index}`;
       }
 
       function excluirDispositivo(index) {
@@ -345,6 +241,11 @@
           carregarDispositivos();
         }
       }
+
+      // REMOVIDO ou NÃO CHAMADO: A função showCadastroDispositivoForm não é mais chamada pelo botão de adicionar
+      // A lógica de cadastro agora estará em cadastro_dispositivo.php
+      // function showCadastroDispositivoForm() { /* ... */ }
+
 
       // ---------------------- Registros -----------------------
       function showNotificationsTable() {
@@ -382,13 +283,14 @@
           tbody.appendChild(tr);
         });
       }
+
       const logoutButton = document.getElementById("logout-button");
-logoutButton.addEventListener("click", () => {
-  if (confirm("Tem certeza que deseja sair?")) {
-    localStorage.removeItem("usuarioLogadoCPF");
-    window.location.href = "../HTML/index.php"; 
-  }
-});
+      logoutButton.addEventListener("click", () => {
+        if (confirm("Tem certeza que deseja sair?")) {
+          localStorage.removeItem("usuarioLogadoCPF");
+          window.location.href = "../HTML/index.php";
+        }
+      });
     </script>
   </body>
 </html>

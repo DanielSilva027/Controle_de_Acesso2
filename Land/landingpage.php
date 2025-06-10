@@ -148,7 +148,7 @@
           <br />identificação
         </p>
         <button class="registro">
-          <a href="/HTML/index.html">Começar agora →</a>
+          <a href="/HTML/index.php">Começar agora →</a>
         </button>
       </div>
       <img
