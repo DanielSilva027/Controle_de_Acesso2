@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username ="root";
 $password = "usbw";
-$db_crud = "crud";
+$db_crud = "smartcam";
 
 $connect = mysql_connect($servername, $username, $password,$db_crud );
 
