@@ -3,14 +3,16 @@
 $servername = "localhost";
 $username = "root";
 $password = "serra";
-$db_crud = "smartcam";
+$dbname = "smartcam";
 
-// Cria a conexão
-$connect = mysqli_connect($servername, $username, $password, $db_crud);
+// Criando conexão
+$connect = mysqli_connect($servername, $username, $password, $dbname);
 
-// Verifica se houve erro na conexão
-if ( mysqli_connect_error()) {
-    echo "Falha na conexão: " . mysqli_connect_error();
+// Verificando conexão
+if (!$connect) {
+    die("Falha na conexão: " . mysqli_connect_error());
+} else {
+    echo "Conexão bem-sucedida!";
 }
 
 ?>

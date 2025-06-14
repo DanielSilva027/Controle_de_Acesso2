@@ -37,7 +37,6 @@
           <p style="padding: 20px; color: #666; font-style: italic;">
             Selecione uma opção no menu para começar.
           </p>
-          
         </div>
       </div>
     </div>
@@ -102,7 +101,7 @@
                   <th>Telefone</th>
                   <th>Tipo de Conta</th>
                   <th>Face ID</th>
-                  <th>id</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody id="user-body">
@@ -127,7 +126,7 @@
                   <th>Nome</th>
                   <th>Localização</th>
                   <th>Modelo</th>
-                  <th>id</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody id="device-body">
