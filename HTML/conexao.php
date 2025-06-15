@@ -2,11 +2,11 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "serra";
+$password = "usbw";
 $dbname = "smartcam";
 
 // Criando conexão
-$connect = mysqli_connect($servername, $username, $password, $dbname);
+$connect = mysqli_connect($servername,$username, $password, $dbname,3307 );
 
 // Verificando conexão
 if (!$connect) {

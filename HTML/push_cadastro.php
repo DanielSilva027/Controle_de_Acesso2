@@ -1,28 +1,50 @@
 <?php
-//Iniciar  Sessão
+// Iniciar Sessão
 session_start();
 
-//Conexão
+// Conexão
 require_once 'conexao.php';
 
-if(isset($_POST['btn-cadastrar'])):
-	$nome=mysqli_escape_string($connect,$_POST['cpf']);
-	$sobrenome=mysqli_escape_string($connect,$_POST['nome']);
-	$email=mysqli_escape_string($connect,$_POST['email']);
-	$idade=mysqli_escape_string($connect,$_POST['telefone']);
-  $nome=mysqli_escape_string($connect,$_POST['tpc']);
-	$sobrenome=mysqli_escape_string($connect,$_POST['face']);
-	$email=mysqli_escape_string($connect,$_POST['senha']);
-	
-	$sql="INSERT INTO user(nome,cpf,email,telefone,tpc,face,senha) VALUES ('$nome', '$cpf', '$email', $telefone,$tcp,$face,$senha)";
-	echo $sql;
-	if(mysqli_query($connect,$sql)):
-		$_SESSION['mensagem'] = "Cadastro com sucesso!";
-		header('Location: ../28crud_index.php?sucesso');
-	else:
-		$_SESSION['mensagem'] = "Erro ao cadastrar!";		
-		header('Location: ../28crud_index.php?erro');
-	endif;
-endif;	
+if (isset($_POST['btn-cadastrar'])) {
+    $cpf = mysqli_escape_string($connect, $_POST['cpf']);
+    $nome = mysqli_escape_string($connect, $_POST['nome']);
+    $email = mysqli_escape_string($connect, $_POST['email']);
+    $telefone = mysqli_escape_string($connect, $_POST['telefone']);
+    $tipo = mysqli_escape_string($connect, $_POST['tipo']);
+    $senha = mysqli_escape_string($connect, $_POST['senha']);
 
+    // -------- Upload da foto (face) ---------
+    $face = $_FILES['face']['name'];                // Nome original da imagem
+    $temp = $_FILES['face']['tmp_name'];            // Local temporário
+
+    // Diretório onde a imagem será salva
+    $pasta = "../rostos/";
+
+    // Criar nome único pra evitar sobrescrever imagens
+    $novo_nome_face = uniqid() . "-" . $face;
+
+    // Caminho completo
+    $destino = $pasta . $novo_nome_face;
+
+    // Move a imagem
+    if (move_uploaded_file($temp, $destino)) {
+        // Sucesso no upload
+    } else {
+        $_SESSION['mensagem'] = "Erro ao fazer upload da imagem.";
+        header('Location: index.php?erroi');
+        exit();
+    }
+
+    // -------- Inserção no banco ---------
+    $sql = "INSERT INTO user (cpf, nome, email, telefone, tipo, face, senha) 
+            VALUES ('$cpf', '$nome', '$email', '$telefone', '$tipo', '$novo_nome_face', '$senha')";
+
+    if (mysqli_query($connect, $sql)) {
+        $_SESSION['mensagem'] = "Cadastro realizado com sucesso!";
+        header('Location: menu.php?sucesso');
+    } else {
+        $_SESSION['mensagem'] = "Erro ao cadastrar no banco de dados!";
+        header('Location: index.php?erroc');
+    }
+}
 ?>

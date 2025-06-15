@@ -134,7 +134,7 @@
               </tbody>
             </table>
             <button class="action-button">Ordenar por Nome (A-Z)</button>
-            <button class="action-button" onclick="window.location.href='cadastro_dispositivo.php'">
+            <button class="action-button" onclick="window.location.href='dispositivo.php'">
               ➕ Adicionar Novo Dispositivo
             </button>
           </div>
