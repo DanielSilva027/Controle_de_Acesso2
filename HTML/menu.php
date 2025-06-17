@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['logado'])) {
+    header('Location: index.php');
+    exit();
+}
+
+$nome_usuario = $_SESSION['nome_usuario'];
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -11,8 +21,10 @@
     <div class="main-container">
       <div class="top-bar">
         <span class="menu-text">Menu</span>
-        <span class="logged-user" id="logged-user">Usuário Logado</span>
-        <button id="logout-button" class="logout-button">Sair</button>
+        <span class="logged-user">
+          Usuário Logado: <?php echo htmlspecialchars($nome_usuario); ?>
+        </span>
+        <button class="logout-button" onclick="window.location.href='logout.php'">Sair</button>
       </div>
 
       <div class="content-area">
@@ -63,24 +75,17 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        const loggedUserElem = document.getElementById("logged-user");
-        const cpf = localStorage.getItem("usuarioLogadoCPF");
-
-        if (cpf && loggedUserElem) {
-          loggedUserElem.textContent = `Usuário Logado: ${cpf}`;
-        }
-
-        document.getElementById("manage-users-button").addEventListener("click", () => {
+        document.getElementById("manage-users-button").addEventListener("click", (event) => {
           setActiveButton(event.target.closest("button"));
           showUsersTable();
         });
 
-        document.getElementById("manage-devices-button").addEventListener("click", () => {
+        document.getElementById("manage-devices-button").addEventListener("click", (event) => {
           setActiveButton(event.target.closest("button"));
           showDevicesTable();
         });
 
-        document.getElementById("records-button").addEventListener("click", () => {
+        document.getElementById("records-button").addEventListener("click", (event) => {
           setActiveButton(event.target.closest("button"));
           showNotificationsTable();
         });
@@ -105,7 +110,7 @@
                 </tr>
               </thead>
               <tbody id="user-body">
-                <!-- Os dados virão de um backend em PHP futuramente -->
+                <!-- Dados do backend futuramente -->
               </tbody>
             </table>
             <button class="action-button">Ordenar por Nome (A-Z)</button>
@@ -130,7 +135,7 @@
                 </tr>
               </thead>
               <tbody id="device-body">
-                <!-- Os dados virão de um backend em PHP futuramente -->
+                <!-- Dados do backend futuramente -->
               </tbody>
             </table>
             <button class="action-button">Ordenar por Nome (A-Z)</button>
@@ -155,20 +160,12 @@
                 </tr>
               </thead>
               <tbody id="records-body">
-                <!-- Os dados virão de um backend em PHP futuramente -->
+                <!-- Dados do backend futuramente -->
               </tbody>
             </table>
           </div>
         `;
       }
-
-      const logoutButton = document.getElementById("logout-button");
-      logoutButton.addEventListener("click", () => {
-        if (confirm("Tem certeza que deseja sair?")) {
-          localStorage.removeItem("usuarioLogadoCPF");
-          window.location.href = "../HTML/index.php";
-        }
-      });
     </script>
   </body>
 </html>

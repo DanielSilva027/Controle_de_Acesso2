@@ -1,44 +1,30 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../accets/CSS/cadastro.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="../accets/CSS/cadastro.css">
+</head>
+<body>
     <div class="container">
-      <h2>Login do Usuário</h2>
-      <input type="text" id="cpf" placeholder="CPF" />
-      <input type="password" id="senha" placeholder="Senha" />
-      <button onclick="fazerLogin()">Entrar</button>
-      <button onclick="window.location.href='cadastro.php'">Cadastrar</button>
+        <h2>Login do Usuário</h2>
+        <?php
+        if (isset($_SESSION['mensagem'])) {
+            echo $_SESSION['mensagem'];
+            unset($_SESSION['mensagem']);
+        }
+        ?>
+        <form action="login.php" method="POST">
+            <input type="number" name="cpf" placeholder="CPF" required />
+            <input type="password" name="senha" placeholder="Senha" required />
+            <button type="submit" name="btn-entrar">Entrar</button>
+            <button type="button" onclick="window.location.href='cadastro.php'">Cadastrar</button>
+        </form>
     </div>
-
-    <script>
-      function fazerLogin() {
-        const cpf = document.getElementById("cpf").value.trim();
-        const senha = document.getElementById("senha").value.trim();
-
-        if (!cpf || !senha) {
-          alert("Preencha CPF e senha.");
-          return;
-        }
-
-        const usuarios =
-          JSON.parse(localStorage.getItem("usuariosCadastrados")) || [];
-        const usuario = usuarios.find(
-          (u) => u.cpf === cpf && u.senha === senha
-        );
-
-        if (usuario) {
-          alert("Login realizado com sucessooo!");
-          localStorage.setItem("usuarioLogadoCPF", cpf); // salvar CPF do usuário logado
-          window.location.href = "menu.php"; // redirecionaaa para menu
-        } else {
-          alert("CPF ou senha incorretos.");
-        }
-      }
-    </script>
-  </body>
+</body>
 </html>

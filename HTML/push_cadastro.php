@@ -12,6 +12,8 @@ if (isset($_POST['btn-cadastrar'])) {
     $telefone = mysqli_escape_string($connect, $_POST['telefone']);
     $tipo = mysqli_escape_string($connect, $_POST['tipo']);
     $senha = mysqli_escape_string($connect, $_POST['senha']);
+    $novasenha = base64_encode($senha); 
+
 
     // -------- Upload da foto (face) ---------
     $face = $_FILES['face']['name'];                // Nome original da imagem
@@ -37,11 +39,11 @@ if (isset($_POST['btn-cadastrar'])) {
 
     // -------- Inserção no banco ---------
     $sql = "INSERT INTO user (cpf, nome, email, telefone, tipo, face, senha) 
-            VALUES ('$cpf', '$nome', '$email', '$telefone', '$tipo', '$novo_nome_face', '$senha')";
+            VALUES ('$cpf', '$nome', '$email', '$telefone', '$tipo', '$novo_nome_face', '$novasenha')";
 
     if (mysqli_query($connect, $sql)) {
         $_SESSION['mensagem'] = "Cadastro realizado com sucesso!";
-        header('Location: menu.php?sucesso');
+        header('Location: index.php?sucesso');
     } else {
         $_SESSION['mensagem'] = "Erro ao cadastrar no banco de dados!";
         header('Location: index.php?erroc');
