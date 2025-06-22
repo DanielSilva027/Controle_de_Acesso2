@@ -10,10 +10,10 @@
     <div class="container">
       <h2>Cadastro de Usuário</h2>
       <form action="push_cadastro.php" method="POST" enctype="multipart/form-data">
-        <input type="number" id="cpf" name="cpf" placeholder="CPF (chave primária)" required /><br>
+        <input type="text" id="cpf" name="cpf" placeholder="CPF" required /><br>
         <input type="text" id="nome" name="nome" placeholder="Nome completo" required /><br>
         <input type="email" id="email" name="email" placeholder="E-mail" required /><br>
-        <input type="number" id="telefone" name="telefone" placeholder="Telefone" required /><br>
+        <input type="text" id="telefone" name="telefone" placeholder="Telefone" required /><br>
         <select id="tpc" name="tpc" required><br>
           <option value="">Selecione o tipo de conta</option>
           <option value=1>Admin</option>

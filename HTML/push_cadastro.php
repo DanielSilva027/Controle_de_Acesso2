@@ -1,4 +1,5 @@
 <?php
+
 // Iniciar Sessão
 session_start();
 
@@ -10,7 +11,7 @@ if (isset($_POST['btn-cadastrar'])) {
     $nome = mysqli_escape_string($connect, $_POST['nome']);
     $email = mysqli_escape_string($connect, $_POST['email']);
     $telefone = mysqli_escape_string($connect, $_POST['telefone']);
-    $tipo = mysqli_escape_string($connect, $_POST['tipo']);
+    $tipo = mysqli_escape_string($connect, $_POST['tpc']);
     $senha = mysqli_escape_string($connect, $_POST['senha']);
     $novasenha = base64_encode($senha); 
 

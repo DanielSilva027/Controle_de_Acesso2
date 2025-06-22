@@ -6,7 +6,7 @@ $password = "usbw";
 $dbname = "smartcam";
 
 // Criando conexão
-$connect = mysqli_connect($servername,$username, $password, $dbname,3307 );
+$connect = mysqli_connect($servername,$username, $password, $dbname,3306 );
 
 // Verificando conexão
 if (!$connect) {

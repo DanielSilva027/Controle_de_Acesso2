@@ -1,7 +1,8 @@
 import cv2
-import face_recognition
 import os
 import numpy as np
+import face_recognition
+
 
 # Criar um diretório para armazenar imagens de treinamento se não existir
 os.makedirs('rostos', exist_ok=True)
