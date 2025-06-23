@@ -21,7 +21,7 @@ if (isset($_POST['btn-cadastrar'])) {
     $temp = $_FILES['face']['tmp_name'];            // Local temporário
 
     // Diretório onde a imagem será salva
-    $pasta = "../rostos/";
+    $pasta = "../back-end/rostos/";
 
     // Criar nome único pra evitar sobrescrever imagens
     $novo_nome_face = uniqid() . "-" . $face;

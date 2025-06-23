@@ -1,5 +1,6 @@
 import face_recognition
 import cv2
+import pass_1 
 
 # Carrega imagem
 imagem = face_recognition.load_image_file( "../root/rostos/pessoa.jpg")
