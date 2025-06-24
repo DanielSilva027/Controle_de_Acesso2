@@ -6,15 +6,14 @@ import numpy as np
 import contrução_area
 import consultas_banco
 from datetime import datetime
-from collections import defaultdict
-import time
+
+# Controle de rostos visíveis no momento
+presentes_atualmente = set()
 
 # Retorna a data/hora atual formatada
-
-
 def hora_atual():
     agora = datetime.now()
-    return agora.strftime("%Y-%m-%d %H:%M:%S")  
+    return agora.strftime("%Y-%m-%d %H:%M:%S")
 
 # Carrega codificações salvas em arquivos .npy
 def carregar_codificacoes(pasta):
@@ -31,11 +30,6 @@ def carregar_codificacoes(pasta):
 # Carrega os rostos conhecidos
 encodings_conhecidos, nomes_classes = carregar_codificacoes(contrução_area.PASTA_CODIFICACOES)
 
-# Controle para evitar registros duplicados em segundos
-ultimos_registros = defaultdict(float)
-INTERVALO_REGISTRO = 5  # segundos
-
-# Inicializa a câmera
 cap = cv2.VideoCapture(0)
 
 while True:
@@ -48,37 +42,34 @@ while True:
     face_locations = face_recognition.face_locations(rgb_frame)
     face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
 
+    nomes_detectados = set()
+
     for face_encoding, face_location in zip(face_encodings, face_locations):
         matches = face_recognition.compare_faces(encodings_conhecidos, face_encoding, tolerance=0.6)
         name = "Desconhecido"
 
         if True in matches:
             idx = matches.index(True)
-            name = nomes_classes[idx]
+            name = nomes_classes[idx].strip().lower()  
+            nomes_detectados.add(name)
 
-            tempo_atual = time.time()
-            if tempo_atual - ultimos_registros[name] > INTERVALO_REGISTRO:
+            if name not in presentes_atualmente:
                 id_user, nome_user = consultas_banco.pull_user(name)
                 print(id_user, nome_user)
                 if id_user is not None and nome_user is not None:
                     print(f"[DEBUG] Registrando {nome_user} no banco...")
                     consultas_banco.push_notificacao(id_user, nome_user, hora_atual(), "webCam", name)
-                    ultimos_registros[name] = tempo_atual
+                    presentes_atualmente.add(name)
 
-        # (opcional) desenhar o quadrado e nome na tela:
-        y1, x2, y2, x1 = face_location
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-        cv2.rectangle(frame, (x1, y2 - 20), (x2, y2), (0, 255, 0), cv2.FILLED)
-        cv2.putText(frame, name.upper(), (x1 + 6, y2 - 6),
-                    cv2.FONT_HERSHEY_DUPLEX, 0.6, (255, 255, 255), 1)
+    # Remover pessoas que saíram do quadro
+    for nome in list(presentes_atualmente):
+        if nome not in nomes_detectados:
+            presentes_atualmente.remove(nome)
 
-    # Exibe o vídeo com rostos marcados
     cv2.imshow("Reconhecimento Facial - Pressione 'q' para sair", frame)
 
-    # Fecha com tecla 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-# Libera a câmera e fecha janelas
 cap.release()
 cv2.destroyAllWindows()
