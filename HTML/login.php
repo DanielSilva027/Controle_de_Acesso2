@@ -8,8 +8,14 @@ if (isset($_POST['btn-entrar'])) {
     $senha = base64_encode($senha); // Codificando a senha do mesmo jeito que foi salva no cadastro
 
   
-    $sql = "SELECT id, nome FROM user WHERE cpf = '$cpf' AND senha = '$senha'";
+    $sql = "SELECT id, nome, tipo FROM user WHERE cpf = '$cpf' AND senha = '$senha'";
     $resultado = mysqli_query($connect, $sql);
+
+       if($_SESSION['tipo' == 2]){
+         $_SESSION['mensagem'] = "acesso indisponivel";
+        header('Location: index.php');
+    }
+    
 
     if (mysqli_num_rows($resultado) > 0) {
         $dados = mysqli_fetch_array($resultado);
@@ -19,7 +25,7 @@ if (isset($_POST['btn-entrar'])) {
         header('Location: menu.php');
         exit();
     } else {
-        $_SESSION['mensagem'] = "<li>CPF ou Senha incorretos.</li>";
+        $_SESSION['mensagem'] = "CPF ou Senha incorretos.";
         header('Location: index.php');
     }
 

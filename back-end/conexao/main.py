@@ -9,18 +9,14 @@ def test(con,localizacao,nome,n_de_serie):
     con.commit()
     
 
-def main():
-    print('a')
+def consulta():
 
-    con =  criar_conexao("localhost","root","usbw","smartcam")
-    print('a')
+    con =  criar_conexao()
+  
 
     test(con,"sala","celula",1)
-    print('a')
+
 
     fechar_conexao(con)
-    print('a')
 
-if __name__ == "__main__":
-    main()
-    
+

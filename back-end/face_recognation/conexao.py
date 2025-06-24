@@ -1,5 +1,5 @@
 import mysql.connector
-def criar_conexao(host, usuario, senha, banco):
+def criar_conexao():
     try:
         conexao = mysql.connector.connect(host='localhost',port=3306,user='root',password='usbw',database='smartcam' )
         return conexao

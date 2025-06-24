@@ -24,7 +24,6 @@ def verf_existencia(nome,pasta_codificacoes):
 os.makedirs('rostos', exist_ok=True)
 os.makedirs('rostos_codificacoes', exist_ok=True)   
 
-
 # Lista todos os arquivos da pasta
 for arquivo in os.listdir(PASTA):
     if arquivo.lower().endswith(('.jpg', '.jpeg', '.png')):
@@ -33,7 +32,7 @@ for arquivo in os.listdir(PASTA):
 
         if(verf_existencia(nome_base,PASTA_CODIFICACOES) == False):
             continue
- 
+
         # Lê a imagem
         quadro = cv2.imread(caminho_img)
         if quadro is None:
