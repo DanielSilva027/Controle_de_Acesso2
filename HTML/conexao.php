@@ -12,7 +12,6 @@ $connect = mysqli_connect($servername,$username, $password, $dbname,3306 );
 if (!$connect) {
     die("Falha na conexão: " . mysqli_connect_error());
 } else {
-    echo "Conexão bem-sucedida!";
 }
 
 ?>

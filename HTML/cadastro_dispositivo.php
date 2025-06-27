@@ -9,43 +9,13 @@
   <body>
     <div class="container">
       <h2>Cadastro de Dispositivo</h2>
-
-      <input type="text" id="nome" placeholder="Nome do dispositivo" />
-      <input type="text" id="numeroSerie" placeholder="Número de Série" />
-      <input type="text" id="localizacao" placeholder="Localização" />
-
-      <button onclick="cadastrarDispositivo()">Cadastrar</button>
-      <button onclick="window.location.href='menu.php'">Voltar</button>
+      <form action="push_dispositivo.php" method="POST">
+        <input type="text" id="nome" name="nome" placeholder="Nome do dispositivo" required /><br>
+        <input type="number" id="numero_serie" name="numero_serie" placeholder="Número de série do dispositivo" required /><br>
+        <input type="text" id="localizacao" name="localizacao" placeholder="Localização do dispositivo" required /><br>
+        <button type="submit" name="btn-cadastrar_disp">Cadastrar</button>
+        <button type="button" onclick="window.location.href='menu.php'">Voltar</button>
+      </form>
     </div>
-
-    <script>
-      function cadastrarDispositivo() {
-        const nome = document.getElementById("nome").value.trim();
-        const numeroSerie = document.getElementById("numeroSerie").value.trim();
-        const localizacao = document.getElementById("localizacao").value.trim();
-
-        if (!nome || !numeroSerie || !localizacao) {
-          alert("Por favor, preencha todos os campos.");
-          return;
-        }
-
-        let dispositivos =
-          JSON.parse(localStorage.getItem("dispositivos")) || [];
-
-        // Verifica se o número de série já existe
-        if (dispositivos.some((d) => d.numeroSerie === numeroSerie)) {
-          alert(
-            "Já existe um dispositivo cadastrado com este número de série."
-          );
-          return;
-        }
-
-        dispositivos.push({ nome, numeroSerie, localizacao });
-        localStorage.setItem("dispositivos", JSON.stringify(dispositivos));
-
-        alert("Dispositivo cadastrado com sucesso!");
-        window.location.href = "menu.php"; // volta para lista após cadastro
-      }
-    </script>
-  </body>
+  </body>
 </html>

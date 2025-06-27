@@ -23,7 +23,7 @@
             <input type="number" name="cpf" placeholder="CPF" required />
             <input type="password" name="senha" placeholder="Senha" required />
             <button type="submit" name="btn-entrar">Entrar</button>
-            <button type="button" onclick="window.location.href='cadastro.php'">Cadastrar</button>
+            <button type="button" onclick="window.location.href='cadastro_user.php'">Cadastrar</button>
         </form>
     </div>
 </body>
