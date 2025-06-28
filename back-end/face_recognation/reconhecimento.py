@@ -60,6 +60,9 @@ while True:
                     print(f"[DEBUG] Registrando {nome_user} no banco...")
                     consultas_banco.push_notificacao(id_user, nome_user, hora_atual(), "webCam", name)
                     presentes_atualmente.add(name)
+        else:
+            consultas_banco.push_notificacao(id_user, name, hora_atual(), "webCam", name)
+
 
     # Remover pessoas que saíram do quadro
     for nome in list(presentes_atualmente):

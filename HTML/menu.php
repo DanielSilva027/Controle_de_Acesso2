@@ -51,7 +51,7 @@ $nomeUsuarioLogado = $_SESSION['nome_usuario'] ?? 'Usuário não identificado';
               </tr>";
             }
             echo '</tbody></table>';
-            echo '<button onclick="window.location.href=\'adicionarusuario.php\'">➕ Adicionar Novo Usuário</button>';
+            echo '<button onclick="window.location.href=\'cadastro_user.php\'">➕ Adicionar Novo Usuário</button>';
             echo '</div>';
           }
         } elseif ($pagina === 'dispositivos') {
