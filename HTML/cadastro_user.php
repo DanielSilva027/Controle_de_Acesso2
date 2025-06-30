@@ -1,33 +1,62 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" href="../accets/CSS/cadastro.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h2>Cadastro de Usuário</h2>
-      <form action="push_cadastro.php" method="POST" enctype="multipart/form-data">
-        <input type="text" id="cpf" name="cpf" placeholder="CPF" required /><br>
-        <input type="text" id="nome" name="nome" placeholder="Nome completo" required /><br>
-        <input type="email" id="email" name="email" placeholder="E-mail" required /><br>
-        <input type="text" id="telefone" name="telefone" placeholder="Telefone" required /><br>
-        <select id="tpc" name="tpc" required><br>
-          <option value="">Selecione o tipo de conta</option>
-          <option value=1>Admin</option>
-          <option value=2>Usuário</option>
-        </select>
+<?php
+// Iniciar Sessão
+session_start();
 
-        <label for="face">Foto (Face ID):</label>
-        <input type="file" id="face" name="face" accept="image/*" required />
+// Conexão
+require_once 'conexao.php';
 
-        <input type="password" id="senha" name="senha" placeholder="Senha de Acesso" required />
-        <button type="submit" name="btn-cadastrar">Cadastrar</button>
-      
-        <button type="button" onclick="window.location.href='index.php'">Voltar</button>
-      </form>
-    </div>
-  </body>
-</html>
+if (isset($_POST['btn-cadastrar'])) {
+    $cpf      = mysqli_escape_string($connect, $_POST['cpf']);
+    $nome     = mysqli_escape_string($connect, $_POST['nome']);
+    $email    = mysqli_escape_string($connect, $_POST['email']);
+    $telefone = mysqli_escape_string($connect, $_POST['telefone']);
+    $tipo     = mysqli_escape_string($connect, $_POST['tpc']);
+    $senha    = mysqli_escape_string($connect, $_POST['senha']);
+    $novasenha = base64_encode($senha); // criptografia fraca, considere usar password_hash futuramente
+
+    // VERIFICAÇÕES DO UPLOAD DE IMAGEM
+
+    if (!isset($_FILES['face']) || $_FILES['face']['error'] !== 0) {
+        $_SESSION['mensagem'] = "Erro ao enviar imagem do rosto.";
+        header('Location: index.php?erro_upload');
+        exit();
+    }
+
+    // Valida tipo MIME
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $tipo_mime = finfo_file($finfo, $_FILES['face']['tmp_name']);
+    finfo_close($finfo);
+
+    if (!in_array($tipo_mime, ['image/jpeg', 'image/png'])) {
+        $_SESSION['mensagem'] = "Formato de imagem inválido. Envie apenas JPEG ou PNG.";
+        header('Location: index.php?erro_tipo');
+        exit();
+    }
+
+    // UPLOAD DA IMAGEM
+
+    $extensao = pathinfo($_FILES['face']['name'], PATHINFO_EXTENSION); // mantém extensão correta
+    $novo_nome_face = uniqid() . '.' . $extensao;
+    $pasta = "../rostos/";
+    $destino = $pasta . $novo_nome_face;
+
+    if (!move_uploaded_file($_FILES['face']['tmp_name'], $destino)) {
+        $_SESSION['mensagem'] = "Erro ao salvar a imagem.";
+        header('Location: index.php?erro_mover');
+        exit();
+    }
+
+    // INSERÇÃO NO BANCO
+
+    $sql = "INSERT INTO user (cpf, nome, email, telefone, tipo, face, senha)
+            VALUES ('$cpf', '$nome', '$email', '$telefone', '$tipo', '$novo_nome_face', '$novasenha')";
+
+    if (mysqli_query($connect, $sql)) {
+        $_SESSION['mensagem'] = "Cadastro realizado com sucesso!";
+        header('Location: index.php?sucesso');
+    } else {
+        $_SESSION['mensagem'] = "Erro ao cadastrar no banco de dados.";
+        header('Location: index.php?erro_banco');
+    }
+}
+?>
