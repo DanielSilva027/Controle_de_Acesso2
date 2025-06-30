@@ -2,8 +2,9 @@ import cv2
 import os
 import numpy as np
 import face_recognition
-from PIL import Image
+# Diretórios para as imagens e codificações
 
+# Certifique-se de que esses caminhos estão corretos para o seu sistema
 PASTA =  r'C:\Users\user\Desktop\p.i\Controle_de_Acesso2\rostos'
 PASTA_CODIFICACOES = r'C:\Users\user\Desktop\p.i\Controle_de_Acesso2\rostos_codificacoes'
 
@@ -17,12 +18,6 @@ def verf_existencia(nome,pasta_codificacoes):
             break
 
     return resp
-
-
-
-# Criar um diretório para armazenar imagens de treinamento se não existir
-os.makedirs('rostos', exist_ok=True)
-os.makedirs('rostos_codificacoes', exist_ok=True)   
 
 # Lista todos os arquivos da pasta
 for arquivo in os.listdir(PASTA):
