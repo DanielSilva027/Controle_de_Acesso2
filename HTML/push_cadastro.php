@@ -1,5 +1,5 @@
 <?php
-// Iniciar Sessão
+// Iniciar Sessão e mostrar erros para debug
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -18,17 +18,14 @@ if (isset($_POST['btn-cadastrar'])) {
     $novasenha = base64_encode($senha); // criptografia fraca, considere usar password_hash futuramente
 
     // VERIFICAÇÕES DO UPLOAD DE IMAGEM
-
     if (!isset($_FILES['face']) || $_FILES['face']['error'] !== 0) {
         $_SESSION['mensagem'] = "Erro ao enviar imagem do rosto.";
         header('Location: index.php?erro_upload');
         exit();
     }
 
-    // Valida tipo MIME
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $tipo_mime = finfo_file($finfo, $_FILES['face']['tmp_name']);
-    finfo_close($finfo);
+    // Valida tipo MIME usando $_FILES['face']['type']
+    $tipo_mime = $_FILES['face']['type'];
 
     if (!in_array($tipo_mime, ['image/jpeg', 'image/png'])) {
         $_SESSION['mensagem'] = "Formato de imagem inválido. Envie apenas JPEG ou PNG.";
@@ -36,8 +33,7 @@ if (isset($_POST['btn-cadastrar'])) {
         exit();
     }
 
-    // UPLOAD DA IMAGEM
-
+    // Pega a extensão correta da imagem
     $extensao = pathinfo($_FILES['face']['name'], PATHINFO_EXTENSION); // mantém extensão correta
     $novo_nome_face = uniqid() . '.' . $extensao;
     $pasta = "../rostos/";
@@ -50,7 +46,6 @@ if (isset($_POST['btn-cadastrar'])) {
     }
 
     // INSERÇÃO NO BANCO
-
     $sql = "INSERT INTO user (cpf, nome, email, telefone, tipo, face, senha)
             VALUES ('$cpf', '$nome', '$email', '$telefone', '$tipo', '$novo_nome_face', '$novasenha')";
 
