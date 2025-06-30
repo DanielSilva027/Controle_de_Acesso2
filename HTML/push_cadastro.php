@@ -24,7 +24,7 @@ if (isset($_POST['btn-cadastrar'])) {
     $pasta = "../rostos/";
 
     // Criar nome único pra evitar sobrescrever imagens
-    $novo_nome_face = uniqid().'.img';
+    $novo_nome_face = uniqid().'.jpg';
 
     // Caminho completo
     $destino = $pasta . $novo_nome_face;
