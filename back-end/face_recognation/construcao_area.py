@@ -3,7 +3,7 @@ import os
 import numpy as np
 import face_recognition
 
-# Caminhos das pastas (ajuste se necessário)
+# Caminhos das pastas (AJUSTE CONFORME NECESSÁRIO)
 PASTA = r'C:\Users\user\Desktop\p.i\Controle_de_Acesso2\rostos'
 PASTA_CODIFICACOES = r'C:\Users\user\Desktop\p.i\Controle_de_Acesso2\rostos_codificacoes'
 
